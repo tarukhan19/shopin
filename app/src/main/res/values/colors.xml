@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#DB4438</color>
+    <color name="colorPrimaryDark">#DB4438</color>
+    <color name="colorAccent">#DB4438</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="darkgray">#0e212e</color>
+    <color name="transgray">#80888888</color>
+    <color name="translitegray">#20888888</color>
+
+
+    <color name="gray">#888888</color>
+    <color name="or">#8D8D8D</color>
+    <color name="light_black">#555454</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#DB4438</color>
+    <color name="yellow">#eccb17</color>
+    <color name="green">#FF34A350</color>
+    <color name="grey">#DDDDDD</color>
+    <color name="lite_grey">#F0F0F0</color>
+    <color name="dimgrey">#696969</color>
+    <color name="semi_trans">#4D000000</color>
+    <color name="darkorange">#bfFF6347</color>
+
+    <color name="billcolorPrimary">#1b314c</color>
+    <color name="billcolorPrimaryDark">#1b314c</color>
+    <color name="billcolorAccent">#4c627d</color>
+
+    <color name="red_active">#f44336</color>
+    <color name="purple_active">#9c27b0</color>
+    <color name="blue_active">#03a9f4</color>
+    <color name="green_active">#4caf50</color>
+    <color name="blue_grey_active">#607d8b</color>
+    <color name="yellow_active">#ffeb3b</color>
+    <color name="orange_active">#ff9800</color>
+    <color name="grey_active">#9e9e9e</color>
+
+    <color name="red_inactive">#e57373</color>
+    <color name="purple_inactive">#ba68c8</color>
+    <color name="blue_inactive">#64b5f6</color>
+    <color name="green_inactive">#81c784</color>
+    <color name="blue_grey_inactive">#90a4ae</color>
+    <color name="yellow_inactive">#80f4740d</color>
+    <color name="orange_inactive">#ffb74d</color>
+    <color name="gery_inactive">#e0e0e0</color>
+
+    <color name="default_inactive">#78909c</color>
+
+    <color name="red_bg_light">#ffebee</color>
+    <color name="purple_bg_light">#f3e5f5</color>
+    <color name="blue_bg_light">#e3f2fd</color>
+    <color name="green_bg_light">#e8f5e9</color>
+    <color name="blue_grey_bg_light">#eceff1</color>
+    <color name="yellow_bg_light">#80f4740d</color>
+    <color name="orange_bg_light">#fff3e0</color>
+    <color name="grey_bg_light">#fafafa</color>
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#d1395c</color>
+    <color name="dot_dark_screen2">#14a895</color>
+    <color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#f98da5</color>
+    <color name="dot_light_screen2">#8cf9eb</color>
+    <color name="dot_light_screen3">#93c6fd</color>
+    <color name="dot_light_screen4">#e4b5fc</color>
+    <color name="textgray">#929292</color>
+
+    <color name="textyellow">#d5a26a</color>
+    <color name="textred">#b05a5a</color>
+    <color name="textgreen">#84bb9c</color>
+
+
+
+    <color name="button_end_call_pressed_color">#FC5876</color>
+    <color name="background_fragment_conversation">#2b2a2a</color>
+
+    <color name="text_color_call_type">#6e6e6e</color>
+    <color name="text_color_light_grey">#dedede</color>
+    <color name="text_color_black">#000000</color>
+    <color name="text_color_primary">#212121</color>
+    <color name="text_color_dark_grey">#6e6e6e</color>
+
+    <color name="selected_list_item_color">#e0e0e0</color>
+
+    <color name="text_color_medium_grey">#b1b1b1</color>
+
+    <color name="grey_transparent_20">#20606060</color>
+
+
+    <color name="background_color_selected_user_item">#eeeeee</color>
+    <color name="background_color_normal_user_item">#ffffff</color>
+
+    <color name="icon_background_color_selected_user">#959595</color>
+
+    <color name="text_color_outgoing_opponents_names_audio_call">#1f1f1f</color>
+    <color name="toolbar_title_color">#1f1f1f</color>
+    <color name="toolbar_subtitle_color">#6e6e6e</color>
+
+    <color name="text_color_caller_name">#1f1f1f</color>
+
+    <color name="text_color_also_on_call">@color/text_color_call_type</color>
+    <color name="text_color_other_inc_users">#1f1f1f</color>
+
+    <color name="random_color_1">#ff9500</color>
+    <color name="random_color_2">#007aff</color>
+    <color name="random_color_3">#ff0091</color>
+    <color name="random_color_4">#4cd964</color>
+    <color name="random_color_5">#c3c1f2</color>
+    <color name="random_color_6">#a727a5</color>
+    <color name="random_color_7">#77a6d0</color>
+    <color name="random_color_8">#d0021b</color>
+    <color name="random_color_9">#166642</color>
+    <color name="random_color_10">#bdbdbd</color>
+
+
+</resources>

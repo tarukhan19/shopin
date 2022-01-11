@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UserAuth.view.OtpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_15dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:id="@+id/backIV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:gravity="start"
+                        android:src="@drawable/backarrow" />
+
+                    <com.app.shopin.customview.BoldTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.9"
+                        android:gravity="center"
+                        android:text="@string/enter_your_code"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_100dp"
+                    android:weightSum="6"
+                    android:paddingStart="@dimen/_20dp"
+                    android:paddingEnd="@dimen/_20dp"
+                    >
+
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+
+
+                    <com.app.shopin.customview.RegularEditText
+                        android:id="@+id/otpET6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:maxLength="1"
+                        android:inputType="number"
+                        />
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/otpTIL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginEnd="@dimen/_10dp" />
+
+
+
+                <com.app.shopin.customview.SemiBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/didn_t_receive_a_verification_code"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
+
+                <com.app.shopin.customview.RegularButton
+                    android:id="@+id/resendOtp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45dp"
+                    android:layout_margin="@dimen/_50dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/resendcode"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp" />
+
+
+            </LinearLayout>
+
+
+            <com.app.shopin.customview.RegularButton
+                android:id="@+id/nextBTN"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55dp"
+                android:layout_margin="@dimen/_10dp"
+                android:background="@drawable/buttonbackground"
+                android:text="@string/next"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sp" />
+
+
+            <LinearLayout
+                android:id="@+id/progressbarLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transgray"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</layout>

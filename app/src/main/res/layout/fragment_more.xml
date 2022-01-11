@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomePage.view.MoreFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/white"
+       android:orientation="vertical"
+       android:layout_margin="@dimen/_10dp"
+
+       >
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:gravity="center"
+           >
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:id="@+id/profilepicIV"
+               android:layout_width="@dimen/_100dp"
+               android:layout_height="@dimen/_100dp"
+               android:src="@drawable/profiledp"
+               app:civ_border_width="1dp"
+               android:scaleType="centerCrop"
+               android:layout_marginTop="@dimen/_20dp"
+               app:civ_border_color="#FF000000"/>
+           <LinearLayout
+               android:id="@+id/afterloginLL"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="center"
+               android:visibility="gone"
+               >
+               <com.app.shopin.customview.BoldTextView
+                   android:id="@+id/nametv"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:textSize="@dimen/_18sp"
+                   android:text="@string/name"
+                   android:gravity="center"
+                   />
+
+               <com.app.shopin.customview.RegularTextView
+                   android:id="@+id/useridTV"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:textSize="@dimen/_18sp"
+                   android:text="@string/name"
+                   android:gravity="center"
+                   />
+
+               <com.app.shopin.customview.RegularTextView
+                   android:id="@+id/emailidTV"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="4dp"
+                   android:textSize="@dimen/_18sp"
+                   android:text="@string/name"
+                   android:gravity="center"
+                   />
+           </LinearLayout>
+
+
+               <com.app.shopin.customview.RegularButton
+                   android:id="@+id/loginBTN"
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/_55dp"
+                   android:background="@drawable/buttonbackground"
+                   android:text="@string/login"
+                   android:layout_marginTop="@dimen/_10dp"
+                   android:textColor="@color/white"
+                   android:textSize="@dimen/_14sp" />
+
+
+       </LinearLayout>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/card"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardCornerRadius="16dp"
+           app:cardElevation="4dp">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:id="@+id/orderLayout"
+                   tools:ignore="UseCompoundDrawables">
+
+                   <ImageView
+                       android:id="@+id/imageView2"
+                       android:layout_width="35dp"
+                       android:layout_height="35dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:layout_marginBottom="8dp"
+                       android:contentDescription="@string/todo"
+                       android:src="@drawable/order" />
+
+                   <TextView
+                       android:id="@+id/name4"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="24dp"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/font_regular"
+                       android:text="@string/orders"
+                       android:textColor="@color/profile_list_text_color"
+                       android:textFontWeight="@integer/material_motion_duration_medium_1"
+                       android:textSize="18sp" />
+
+               </LinearLayout>
+
+
+               <View
+                   android:id="@+id/view1"
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginStart="16dp"
+                   android:layout_marginEnd="16dp"
+                   android:background="@color/borderView" />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:id="@+id/favouriteLayout"
+                   tools:ignore="UseCompoundDrawables">
+
+                   <ImageView
+                       android:id="@+id/imageView3"
+                       android:layout_width="35dp"
+                       android:layout_height="35dp"
+                       android:layout_marginStart="16dp"
+                       android:layout_marginTop="8dp"
+                       android:layout_marginBottom="8dp"
+                       android:contentDescription="@string/todo"
+                       android:src="@drawable/favorites" />
+
+                   <TextView
+                       android:id="@+id/name5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="24dp"
+                       android:layout_gravity="center"
+                       android:fontFamily="@font/font_regular"
+                       android:text="@string/favorites"
+                       android:textColor="@color/profile_list_text_color"
+                       android:textFontWeight="@integer/material_motion_duration_medium_1"
+                       android:textSize="18sp" />
+
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+
+
+
+
+   </LinearLayout>
+</ScrollView>
+</layout>
