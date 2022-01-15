@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.app.shopin.HomePage.view.HomeActivity
+import com.app.shopin.HomePage.view.Activity.HomeActivity
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityMobileRegisterBinding
@@ -23,13 +23,14 @@ class MobileRegisterActivity : AppCompatActivity() , View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mobileViewModel = ViewModelProvider(this).get(MobileViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mobile_register)
         initialize()
 
     }
     private fun initialize()
     {
+        mobileViewModel = ViewModelProvider(this).get(MobileViewModel::class.java)
+
         nextBTN.setOnClickListener(this)
         emailIdLL.setOnClickListener(this)
         backIV.setOnClickListener(this)

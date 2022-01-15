@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UserAuth.view.EditProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/lite_grey"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/lite_grey"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                >
+
+            </include>
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profilepicIV"
+                        android:layout_width="@dimen/_100dp"
+                        android:layout_height="@dimen/_100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defult_user"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="1dp" />
+
+                    <ImageView
+                        android:id="@+id/editProfileIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@id/profilepicIV"
+                        android:layout_alignBottom="@id/profilepicIV"
+                        android:layout_marginStart="@dimen/_5dp"
+                        android:src="@drawable/pencil" />
+                </RelativeLayout>
+
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:layout_marginEnd="@dimen/_5dp"
+                    android:background="@color/white"
+                    android:padding="@dimen/_8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardElevation="4dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5dp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_55dp"
+                            android:layout_margin="@dimen/_5dp"
+                            android:background="@drawable/edittextbackgrnd"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <com.app.shopin.customview.RegularTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5dp"
+                                android:layout_weight="0.2"
+                                android:gravity="center_vertical"
+                                android:text="@string/name"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12sp" />
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/nameET"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.8"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:hint="@string/name"
+                                android:inputType="textCapWords"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sp" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_55dp"
+                            android:layout_margin="@dimen/_5dp"
+                            android:background="@drawable/edittextbackgrnd"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <com.app.shopin.customview.RegularTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5dp"
+                                android:layout_weight="0.2"
+                                android:gravity="center_vertical"
+                                android:text="@string/mobileno"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12sp" />
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/mobilenoET"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.6"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:hint="@string/mobileno"
+                                android:inputType="number"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.2"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/mblverificationIV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/verified" />
+
+                                <com.app.shopin.customview.RegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/verified"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_10sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_55dp"
+                            android:layout_margin="@dimen/_5dp"
+                            android:background="@drawable/edittextbackgrnd"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <com.app.shopin.customview.RegularTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_8dp"
+                                android:layout_weight="0.2"
+                                android:gravity="center_vertical"
+                                android:text="@string/email"
+                                android:textColor="@color/gray"
+                                android:textSize="@dimen/_12sp" />
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/emailidET"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="@dimen/_8dp"
+                                android:layout_weight="0.6"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:hint="@string/email"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.2"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/emailverificationIV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/not_verified" />
+
+                                <com.app.shopin.customview.RegularTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:text="@string/not_verified"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_8sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <com.app.shopin.customview.RegularButton
+                    android:id="@+id/saveBTN"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_55dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/_50dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/save"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/progressbarLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transgray"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</layout>

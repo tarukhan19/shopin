@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.app.shopin.HomePage.view.HomeActivity
+import com.app.shopin.HomePage.view.Activity.HomeActivity
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityOtpBinding
@@ -196,13 +195,32 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         progressbarLL.visibility = View.VISIBLE
         otpViewModel.getObserveData().observe(this,{
 
-            if (it?.status==true  && it.status_code==200) {
+            if (it?.status==true  && it.status_code==200)
+            {
                 progressbarLL.visibility = View.GONE
+
                 Preference.getInstance(this)?.setboolean(Constant.IS_LOGIN,true)
                 Preference.getInstance(this)?.setString(Constant.KEY_TOKEN,it.otpResponseItems.token)
-                Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,it.otpResponseItems.email)
-                Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,it.otpResponseItems.phone_no)
                 Preference.getInstance(this)?.setString(Constant.KEY_USER_ID,it.otpResponseItems.user_id)
+
+                if (it.otpResponseItems.email!=null)
+                {
+                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,it.otpResponseItems.email)
+                    Utils.printLog(it.otpResponseItems.email,"emailid")
+                }
+                if (it.otpResponseItems.phone_no!=null)
+                {
+                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,it.otpResponseItems.phone_no)
+                    Utils.printLog(it.otpResponseItems.phone_no,"phoneno")
+
+                }
+                if (it.otpResponseItems.name!=null)
+                {
+                    Preference.getInstance(this)?.setString(Constant.KEY_NAME,it.otpResponseItems.name)
+                    Utils.printLog(it.otpResponseItems.name,"name")
+
+                }
+
 
                 val intent = Intent(this@OtpActivity, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

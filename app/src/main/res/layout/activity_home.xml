@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HomePage.view.HomeActivity">
+    tools:context=".HomePage.view.Activity.HomeActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:mbn_countBackgroundColor="#ff6f00"
-            app:mbn_countTextColor="#000"
-            app:mbn_defaultIconColor="#909090"
+            android:background="#00000000"
+            app:mbn_countBackgroundColor="#00000000"
+            app:mbn_defaultIconColor="@color/black"
             app:mbn_rippleColor="@color/colorPrimary"
             app:mbn_selectedIconColor="@color/colorPrimary"
-            app:mbn_shadowColor="#5000" />
+            app:mbn_shadowColor="#00000000" />
 
     </RelativeLayout>
 

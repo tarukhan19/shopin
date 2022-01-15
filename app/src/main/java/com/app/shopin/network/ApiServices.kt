@@ -1,8 +1,11 @@
 package com.app.shopin.network
 
+import com.app.shopin.UserAuth.model.EditProfileResponse
+import com.app.shopin.UserAuth.model.LoadProfileResponse
 import com.app.shopin.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiServices {
@@ -11,13 +14,13 @@ interface ApiServices {
 
     @FormUrlEncoded
     @POST("users/generateotp/")
-    fun registerUserEmail(@Field("email") email: String): retrofit2.Call<EmailResponse>
+    fun registerUserEmail(@Field("email") email: String): Call<EmailResponse>
 
     /// generate otp with mobile //
 
     @FormUrlEncoded
     @POST("users/generateotp/")
-    fun registerUserMobile(@Field("email") mobileno: String): retrofit2.Call<MobileResponse>
+    fun registerUserMobile(@Field("email") mobileno: String): Call<MobileResponse>
 
     // verify otp with email //
 
@@ -26,21 +29,21 @@ interface ApiServices {
     fun verifyUser(
         @Field("email") email: String,
         @Field("otp") otp: String
-    ): retrofit2.Call<OtpResponse>
+    ): Call<OtpResponse>
 
-    // update user profile //
 
-//    @Multipart
-//    @PUT("users/{id}/")
-//    fun updateUser(
-//        @Path("id") id: String,
-//        @Part("email") email: RequestBody,
-//        @Part("name") name: RequestBody,
-//        @Part("phone_no") mobileno: RequestBody,
-//        @Part multipartimage: MultipartBody.Part?
-//    ): retrofit2.Call<MessageResponse>
-//
-//    // upload user store detail  //
+    /*................editprofile.........................*/
+    @Multipart
+    @POST("users/update_user_prfile/")
+    fun editProfile(
+        @Part("email") email: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("phone_no") mobileno: RequestBody,
+        @Part multipartimage: MultipartBody.Part?
+    ): Call<EditProfileResponse>
+
+
+    //    // upload user store detail  //
 //
 //    @FormUrlEncoded
 //    @POST("store-request/")
@@ -146,10 +149,10 @@ interface ApiServices {
 //        @Field("delivery_instruction") delivery_instruction : String
 //    ): retrofit2.Call<MessageResponse>
 //
-//    @GET("delivery-address/")
-//    fun getDeliveryAddress(
-//    ): retrofit2.Call<AllAddressResponse>
-//
+    @GET("users/get_user_profile/")
+    fun loadProfile(
+    ): retrofit2.Call<LoadProfileResponse>
+
 //    @FormUrlEncoded
 //    @POST("user-location/")
 //    fun saveAndUpdateLocation(

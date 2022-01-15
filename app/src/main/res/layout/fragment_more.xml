@@ -2,22 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomePage.view.MoreFragment">
+    tools:context=".HomePage.view.Fragment.MoreFragment">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-
-    >
+    android:background="@color/lite_grey">
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:background="@color/white"
        android:orientation="vertical"
-       android:layout_margin="@dimen/_10dp"
-
-       >
+       android:layout_margin="@dimen/_10dp">
 
        <LinearLayout
            android:layout_width="match_parent"
@@ -25,40 +20,59 @@
            android:orientation="vertical"
            android:gravity="center"
            >
-           <de.hdodenhof.circleimageview.CircleImageView
-               android:id="@+id/profilepicIV"
-               android:layout_width="@dimen/_100dp"
-               android:layout_height="@dimen/_100dp"
-               android:src="@drawable/profiledp"
-               app:civ_border_width="1dp"
-               android:scaleType="centerCrop"
-               android:layout_marginTop="@dimen/_20dp"
-               app:civ_border_color="#FF000000"/>
+           <RelativeLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:gravity="center"
+               >
+
+               <de.hdodenhof.circleimageview.CircleImageView
+                   android:id="@+id/profilepicIV"
+                   android:layout_width="@dimen/_100dp"
+                   android:layout_height="@dimen/_100dp"
+                   android:layout_marginTop="@dimen/_10dp"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/defult_user"
+
+                   app:civ_border_color="#FF000000"
+                   app:civ_border_width="1dp" />
+
+               <ImageView
+                   android:id="@+id/editProfileIV"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignEnd="@id/profilepicIV"
+                   android:layout_alignParentBottom="true"
+                   android:layout_marginStart="@dimen/_5dp"
+                   android:src="@drawable/pencil" />
+           </RelativeLayout>
+
            <LinearLayout
                android:id="@+id/afterloginLL"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="vertical"
                android:gravity="center"
-               android:visibility="gone"
+               android:layout_marginTop="@dimen/_10dp"
+
                >
-               <com.app.shopin.customview.BoldTextView
-                   android:id="@+id/nametv"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="4dp"
-                   android:textSize="@dimen/_18sp"
-                   android:text="@string/name"
-                   android:gravity="center"
-                   />
+
+                   <com.app.shopin.customview.BoldTextView
+                       android:id="@+id/nametv"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="@dimen/_16sp"
+                       android:gravity="center"
+                      />
+
 
                <com.app.shopin.customview.RegularTextView
                    android:id="@+id/useridTV"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="4dp"
-                   android:textSize="@dimen/_18sp"
-                   android:text="@string/name"
+                   android:textSize="@dimen/_16sp"
                    android:gravity="center"
                    />
 
@@ -67,8 +81,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="4dp"
-                   android:textSize="@dimen/_18sp"
-                   android:text="@string/name"
+                   android:textSize="@dimen/_16sp"
                    android:gravity="center"
                    />
            </LinearLayout>
@@ -77,21 +90,28 @@
                <com.app.shopin.customview.RegularButton
                    android:id="@+id/loginBTN"
                    android:layout_width="match_parent"
-                   android:layout_height="@dimen/_55dp"
+                   android:layout_height="@dimen/_50dp"
                    android:background="@drawable/buttonbackground"
                    android:text="@string/login"
                    android:layout_marginTop="@dimen/_10dp"
                    android:textColor="@color/white"
+                   android:layout_marginBottom="@dimen/_5dp"
                    android:textSize="@dimen/_14sp" />
 
 
        </LinearLayout>
 
        <androidx.cardview.widget.CardView
-           android:id="@+id/card"
+           android:id="@+id/cardview1"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           app:cardCornerRadius="16dp"
+           app:cardCornerRadius="@dimen/_15dp"
+           android:background="@color/white"
+           app:cardBackgroundColor="@color/white"
+           android:layout_marginTop="@dimen/_8dp"
+           android:layout_marginLeft="@dimen/_3dp"
+           android:layout_marginRight="@dimen/_3dp"
+           android:layout_marginBottom="@dimen/_5dp"
            app:cardElevation="4dp">
 
 
@@ -99,77 +119,144 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:background="@color/white"
+               android:layout_margin="@dimen/_15dp"
                android:orientation="vertical">
 
                <LinearLayout
+                   android:id="@+id/orderLL"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="horizontal"
-                   android:id="@+id/orderLayout"
-                   tools:ignore="UseCompoundDrawables">
+                   >
 
                    <ImageView
-                       android:id="@+id/imageView2"
-                       android:layout_width="35dp"
-                       android:layout_height="35dp"
-                       android:layout_marginStart="16dp"
-                       android:layout_marginTop="8dp"
-                       android:layout_marginBottom="8dp"
-                       android:contentDescription="@string/todo"
-                       android:src="@drawable/order" />
-
-                   <TextView
-                       android:id="@+id/name4"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginStart="24dp"
+                       android:src="@drawable/order_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
                        android:layout_gravity="center"
-                       android:fontFamily="@font/font_regular"
+                       android:layout_marginStart="@dimen/_10dp"
+                        android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
                        android:text="@string/orders"
-                       android:textColor="@color/profile_list_text_color"
-                       android:textFontWeight="@integer/material_motion_duration_medium_1"
-                       android:textSize="18sp" />
+                       />
 
                </LinearLayout>
 
 
                <View
-                   android:id="@+id/view1"
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
-                   android:layout_marginStart="16dp"
-                   android:layout_marginEnd="16dp"
-                   android:background="@color/borderView" />
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
 
                <LinearLayout
+                   android:id="@+id/favoriteLL"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="horizontal"
-                   android:id="@+id/favouriteLayout"
-                   tools:ignore="UseCompoundDrawables">
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
 
                    <ImageView
-                       android:id="@+id/imageView3"
-                       android:layout_width="35dp"
-                       android:layout_height="35dp"
-                       android:layout_marginStart="16dp"
-                       android:layout_marginTop="8dp"
-                       android:layout_marginBottom="8dp"
-                       android:contentDescription="@string/todo"
-                       android:src="@drawable/favorites" />
-
-                   <TextView
-                       android:id="@+id/name5"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:layout_marginStart="24dp"
-                       android:layout_gravity="center"
-                       android:fontFamily="@font/font_regular"
-                       android:text="@string/favorites"
-                       android:textColor="@color/profile_list_text_color"
-                       android:textFontWeight="@integer/material_motion_duration_medium_1"
-                       android:textSize="18sp" />
+                       android:src="@drawable/favorites_circle" />
 
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/favorites"
+                       />
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardview2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardCornerRadius="@dimen/_15dp"
+           android:background="@color/white"
+           app:cardBackgroundColor="@color/white"
+           android:layout_marginTop="@dimen/_5dp"
+           android:layout_marginLeft="@dimen/_3dp"
+           android:layout_marginRight="@dimen/_3dp"
+           android:layout_marginBottom="@dimen/_5dp"
+           app:cardElevation="4dp">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               android:layout_margin="@dimen/_15dp"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:id="@+id/messageLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/messages_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/messages"
+                       />
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/notificationLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/notification_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/notification"
+                       />
 
                </LinearLayout>
 
@@ -179,7 +266,281 @@
 
 
 
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardview3"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardCornerRadius="@dimen/_15dp"
+           android:background="@color/white"
+           app:cardBackgroundColor="@color/white"
+           android:layout_marginTop="@dimen/_5dp"
+           android:layout_marginLeft="@dimen/_3dp"
+           android:layout_marginRight="@dimen/_3dp"
+           android:layout_marginBottom="@dimen/_5dp"
+           app:cardElevation="4dp">
 
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               android:layout_margin="@dimen/_15dp"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:id="@+id/deliveryaddressLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/delivery_addresses_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/delivery_address"
+                       />
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/paymentLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/payment_methods_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/payment_methods"
+                       />
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cardview4"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardCornerRadius="@dimen/_15dp"
+           android:background="@color/white"
+           app:cardBackgroundColor="@color/white"
+           android:layout_marginTop="@dimen/_5dp"
+           android:layout_marginLeft="@dimen/_3dp"
+           android:layout_marginRight="@dimen/_3dp"
+           android:layout_marginBottom="@dimen/_5dp"
+           app:cardElevation="4dp">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@color/white"
+               android:layout_margin="@dimen/_15dp"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:id="@+id/getmystorelistedLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/get_my_store_listed_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/get_my_store_listed"
+                       />
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/shareshopinzipLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/share_shop_in_zip_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/share_shop_in_zip"
+                       />
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/helpLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/help_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/help"
+                       />
+
+               </LinearLayout>
+
+
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/notificationsettingLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/notification_setting_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/notification_setting"
+                       />
+
+               </LinearLayout>
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="1dp"
+                   android:layout_marginTop="@dimen/_8dp"
+                   android:background="@color/lite_grey" />
+
+               <LinearLayout
+                   android:id="@+id/aboutshopinzipLL"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/_8dp"
+                   >
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/about_shop_in_zip_circle" />
+
+                   <com.app.shopin.customview.SemiBoldTextView
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginStart="@dimen/_10dp"
+                       android:textColor="@color/black"
+                       android:textSize="@dimen/_16sp"
+                       android:text="@string/about_shop_in_zip"
+                       />
+
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+       </androidx.cardview.widget.CardView>
+
+
+       <com.app.shopin.customview.RegularButton
+           android:id="@+id/logoutBTN"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_50dp"
+           android:background="@drawable/buttonbackground"
+           android:text="@string/logout"
+           android:layout_marginTop="@dimen/_10dp"
+           android:textColor="@color/white"
+           android:layout_marginBottom="@dimen/_5dp"
+           android:textSize="@dimen/_14sp" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_20dp"/>
 
    </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package com.app.shopin.HomePage.view
+package com.app.shopin.HomePage.view.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
