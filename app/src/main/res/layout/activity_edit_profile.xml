@@ -21,6 +21,7 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar"
+                app:toolbar="@{1}"
                 >
 
             </include>

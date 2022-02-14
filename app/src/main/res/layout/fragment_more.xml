@@ -2,11 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomePage.view.Fragment.MoreFragment">
+    tools:context=".homePage.views.Fragment.MoreFragment">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lite_grey">
+    android:background="@color/lite_grey"
+    >
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -540,7 +541,7 @@
 
        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="@dimen/_20dp"/>
+           android:layout_height="@dimen/_80dp"/>
 
    </LinearLayout>
 </ScrollView>

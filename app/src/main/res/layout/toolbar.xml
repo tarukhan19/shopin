@@ -4,14 +4,14 @@
 
     >
     <data>
-        <variable name="foo" type="int"/>
+        <variable name="toolbar" type="int"/>
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:weightSum="1"
-
+        android:elevation="@dimen/_5dp"
         >
 
         <LinearLayout
@@ -32,7 +32,7 @@
 
         </LinearLayout>
 
-        <com.app.shopin.customview.SemiBoldTextView
+        <com.app.shopin.customview.BoldTextView
             android:id="@+id/titleTV"
             android:layout_width="0dp"
             android:layout_height="match_parent"

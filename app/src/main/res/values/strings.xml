@@ -77,8 +77,8 @@
     <string name="about_our_legal_teams">About our Legal teams</string>
     <string name="cart">Cart</string>
     <string name="search_for_items_or_stores">Search for items or stores</string>
+    <string name="emailid">Email ID</string>
 
-    <string name="email">Email ID</string>
     <string name="emailormobile">Email or Mobile No</string>
     <string name="password">Password</string>
     <string name="forgetpassword">Forget Password?</string>
@@ -110,10 +110,50 @@
     <string name="error_empty_address">Please enter your address</string>
     <string name="error_empty_city">Please enter your city</string>
     <string name="error_empty_state">Please enter your state</string>
+
+    <string name="error_empty_businessname">Please enter your business name</string>
+    <string name="error_empty_businessaddress">Please enter your business address</string>
+
+
     <string name="error_empty_zipcode">Please enter your zipcode</string>
     <string name="text_password_mismatch">Password Mismatch</string>
     <string name="loremipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
     <string name="enter_your_code">Enter your code</string>
     <string name="resendcode">Resend Code</string>
     <string name="notification">Notification</string>
+    <string name="editaddress">Edit Profile</string>
+    <string name="defaults">Default</string>
+    <string name="surelogout">Are you sure you want \nto logout?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delivAddresList">Delivery Address List</string>
+    <string name="defaulttxt">Default</string>
+    <string name="label">Label</string>
+    <string name="no_recrd_found">No Record Found</string>
+    <string name="api_key">AIzaSyAdoq9IbV9WMAc_wAyEpNZslrPUmJ_RCLg</string>
+    <string name="error_processing_places_api">Error processing Places API URL</string>
+    <string name="error_connecting_to_places_api">Error connecting to Places API</string>
+    <string name="error_cannot_process_json_results">Cannot process JSON results</string>
+    <string name="error_lib_not_initialized">Please initialize the api before using it</string>
+    <string name="delivAddresAdd">Add Delivery Address</string>
+    <string name="addadresssuc">Address added successfully.</string>
+    <string name="defaultStore">Default Store</string>
+    <string name="store">Store</string>
+    <string name="miles">miles</string>
+    <string name="back">Back</string>
+    <string name="oops">Oops!</string>
+    <string name="needlogin">You need to login first</string>
+    <string name="health_and_beauty">Health and beauty</string>
+    <string name="health_and_beauty_health">Health and beauty health</string>
+    <string name="success">Success</string>
+    <string name="ok">Ok</string>
+    <string name="email">Email Id:</string>
+    <string name="filter_category">Category</string>
+    <string name="filter_product">Product</string>
+    <string name="all_product">All Product</string>
+    <string name="all_store">All Store</string>
+
+    <string name="apply">Apply</string>
+    <string name="seeall">See All</string>
+
+
 </resources>

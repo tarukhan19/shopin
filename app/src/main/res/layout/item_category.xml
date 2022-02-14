@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+    <data>
+
+        <variable
+            name="catrecyclerdata"
+            type="com.app.shopin.homePage.models.StoreCategoryData" />
+    </data>
+    <LinearLayout
+        android:layout_width="@dimen/_70dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="@dimen/_50dp"
+            android:layout_height="@dimen/_50dp"
+            android:background="@drawable/grey_solid_circle"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/productIV"
+                android:layout_width="@dimen/_40dp"
+                android:layout_height="@dimen/_40dp"
+                android:src="@drawable/freshys"
+                />
+
+        </LinearLayout>
+
+        <com.app.shopin.customview.RegularTextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/_10sp"
+            android:inputType="textMultiLine"
+            android:maxLines="2"
+            android:text="@{catrecyclerdata.value}"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+</layout>

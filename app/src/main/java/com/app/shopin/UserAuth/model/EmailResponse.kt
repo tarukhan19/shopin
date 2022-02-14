@@ -1,6 +1,5 @@
 package com.app.shopin.model
 
-import com.app.shopin.UserAuth.model.Data
 import com.google.gson.annotations.SerializedName
 import org.json.JSONObject
 

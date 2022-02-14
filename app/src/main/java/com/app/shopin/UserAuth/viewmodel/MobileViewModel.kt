@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.Util.Utils
+import com.app.shopin.homePage.models.ErrorResponse
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.app.shopin.model.MobileResponse
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +27,10 @@ class MobileViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     mobileData.postValue(response.body())
                 } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    Utils.showToast(errorResponse!!.msg,context)
                     mobileData.postValue(null)
 
                 }

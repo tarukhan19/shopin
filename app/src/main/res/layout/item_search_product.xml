@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="@dimen/_10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100dp"
+                    android:layout_weight="0.4"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/productIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/dove"
+                        android:layout_gravity="center"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+
+                    >
+
+                    <com.app.shopin.customview.SemiBoldTextView
+                        android:id="@+id/productnameTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/productdescTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:layout_marginTop="@dimen/_8dp"
+                        android:textSize="@dimen/_16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        android:layout_marginTop="@dimen/_10dp">
+                        <com.app.shopin.customview.RegularTextView
+                            android:id="@+id/productspTV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="$5/pc"
+                            android:layout_weight="0.5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sp" />
+
+                        <com.app.shopin.customview.RegularTextView
+                            android:id="@+id/productstrikepTV"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="$8/pc"
+                            android:layout_weight="0.5"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_16sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                />
+
+        </LinearLayout>
+
+
+
+</layout>

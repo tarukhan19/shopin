@@ -1,14 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomePage.view.Fragment.SearchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".homePage.views.Fragment.SearchFragment">
+  <data>
+    <variable
+        name="itemViewModel"
+        type="com.app.shopin.homePage.viewmodels.SearchPageListViewModel" />
+  </data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/lite_grey"
+        android:orientation="vertical"
+        >
 
-</FrameLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_search"
+            app:toolbar="@{1}"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:background="@color/lite_grey"
+            android:orientation="vertical">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/search_edittext_background"
+              >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:background="@drawable/searchedittext"
+                android:layout_marginStart="@dimen/_20dp"
+                android:layout_marginEnd="@dimen/_20dp"
+                android:elevation="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_gravity="center"
+                >
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.1"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  >
+                <ImageView
+                    android:id="@+id/centerIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/_5dp"
+                    android:src="@drawable/search" />
+
+              </LinearLayout>
+              <com.app.shopin.customview.RegularEditText
+                  android:id="@+id/searchET"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:elevation="@dimen/_8dp"
+                  android:layout_weight="0.8"
+                  android:background="@null"
+                  android:textSize="@dimen/_14sp"
+                  android:singleLine="true"
+                  android:maxLines="1"
+                  android:textColor="@color/black"
+                  android:textColorHint="@color/gray"
+                  android:hint="@string/search_for_items_or_stores"
+                  android:paddingLeft="@dimen/_10dp"
+
+                  />
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0.1"
+                  android:layout_gravity="center"
+                  android:gravity="center"
+                  >
+                <ImageView
+                    android:id="@+id/filterIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingEnd="@dimen/_5dp"
+                    android:src="@drawable/filter" />
+
+
+
+              </LinearLayout>
+            </LinearLayout>
+
+          </LinearLayout>
+
+          <ScrollView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+              <com.app.shopin.customview.BoldTextView
+                  android:id="@+id/headerTV"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@null"
+                  android:textSize="@dimen/_14sp"
+                  android:textColor="@color/black"
+                  android:textColorHint="@color/gray"
+                  android:text="@string/all_categories"
+                  android:layout_marginStart="@dimen/_15dp"
+                  android:layout_marginTop="@dimen/_10dp"
+
+                  />
+
+
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/searchcategRecycler"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:visibility="visible"
+                  android:layout_marginLeft="@dimen/_5dp"
+                  android:layout_marginRight="@dimen/_5dp"
+                  android:layout_marginTop="@dimen/_10dp"
+                  android:clipToPadding="false"
+                  android:paddingBottom="@dimen/_5dp"
+                  app:adapter="@{itemViewModel.categoryAdapter}"
+                  />
+
+
+              <androidx.recyclerview.widget.RecyclerView
+                  android:id="@+id/searchstoreRecycler"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:visibility="gone"
+                  android:layout_marginLeft="@dimen/_5dp"
+                  android:layout_marginRight="@dimen/_5dp"
+                  android:layout_marginTop="@dimen/_10dp"
+                  android:paddingBottom="@dimen/_5dp"
+                  android:clipToPadding="false"
+                  />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="@dimen/_80dp"/>
+
+            </LinearLayout>
+          </ScrollView>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+<!--  </ScrollView>-->
+
+</layout>

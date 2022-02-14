@@ -9,12 +9,14 @@ tools:context=".UserAuth.view.MobileRegisterActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:focusableInTouchMode="true"
     android:scrollbars="none" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:focusableInTouchMode="true"
         android:background="@color/white"
 
         >

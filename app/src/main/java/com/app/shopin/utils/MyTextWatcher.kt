@@ -9,13 +9,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.app.shopin.Util.Utils
 
 class MyTextWatcher(var view: EditText, var inputLayout: TextInputLayout, var activity: Activity) : TextWatcher {
-    /*constructor(view: EditText, inputLayout: TextInputLayout, activity: Activity) {
-        this.view = view
-        this.inputLayout = inputLayout
-        this.activity = activity
-
-
-    }*/
 
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
@@ -30,11 +23,11 @@ class MyTextWatcher(var view: EditText, var inputLayout: TextInputLayout, var ac
             R.id.emailidET -> Utils.validateEditText("id", view, inputLayout, activity)
 //            R.id.emailormobileET -> Utils.validateEditText("idmbl", view, inputLayout, activity)
 //            R.id.passwordET-> Utils.validateEditText("pass",view,inputLayout,activity)
-//            R.id.nameET-> Utils.validateEditText("name",view,inputLayout,activity)
+            R.id.nameET-> Utils.validateEditText("name",view,inputLayout,activity)
             R.id.mobilenoET-> Utils.validateEditText("phone",view,inputLayout,activity)
 //
-//            R.id.addressline1ET-> Utils.validateEditText("address",view,inputLayout,activity)
-//            R.id.stateET-> Utils.validateEditText("state",view,inputLayout,activity)
+            R.id.businessnameET-> Utils.validateEditText("businessname",view,inputLayout,activity)
+            R.id.businessaddressET-> Utils.validateEditText("businessaddress",view,inputLayout,activity)
 //            R.id.cityET-> Utils.validateEditText("city",view,inputLayout,activity)
 //            R.id.zipcodeET-> Utils.validateEditText("zipcode",view,inputLayout,activity)
 

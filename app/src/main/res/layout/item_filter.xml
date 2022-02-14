@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/lite_grey"
+        >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:toolbar="@{1}" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="@dimen/_10dp"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            tools:ignore="UselessParent">
+
+
+
+                <RadioButton
+                    android:id="@+id/categoryRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp"
+                    android:buttonTint="@color/colorAccent"
+                    android:checked="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/filter_category"
+                    android:padding="@dimen/_5dp"
+                    android:background="@drawable/whitebackground"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp" />
+
+
+                <RadioButton
+                    android:id="@+id/storeRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/store"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:background="@drawable/whitebackground"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp" />
+
+
+                <RadioButton
+                    android:id="@+id/productRB"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/filter_product"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="@dimen/_5dp"
+                    android:background="@drawable/whitebackground"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:textSize="@dimen/_14sp" />
+
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            >
+            <com.app.shopin.customview.RegularButton
+                android:id="@+id/cancelBTN"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:text="@string/cancel"
+                android:layout_weight="0.5"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_5dp"
+                android:background="@drawable/filter_white_button"
+                android:layout_marginRight="@dimen/_5dp"
+
+                />
+
+            <com.app.shopin.customview.RegularButton
+                android:id="@+id/applyBTN"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50dp"
+                android:text="@string/apply"
+                android:layout_weight="0.5"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:background="@drawable/filter_colorprimary_button"
+                android:layout_marginRight="@dimen/_5dp"
+
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

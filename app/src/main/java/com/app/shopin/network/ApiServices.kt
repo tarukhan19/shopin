@@ -2,6 +2,7 @@ package com.app.shopin.network
 
 import com.app.shopin.UserAuth.model.EditProfileResponse
 import com.app.shopin.UserAuth.model.LoadProfileResponse
+import com.app.shopin.homePage.models.*
 import com.app.shopin.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -27,6 +28,8 @@ interface ApiServices {
     @FormUrlEncoded
     @POST("users/verifyotp/")
     fun verifyUser(
+        @Field("device_type")devicetype:String,
+        @Field("device_id")device_id:String,
         @Field("email") email: String,
         @Field("otp") otp: String
     ): Call<OtpResponse>
@@ -57,10 +60,18 @@ interface ApiServices {
 //    ): retrofit2.Call<MessageResponse>
 //
 //    //  type of store //
-//
-//    @GET("category/get_store_category/")
-//    fun fetchStoreCategory(): retrofit2.Call<StoreCategoryResponse>
-//
+
+    @GET("masters/category/get_store_category/")
+    fun getCategoryData(): Call<StoreCategoryListResponse>
+
+
+    @GET("store/list_store_category/")
+    fun getSearchPageData(@Query("key")key : String): Call<StoreCategoryListResponse>
+
+    @GET("store/search_store/")
+    fun getSearchListData(@Query("key")key : String,@Query("search_on")search_on : String): Call<SearchListResponse>
+
+
 //
 ////    @GET("store-request/{id}")
 ////    fun fetchStoreDetail(
@@ -72,9 +83,9 @@ interface ApiServices {
 //        @Query("search_on") value: String,
 //    ): retrofit2.Call<StoreCategoryResponse>
 //
-//    @GET("store/get_new_store/")
-//     fun storeList(): retrofit2.Call<StoreListResponse>
-//
+    @GET("store/get_new_store/")
+     fun getAllStoreListData(): Call<AllStoreListResponse>
+
 //    @GET("store-request/")
 //    fun fetchStoreDetail(
 //    ): retrofit2.Call<StoreListResponse>
@@ -133,33 +144,42 @@ interface ApiServices {
 //        @Field("question") faq : String
 //    ): retrofit2.Call<MessageResponse>
 //
-//    @FormUrlEncoded
-//    @POST("delivery-address/")
-//    fun uploadDeliveryAddress(
-//        @Field("name") name : String,
-//        @Field("address") address : String,
-//        @Field("phone") phone : Long,
-//        @Field("zip_code") zip_code : String,
-//        @Field("apartment_building") apartment_building : String,
-//        @Field("area") area : String,
-//        @Field("landmark") landmark : String,
-//        @Field("address_type") address_type : String?,
-//        @Field("can_receive_on_sundays") can_receive_on_sundays : String,
-//        @Field("can_receive_on_saturdays") can_receive_on_saturdays : String,
-//        @Field("delivery_instruction") delivery_instruction : String
-//    ): retrofit2.Call<MessageResponse>
-//
+    @FormUrlEncoded
+    @POST("delivery-address/")
+    fun addDeliveryAddress(
+        @Field("name") name : String,
+        @Field("address") address : String,
+        @Field("address_type") address_type : String?,
+        @Field("delivery_instruction") delivery_instruction : String,
+        @Field("apartment_building") apartment_building : String,
+        @Field("is_default") is_default : String,
+        @Field("latitude") latitude : Double,
+        @Field("longitude") longitude : Double
+    ): Call<DeliveryAddressAddResponse>
+
     @GET("users/get_user_profile/")
     fun loadProfile(
-    ): retrofit2.Call<LoadProfileResponse>
+    ): Call<LoadProfileResponse>
 
-//    @FormUrlEncoded
-//    @POST("user-location/")
-//    fun saveAndUpdateLocation(
-//        @Field("lattitude") lattitude: Float,
-//        @Field("longitude") longitude: Float
-//    ): retrofit2.Call<MessageResponse>
-//
+    @GET("delivery-address/")
+    fun getDeliveryAddressList(
+    ): Call<DeliveryAddressListResponse>
+
+
+    @FormUrlEncoded
+    @POST("store-request/")
+    fun getMyStoreListed(
+        @Field("name")name : String,
+        @Field("business_name")business_name : String,
+        @Field("business_address")business_address : String,
+        @Field("category") category: String,
+        @Field("email") email: String,
+        @Field("mobile")mobile : String,
+        @Field("status")  status: String
+    ): Call<GetMyStoreListedResponse>
+
+
+
 //    @GET("user-store-map/get_near_by_shop/")
 //    fun getNearByLocation(): retrofit2.Call<NearByModelResponse>
 

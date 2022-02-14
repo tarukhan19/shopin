@@ -9,15 +9,18 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.app.shopin.HomePage.view.Activity.HomeActivity
+import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.R
+import com.app.shopin.UserAuth.viewmodel.LoadProfileViewModel
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityOtpBinding
 import com.app.shopin.utils.Constant
+import com.app.shopin.utils.LocationMethods
 import com.app.shopin.utils.Preference
 import com.app.shopin.viewmodel.auth.EmailViewModel
 import com.app.shopin.viewmodel.auth.MobileViewModel
 import com.app.shopin.viewmodel.auth.OtpViewModel
+import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_email_register.*
 import kotlinx.android.synthetic.main.activity_mobile_register.*
 import kotlinx.android.synthetic.main.activity_otp.*
@@ -31,6 +34,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var otpViewModel : OtpViewModel
     private lateinit var emailViewModel : EmailViewModel
     private lateinit var mobileViewModel: MobileViewModel
+    private lateinit var loadProfileViewModel: LoadProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,6 +48,7 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         otpViewModel = ViewModelProvider(this).get(OtpViewModel::class.java)
         mobileViewModel = ViewModelProvider(this).get(MobileViewModel::class.java)
         emailViewModel = ViewModelProvider(this).get(EmailViewModel::class.java)
+        loadProfileViewModel = ViewModelProvider(this).get(LoadProfileViewModel::class.java)
         emailOrMobile = Preference.getInstance(this)?.getString(Constant.KEY_EMAILID_OR_MOBNO)!!
 
         resendOtp.setOnClickListener(this)
@@ -198,33 +203,10 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
             if (it?.status==true  && it.status_code==200)
             {
                 progressbarLL.visibility = View.GONE
-
                 Preference.getInstance(this)?.setboolean(Constant.IS_LOGIN,true)
                 Preference.getInstance(this)?.setString(Constant.KEY_TOKEN,it.otpResponseItems.token)
                 Preference.getInstance(this)?.setString(Constant.KEY_USER_ID,it.otpResponseItems.user_id)
-
-                if (it.otpResponseItems.email!=null)
-                {
-                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,it.otpResponseItems.email)
-                    Utils.printLog(it.otpResponseItems.email,"emailid")
-                }
-                if (it.otpResponseItems.phone_no!=null)
-                {
-                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,it.otpResponseItems.phone_no)
-                    Utils.printLog(it.otpResponseItems.phone_no,"phoneno")
-
-                }
-                if (it.otpResponseItems.name!=null)
-                {
-                    Preference.getInstance(this)?.setString(Constant.KEY_NAME,it.otpResponseItems.name)
-                    Utils.printLog(it.otpResponseItems.name,"name")
-
-                }
-
-
-                val intent = Intent(this@OtpActivity, HomeActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
+                loadProfile()
             }
             else
             {
@@ -356,4 +338,52 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
+
+
+    fun loadProfile()
+    {
+        progressbarLL.visibility = View.VISIBLE
+        loadProfileViewModel.getObserve().observe(this, {
+            if (it?.status==true  && it.status_code==200) {
+                progressbarLL.visibility = View.GONE
+
+                if (it.profileResponseItems.user_profile.email!=null)
+                {
+                    val emailid=it.profileResponseItems.user_profile.email
+                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,emailid)
+
+                }
+                if (it.profileResponseItems.user_profile.phone_no!=null)
+                {
+                   val mobileno=it.profileResponseItems.user_profile.phone_no
+                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,mobileno)
+
+                }
+                if (it.profileResponseItems.user_profile.name!=null)
+                {
+                    val name=it.profileResponseItems.user_profile.name
+                    Preference.getInstance(this)?.setString(Constant.KEY_NAME,name)
+                }
+
+                if (it.profileResponseItems.user_profile.profile_img!=null)
+                {
+                    val profilepic="https://shopinzip.cladev.com"+it.profileResponseItems.user_profile.profile_img
+                    Preference.getInstance(this)?.setString(Constant.KEY_USER_PIC,profilepic)
+
+                }
+
+                val intent = Intent(this@OtpActivity, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+
+            }
+            else
+            {
+                progressbarLL.visibility = View.GONE
+                Utils.showToast("Something Went wrong",this)
+            }
+        })
+        loadProfileViewModel.makeLoadProfileApiCall(this)
+    }
+
 }

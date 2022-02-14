@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="recyclerdata"
+            type="com.app.shopin.homePage.models.StoreCategoryData" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <com.app.shopin.customview.RegularTextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/_12sp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@{recyclerdata.value}"
+            android:textColor="@color/black"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            />
+    </LinearLayout>
+
+</layout>

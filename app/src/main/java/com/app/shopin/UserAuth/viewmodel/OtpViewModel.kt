@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.Util.Utils
+import com.app.shopin.homePage.models.ErrorResponse
 import com.bumptech.glide.util.Util
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.app.shopin.model.OtpResponse
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,11 +24,15 @@ class OtpViewModel:ViewModel() {
     fun makeOtpApiCall(context: Context,email:String,otp:String){
 
         val retrofitInstance = ServiceBuilder.getApiService(context)
-        retrofitInstance.verifyUser(email,otp).enqueue(object : Callback<OtpResponse> {
+        retrofitInstance.verifyUser("1","oo",email,otp).enqueue(object : Callback<OtpResponse> {
             override fun onResponse(call: Call<OtpResponse>, response: Response<OtpResponse>) {
                 if(response.isSuccessful){
                    otpData.postValue(response.body())
                 }else{
+//                    val gson = Gson()
+//                    val type = object : TypeToken<ErrorResponse>() {}.type
+//                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
+//                    Utils.showToast(errorResponse!!.msg,context)
                     otpData.postValue(null)
                 }
             }

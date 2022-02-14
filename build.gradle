@@ -22,8 +22,6 @@ allprojects {
         google()//and here
         mavenCentral()
         gradlePluginPortal()
-
-
     }
 }
 

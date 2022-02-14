@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_gravity="center"
+            android:focusableInTouchMode="true"
             android:orientation="vertical">
 
             <LinearLayout
@@ -22,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/_15dp"
+
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -54,98 +56,88 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_90dp"
-                    android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_100dp"
-                    android:weightSum="6"
+                    android:orientation="horizontal"
                     android:paddingStart="@dimen/_20dp"
                     android:paddingEnd="@dimen/_20dp"
-                    >
+                    android:weightSum="6">
 
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
-
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
-
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
-
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
 
                     <com.app.shopin.customview.RegularEditText
                         android:id="@+id/otpET6"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="@dimen/_16sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:maxLength="1"
                         android:inputType="number"
-                        />
+                        android:maxLength="1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sp" />
 
                 </LinearLayout>
 
@@ -153,22 +145,20 @@
                     android:id="@+id/otpTIL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8dp"
                     android:layout_marginStart="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_8dp"
                     android:layout_marginEnd="@dimen/_10dp" />
-
 
 
                 <com.app.shopin.customview.SemiBoldTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20dp"
+                    android:gravity="center"
                     android:text="@string/didn_t_receive_a_verification_code"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16sp"
-                    android:layout_marginTop="@dimen/_20dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    />
+                    android:textSize="@dimen/_16sp" />
 
                 <com.app.shopin.customview.RegularButton
                     android:id="@+id/resendOtp"
@@ -189,10 +179,13 @@
                 android:id="@+id/nextBTN"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55dp"
-                android:layout_margin="@dimen/_10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:layout_marginBottom="@dimen/_10dp"
                 android:background="@drawable/buttonbackground"
                 android:text="@string/next"
-                android:layout_alignParentBottom="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sp" />
 

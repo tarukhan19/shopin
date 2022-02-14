@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_20dp"
+            android:padding="@dimen/_15dp"
+            android:gravity="center"
+            >
+            <com.app.shopin.customview.BoldTextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/success"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp"
+                />
+
+            <com.app.shopin.customview.RegularTextView
+                android:id="@+id/msgTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/surelogout"
+                android:gravity="center"
+                android:textSize="@dimen/_14sp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:textColor="@color/black"
+
+                />
+
+            <com.app.shopin.customview.RegularButton
+                android:id="@+id/okBTN"
+                android:layout_width="@dimen/_200dp"
+                android:layout_height="@dimen/_60dp"
+                android:text="@string/ok"
+                android:textAllCaps="true"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:background="@color/colorPrimary"
+
+                />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
+

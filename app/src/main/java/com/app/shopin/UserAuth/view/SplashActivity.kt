@@ -2,19 +2,20 @@ package com.app.shopin.UserAuth.view
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.app.shopin.HomePage.view.Activity.HomeActivity
+import androidx.annotation.RequiresApi
+import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.Preference
 
 class SplashActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

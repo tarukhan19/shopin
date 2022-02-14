@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.app.shopin.HomePage.view.Activity.HomeActivity
+import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityEmailRegisterBinding
@@ -46,22 +46,21 @@ class EmailRegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun registerEmail() {
         progressbarLL.visibility = View.VISIBLE
-        emailViewModel.getObserve().observe(this, {
+        emailViewModel.getObserve().observe(this) {
 
-            if (it?.status==true  && it.status_code==200) {
+            if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
                 val intent = Intent(this@EmailRegisterActivity, OtpActivity::class.java)
-                Preference.getInstance(this)?.setString(Constant.KEY_EMAILID_OR_MOBNO,emailID)
-                Preference.getInstance(this)?.setString(Constant.KEY_FROM_EMAILID_OR_MOBNO,"emailid")
+                Preference.getInstance(this)?.setString(Constant.KEY_EMAILID_OR_MOBNO, emailID)
+                Preference.getInstance(this)
+                    ?.setString(Constant.KEY_FROM_EMAILID_OR_MOBNO, "emailid")
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
-            }
-            else
-            {
+            } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast("Something Went wrong",this)
+                Utils.showToast("Something Went wrong", this)
             }
-        })
+        }
         emailViewModel.makeEmailApiCall(this, emailID)
     }
 

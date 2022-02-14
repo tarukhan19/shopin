@@ -21,9 +21,14 @@ class Constant {
             const val PERMISSIONS_REQUEST: Int = 102
             const val REQUEST_CHECK_SETTINGS: Int = 103
             const val callPermissionRequest: Int = 104
-            const val LOCALITY: String = "locality"
-            const val LOCATION_LAT: String = "location_lat"
-            const val LOCATION_LONG: String = "location_long"
+            const val EXTERNAL_SEARCH_FILTER: String = "EXTERNAL_SEARCH_FILTER"
+            const val CURRENT_LOCATION_LAT: String = "CURRENT_LOCATION_LAT"
+            const val CURRENT_LOCATION_LONG: String = "CURRENT_LOCATION_LONG"
+
+            const val FILTER_STORE: String = "1"
+            const val FILTER_PRODUCT: String = "2"
+            const val FILTER_CATEGORY: String = "3"
+
         }
 
 }

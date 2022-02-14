@@ -4,25 +4,71 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.2379979570990807" />
+        <entry key="app/src/main/res/drawable-mdpi/yellowback.xml" value="0.2050925925925926" />
         <entry key="app/src/main/res/drawable-xhdpi/greyback.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/drawable/background_top_corner_blue.xml" value="0.690625" />
         <entry key="app/src/main/res/drawable/buttonbackground.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/drawable/edittextbackgrnd.xml" value="0.22625127681307455" />
+        <entry key="app/src/main/res/drawable/filter_colorprimary_button.xml" value="0.1585" />
+        <entry key="app/src/main/res/drawable/filter_grey_button.xml" value="0.1585" />
+        <entry key="app/src/main/res/drawable/grey_solid_circle.xml" value="0.2050925925925926" />
         <entry key="app/src/main/res/drawable/greybordercircle.xml" value="0.11510416666666666" />
+        <entry key="app/src/main/res/drawable/home_address_backgrnd.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/lite.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/lite_grey_rectentagle_backgroud.xml" value="0.147" />
+        <entry key="app/src/main/res/drawable/ratinggrayback.xml" value="0.1585" />
+        <entry key="app/src/main/res/drawable/search_background.xml" value="0.22625127681307455" />
+        <entry key="app/src/main/res/drawable/search_edittext_background.xml" value="0.22625127681307455" />
+        <entry key="app/src/main/res/drawable/searchedittext.xml" value="0.22625127681307455" />
         <entry key="app/src/main/res/drawable/storeback.xml" value="0.11510416666666666" />
+        <entry key="app/src/main/res/drawable/striketext.xml" value="0.1585" />
+        <entry key="app/src/main/res/drawable/whitebackground.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/drawable/yellowback.xml" value="0.147" />
+        <entry key="app/src/main/res/layout/activity_address_list.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/activity_delivery_address_add.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_delivery_address_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_email_register.xml" value="0.19021739130434784" />
+        <entry key="app/src/main/res/layout/activity_get_my_store_listed.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_mobile_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.19021739130434784" />
+        <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2056159420289855" />
-        <entry key="app/src/main/res/layout/activity_welcome_to_shop.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_welcome_to_shop.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/autocomplete_list_item.xml" value="0.1956521739130435" />
+        <entry key="app/src/main/res/layout/demo_store_fragment.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/demostoredata.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/edittextbackgrnd.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18206521739130435" />
-        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.18206521739130435" />
-        <entry key="app/src/main/res/layout/fragment_store.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.16077898550724637" />
+        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_store.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/hometoolbar.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_allstore_data.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_banner_items.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_bottomsheet_login_alert.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_category.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_delivery_address_list.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_filter.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_logout.xml" value="0.16077898550724637" />
+        <entry key="app/src/main/res/layout/item_new_stores.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_search_category.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_search_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_search_products.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_search_toolbar.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_spinner.xml" value="0.1956521739130435" />
+        <entry key="app/src/main/res/layout/item_store_data.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_storecategory_recycleview.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_success_dialog.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/iten_store_data.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/toolbar_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/toolbar_product_detail.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/toolbar_search.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/toolbar_store.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23072916666666668" />
       </map>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <LinearLayout
+        android:layout_width="@dimen/_200dp"
+        android:layout_height="@dimen/_250dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_margin="@dimen/_5dp"
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200dp"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_10dp">
+            <ImageView
+                android:id="@+id/newstoreIV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/new_store"
+                android:scaleType="fitXY"
+                />
+        </androidx.cardview.widget.CardView>
+
+
+        <com.app.shopin.customview.BoldTextView
+            android:id="@+id/newstorenameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Key food herlym"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:layout_marginTop="@dimen/_5dp"
+            />
+
+        <com.app.shopin.customview.RegularTextView
+            android:id="@+id/newstoreaddressTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="124 W,125th street New york 10 lane"
+            android:gravity="center"
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sp"
+            android:layout_marginTop="@dimen/_5dp"
+            />
+    </LinearLayout>
+
+</layout>

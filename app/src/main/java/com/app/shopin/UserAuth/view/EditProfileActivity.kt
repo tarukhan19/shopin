@@ -1,5 +1,5 @@
-package com.app.shopin.UserAuth.view
 
+package com.app.shopin.UserAuth.view
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -16,11 +16,14 @@ import com.app.shopin.UserAuth.model.EditProfileResponse
 import com.app.shopin.UserAuth.viewmodel.LoadProfileViewModel
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityEditProfileBinding
+import com.app.shopin.homePage.models.ErrorResponse
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.FileUtils
+import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
 import com.customer.gogetme.Retrofit.ServiceBuilder
-import com.squareup.picasso.Picasso
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.editProfileIV
 import kotlinx.android.synthetic.main.activity_edit_profile.mobilenoET
@@ -28,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_edit_profile.profilepicIV
 import kotlinx.android.synthetic.main.activity_edit_profile.progressbarLL
 import kotlinx.android.synthetic.main.activity_mobile_register.*
 import kotlinx.android.synthetic.main.fragment_more.*
+import kotlinx.android.synthetic.main.toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -44,6 +48,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     var emailid: String = ""
     var mobileno: String = ""
     var profilepic: String=""
+
     var imageuri: Uri? =null
     private lateinit var loadProfileViewModel: LoadProfileViewModel
 
@@ -55,67 +60,56 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-
-
-
-
     fun initialize()
     {
         loadProfileViewModel = ViewModelProvider(this).get(LoadProfileViewModel::class.java)
         profilepicIV.setOnClickListener(this)
         editProfileIV.setOnClickListener(this)
         saveBTN.setOnClickListener(this)
+        toolbar.titleTV.setText(R.string.editaddress)
+        toolbar.back_LL.setOnClickListener(this)
         loadProfile()
     }
 
     fun loadProfile()
     {
         progressbarLL.visibility = View.VISIBLE
-        loadProfileViewModel.getObserve().observe(this, {
-            if (it?.status==true  && it.status_code==200) {
+        loadProfileViewModel.getObserve().observe(this) {
+            if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
 
-                if (it.profileResponseItems.user_profile.email!=null)
-                {
-                    emailid=it.profileResponseItems.user_profile.email
-                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,emailid)
+                if (it.profileResponseItems.user_profile.email != null) {
+                    emailid = it.profileResponseItems.user_profile.email
+                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID, emailid)
                     emailidET.setText(emailid)
 
                 }
-                if (it.profileResponseItems.user_profile.phone_no!=null)
-                {
-                    mobileno=it.profileResponseItems.user_profile.phone_no
-                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,mobileno)
+                if (it.profileResponseItems.user_profile.phone_no != null) {
+                    mobileno = it.profileResponseItems.user_profile.phone_no
+                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO, mobileno)
                     mobilenoET.setText(mobileno)
 
                 }
-                if (it.profileResponseItems.user_profile.name!=null)
-                {
-                    name=it.profileResponseItems.user_profile.name
-                    Preference.getInstance(this)?.setString(Constant.KEY_NAME,name)
+                if (it.profileResponseItems.user_profile.name != null) {
+                    name = it.profileResponseItems.user_profile.name
+                    Preference.getInstance(this)?.setString(Constant.KEY_NAME, name)
                     nameET.setText(name)
                 }
 
-                if (it.profileResponseItems.user_profile.profile_img!=null)
-                {
-                    profilepic="https://shopinzip.cladev.com"+it.profileResponseItems.user_profile.profile_img
-                    Preference.getInstance(this)?.setString(Constant.KEY_USER_PIC,profilepic)
-                    try {
-                        Picasso.get().load(profilepic).placeholder(R.drawable.defult_user).into(profilepicIV)
-                    }
-                    catch ( e: Exception)
-                    {
-                        //Log.e("exception",e.localizedMessage)
-                    }
+                if (it.profileResponseItems.user_profile.profile_img != null) {
+                    profilepic =
+                        "https://shopinzip.cladev.com" + it.profileResponseItems.user_profile.profile_img
+                    Preference.getInstance(this)?.setString(Constant.KEY_USER_PIC, profilepic)
+                    Utils.setImage(profilepicIV, profilepic, R.drawable.defult_user)
+
                 }
 
-            }
-            else
-            {
+
+            } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast("Something Went wrong",this)
+                Utils.showToast("Something Went wrong", this)
             }
-        })
+        }
         loadProfileViewModel.makeLoadProfileApiCall(this)
     }
 
@@ -132,6 +126,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             {
                 submit()
             }
+            R.id.back_LL ->
+            {
+                finish()
+            }
 
         }
     }
@@ -142,9 +140,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         mobileno=mobilenoET.text.toString()
         emailid=emailidET.text.toString()
 
-        Log.e("name",name)
-        Log.e("mobileno",mobileno)
-        Log.e("emailid",emailid)
 
         updateProfile()
     }
@@ -169,40 +164,27 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 call: Call<EditProfileResponse>,
                 response: Response<EditProfileResponse>
             ) {
-                Toast.makeText(
-                    this@EditProfileActivity,
-                    response.isSuccessful.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
 
                 if (response.isSuccessful) {
                     binding.progressbarLL.setVisibility(View.GONE)
 
                     if (response.body() != null) {
                         val serverResponse = response.body()
-                        Toast.makeText(
-                            this@EditProfileActivity,
-                            serverResponse?.status_code.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
-
 
                         binding.nameET.requestFocus()
                         loadProfile()
+                        OpenDialogBox.openDialog(this@EditProfileActivity,"Success","Your profile has been updated successfully.")
+
                     }
                 } else {
-                    val serverResponse = response.body()
-                    Toast.makeText(
-                        this@EditProfileActivity,
-                        serverResponse?.status.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                    val gson = Gson()
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    Utils.showToast(errorResponse!!.msg,this@EditProfileActivity)
                 }
             }
 
             override fun onFailure(call: Call<EditProfileResponse>, t: Throwable) {
-                Utils.printLog(t.message+"  "+t.localizedMessage,"failuree ")
                 Toast.makeText(
                     this@EditProfileActivity,
                     "failure "+t.message,

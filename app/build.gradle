@@ -8,14 +8,12 @@ plugins {
 
 android {
     compileSdk 31
-
     defaultConfig {
         applicationId "com.app.shopin"
-        minSdk 29
-        targetSdk 31
+        minSdk 19
+        targetSdk 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
@@ -35,7 +33,6 @@ android {
         jvmTarget = '1.8'
     }
     dataBinding{
-        //noinspection DataBindingWithoutKapt
         enabled = true
     }
 }
@@ -78,7 +75,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.hbb20:ccp:2.1.9'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation 'com.google.android.libraries.places:places:2.4.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }

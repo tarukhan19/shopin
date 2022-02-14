@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
@@ -17,10 +18,7 @@ import android.util.Patterns
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import com.app.shopin.R
@@ -28,7 +26,9 @@ import com.app.shopin.utils.Constant
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
+import com.squareup.picasso.Picasso
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
@@ -52,6 +52,18 @@ class Utils {
                 return pattern.matcher(mail).matches()
             }
 
+        }
+
+        fun underline(textView: TextView) {
+            textView.paintFlags = textView.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        }
+
+        fun setImage(imageIV: ImageView, image: String, defultPic: Int) {
+            try {
+                Picasso.get().load(image).placeholder(defultPic).into(imageIV)
+            } catch (e: Exception) {
+                //Log.e("exception",e.localizedMessage)
+            }
         }
 
         fun showToast(msg: String, ctx: Context) {
@@ -93,6 +105,11 @@ class Utils {
                         activity.getString(R.string.error_empty_new_password)
                     "confirm_pass" -> inputlayout.error =
                         activity.getString(R.string.error_empty_password)
+                    "businessname" -> inputlayout.error =
+                        activity.getString(R.string.error_empty_businessname)
+                    "businessaddress" -> inputlayout.error =
+                        activity.getString(R.string.error_empty_businessaddress)
+
                 }
                 requestFocus(editText, activity)
                 return false
@@ -188,96 +205,90 @@ class Utils {
         }
 
 
-
-         fun checkPermission(ctx: Context): Boolean {
+        fun checkPermission(ctx: Context): Boolean {
             return (((checkSelfPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)) +
-                    (checkSelfPermission(ctx,Manifest.permission.ACCESS_FINE_LOCATION)) +
-                    (checkSelfPermission(ctx,Manifest.permission.ACCESS_COARSE_LOCATION))+
-                    (checkSelfPermission(ctx,Manifest.permission.CALL_PHONE))+
-                    (checkSelfPermission(ctx,Manifest.permission.CAMERA)))
+                    (checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION)) +
+                    (checkSelfPermission(ctx, Manifest.permission.ACCESS_COARSE_LOCATION)) +
+                    (checkSelfPermission(ctx, Manifest.permission.CALL_PHONE)) +
+                    (checkSelfPermission(ctx, Manifest.permission.CAMERA)))
                     == PackageManager.PERMISSION_GRANTED)
         }
 
 
-            // current location
+        // current location
 
-            fun checkLocationOn(activity: Activity): Boolean {
-                locationManager =
-                    activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        fun checkLocationOn(activity: Activity): Boolean {
+            locationManager =
+                activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-                val builder: LocationSettingsRequest.Builder = LocationSettingsRequest.Builder()
-                builder.addLocationRequest(
-                    LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                        .setInterval(10 * 1000)
-                        .setFastestInterval(1 * 1000)
-                )
-                builder.setAlwaysShow(true)
-                val mLocationSettingsRequest: LocationSettingsRequest = builder.build()
-                val settingClient: SettingsClient = LocationServices.getSettingsClient(activity)
+            val builder: LocationSettingsRequest.Builder = LocationSettingsRequest.Builder()
+            builder.addLocationRequest(
+                LocationRequest().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                    .setInterval(10 * 1000)
+                    .setFastestInterval(1 * 1000)
+            )
+            builder.setAlwaysShow(true)
+            val mLocationSettingsRequest: LocationSettingsRequest = builder.build()
+            val settingClient: SettingsClient = LocationServices.getSettingsClient(activity)
 
-                settingClient.checkLocationSettings(mLocationSettingsRequest)
-                    .addOnSuccessListener {
+            settingClient.checkLocationSettings(mLocationSettingsRequest)
+                .addOnSuccessListener {
 
-                        isGPSEnabled =
-                            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                    isGPSEnabled =
+                        locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
 
-                        isNetworkEnabled =
-                            locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                    isNetworkEnabled =
+                        locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
 
-                        if (!isGPSEnabled && !isNetworkEnabled) {
+                    if (!isGPSEnabled && !isNetworkEnabled) {
 
-                            // checkLocationOn(activity)
-                            status = false
+                        // checkLocationOn(activity)
+                        status = false
 
-                        } else {
+                    } else {
 
-                            if (isNetworkEnabled) {
+                        if (isNetworkEnabled) {
 
-                                status = true
-
-                            }
+                            status = true
 
                         }
 
-
                     }
-                    .addOnCanceledListener {
-                        Log.e("GPS", "checkLocationSettings -> onCanceled")
 
 
-                    }
-                    .addOnFailureListener { e: java.lang.Exception ->
-                        val statusCode = (e as ApiException).statusCode
-                        when (statusCode) {
-                            LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
-                                try {
-                                    var rae = e as ResolvableApiException
-                                    activity.startIntentSenderForResult(
-                                        e.resolution.intentSender,
-                                        Constant.REQUEST_CHECK_SETTINGS,
-                                        null,
-                                        0,
-                                        0,
-                                        0,
-                                        null
-                                    )
-                                } catch (e: IntentSender.SendIntentException) {
-                                    Log.e("GPS", "Unable to execute request.")
-                                }
-                            }
-                            LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
-                                Log.e(
-                                    "GPS",
-                                    "Location settings are inadequate, and cannot be fixed here. Fix in Settings."
+                }
+                .addOnCanceledListener {
+
+
+                }
+                .addOnFailureListener { e: java.lang.Exception ->
+                    val statusCode = (e as ApiException).statusCode
+                    when (statusCode) {
+                        LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
+                            try {
+                                var rae = e as ResolvableApiException
+                                activity.startIntentSenderForResult(
+                                    e.resolution.intentSender,
+                                    Constant.REQUEST_CHECK_SETTINGS,
+                                    null,
+                                    0,
+                                    0,
+                                    0,
+                                    null
                                 )
+                            } catch (e: IntentSender.SendIntentException) {
                             }
+                        }
+                        LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
 
                         }
-                    }
-                return status
 
-            }
+                    }
+                }
+            return status
+
+        }
 
 
         fun checkPermissions(ctx: Context, permission: String): Boolean {
@@ -289,8 +300,7 @@ class Utils {
 
         }
 
-         fun enableLocationSettings(activity: Activity)
-         {
+        fun enableLocationSettings(activity: Activity) {
             val locationRequest = LocationRequest.create()
                 .setInterval(1000)
                 .setFastestInterval(5000)
@@ -326,67 +336,24 @@ class Utils {
         }
 
 
+        fun isLocationEnabled(ctx: Context): Boolean {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
+                val lm = ctx.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                return lm.isLocationEnabled
+            } else {
 
-        fun getAddress(ctx: Context, lat: Double, lng: Double): String? {
-
-                val add = StringBuilder()
-
-                try {
-                    val geocoder = Geocoder(ctx, Locale.getDefault())
-                    address = geocoder.getFromLocation(lat, lng, 1)
-                } catch (e: Exception) {
-                    address = ArrayList()
-
-                }
-
-                if (address.size > 0) {
-
-
-                    add.clear()
-
-                    if (address[0].featureName != null) {
-                        add.append(address[0].featureName).append(", ")
-                    }
-                    if (address[0].thoroughfare != null) {
-                        add.append(address[0].thoroughfare).append(", ")
-                    }
-
-                    /* if (address.get(0).subThoroughfare != null) {
-                         add.append(address.get(0).subThoroughfare).append(", ")
-                     }*/
-                    if (address.get(0).locality != null) {
-                        add.append(address.get(0).locality).append(", ")
-                    }
-                    if (address.get(0).adminArea != null) {
-                        add.append(address.get(0).adminArea).append(", ")
-                    }
-                    if (address.get(0).countryName != null) {
-                        add.append(address.get(0).countryName)
-                    }
-                }
-                return address.get(0).getAddressLine(0)
+                // This is Deprecated in API 28
+                val mode: Int = Settings.Secure.getInt(
+                    ctx.getContentResolver(), Settings.Secure.LOCATION_MODE,
+                    Settings.Secure.LOCATION_MODE_OFF
+                );
+                return (mode != Settings.Secure.LOCATION_MODE_OFF);
 
             }
-
-
-            fun isLocationEnabled(ctx: Context): Boolean {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
-                    val lm = ctx.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-                    return lm.isLocationEnabled
-                } else {
-
-                    // This is Deprecated in API 28
-                    val mode: Int = Settings.Secure.getInt(
-                        ctx.getContentResolver(), Settings.Secure.LOCATION_MODE,
-                        Settings.Secure.LOCATION_MODE_OFF
-                    );
-                    return (mode != Settings.Secure.LOCATION_MODE_OFF);
-
-                }
-            }
-
-
         }
+
+    }
+
+
     }

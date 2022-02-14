@@ -122,5 +122,10 @@
     <dimen name="_230dp">230dp</dimen>
     <dimen name="_35dp">35dp</dimen>
     <dimen name="_22sp">22sp</dimen>
+    <dimen name="_85dp">85dp</dimen>
+    <dimen name="_110dp">110dp</dimen>
+    <dimen name="_12dp">12dp</dimen>
+    <dimen name="_140dp">140dp</dimen>
+    <dimen name="_180dp">180dp</dimen>
 
 </resources>

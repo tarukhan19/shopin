@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.app.shopin.HomePage.view.Activity.HomeActivity
+import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityMobileRegisterBinding
@@ -47,21 +47,20 @@ class MobileRegisterActivity : AppCompatActivity() , View.OnClickListener{
 
     private fun registerMobile() {
         progressbarLL.visibility = View.VISIBLE
-        mobileViewModel.getObserve().observe(this, {
-            if (it?.status==true  && it.status_code==200) {
+        mobileViewModel.getObserve().observe(this) {
+            if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
                 val intent = Intent(this, OtpActivity::class.java)
-                Preference.getInstance(this)?.setString(Constant.KEY_EMAILID_OR_MOBNO,mobileno)
-                Preference.getInstance(this)?.setString(Constant.KEY_FROM_EMAILID_OR_MOBNO,"mobileno")
+                Preference.getInstance(this)?.setString(Constant.KEY_EMAILID_OR_MOBNO, mobileno)
+                Preference.getInstance(this)
+                    ?.setString(Constant.KEY_FROM_EMAILID_OR_MOBNO, "mobileno")
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
-            }
-            else
-            {
+            } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast("Something Went wrong",this)
+                Utils.showToast("Something Went wrong", this)
             }
-        })
+        }
         mobileViewModel.makeMobileApiCall(this, mobileno)
     }
 

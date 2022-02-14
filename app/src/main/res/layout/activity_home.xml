@@ -3,17 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HomePage.view.Activity.HomeActivity">
+    tools:context=".homePage.views.Activity.HomeActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
        >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottomNavigation"
-            android:id="@+id/fragmentContainer"/>
+
+            <FrameLayout
+                android:id="@+id/fragmentContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               />
 
 
         <com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -21,12 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#00000000"
-            app:mbn_countBackgroundColor="#00000000"
             app:mbn_defaultIconColor="@color/black"
             app:mbn_rippleColor="@color/colorPrimary"
             app:mbn_selectedIconColor="@color/colorPrimary"
-            app:mbn_shadowColor="#00000000" />
+           />
 
     </RelativeLayout>
 

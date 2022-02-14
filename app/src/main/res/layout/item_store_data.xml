@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="allstoredata"
+            type="com.app.shopin.homePage.models.AllStoreDataValues" />
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
+        android:elevation="@dimen/_5dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_8dp"
+        app:cardCornerRadius="@dimen/_15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_8dp"
+                android:weightSum="1"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70dp"
+                        android:background="@drawable/lite_grey_rectentagle_backgroud"
+                        >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/freshys"
+                            android:padding="@dimen/_3dp"
+                            />
+                    </LinearLayout>
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/distanceTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12sp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="@dimen/_8dp"
+                    android:orientation="vertical"
+                    android:weightSum="1"
+                    >
+                    <com.app.shopin.customview.BoldTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="@{allstoredata.name}"
+                        android:gravity="start"
+                        android:inputType="textMultiLine"
+                        android:maxLines="2"
+                        android:layout_weight="0.5"
+                        android:textSize="@dimen/_16sp"
+                        android:layout_marginTop="@dimen/_5dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        android:layout_weight="0.5"
+
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/ratingLL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ratinggrayback"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/_8dp"
+                            android:paddingEnd="@dimen/_8dp"
+                            android:paddingBottom="@dimen/_3dp"
+                            >
+
+                            <ImageView
+                                android:layout_width="@dimen/_12dp"
+                                android:layout_height="@dimen/_12dp"
+                                android:src="@drawable/bigstar"
+                                />
+                            <com.app.shopin.customview.RegularTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{allstoredata.rating}"
+                                android:layout_marginEnd="@dimen/_5dp"
+                                android:layout_marginStart="@dimen/_3dp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_10sp"
+                                />
+                        </LinearLayout>
+
+
+
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="124 Ratings"
+                            android:textColor="@color/darkgray"
+                            android:textSize="@dimen/_10sp"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:weightSum="1"
+                    android:layout_marginTop="@dimen/_3dp"
+                    android:layout_marginBottom="@dimen/_3dp"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:layout_marginBottom="@dimen/_3dp"
+                        android:background="@drawable/lite_grey_rectentagle_backgroud"
+                        >
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="free delivery over $12"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_8sp"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            />
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Est. Tomorrow 9 AM"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_8sp"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="@dimen/_3dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:background="@drawable/lite_grey_rectentagle_backgroud"
+                        >
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pick up available"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_8sp"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            />
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="In 45 minute"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_8sp"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/productLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:clipToPadding="false"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:layout_marginBottom="@dimen/_8dp"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seeall"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/_8dp"
+                    android:background="@color/lite_grey"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</layout>
