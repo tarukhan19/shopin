@@ -1,6 +1,6 @@
 package com.app.shopin.homePage.models
 
-class AllStoreListResponse
+data class AllStoreListResponse
     (
     val currentTimeStamp: String,
     val data: AllStoreArrayListData,

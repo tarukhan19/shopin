@@ -25,7 +25,6 @@ class HomeActivity : AppCompatActivity() {
     private val ID_STORE = 1
     private val ID_SEARCH = 2
     private val ID_MORE = 3
-
     var CURRENT_TAG = ID_HOME
 
 

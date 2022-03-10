@@ -265,9 +265,7 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
             searchstoreRecycler.visibility=View.GONE
             searchcategRecycler.visibility=View.VISIBLE
         }
-
         fetchStoreCategory()
-
     }
 
 

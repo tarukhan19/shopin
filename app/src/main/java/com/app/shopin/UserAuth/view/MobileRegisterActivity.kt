@@ -25,7 +25,6 @@ class MobileRegisterActivity : AppCompatActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mobile_register)
         initialize()
-
     }
     private fun initialize()
     {

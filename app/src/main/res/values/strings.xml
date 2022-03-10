@@ -154,6 +154,19 @@
 
     <string name="apply">Apply</string>
     <string name="seeall">See All</string>
+    <string name="price">Price</string>
+    <string name="size">Size</string>
+    <string name="description">Description</string>
+    <string name="returnpolicy">Return Policy</string>
+    <string name="featureditem">Featured Items</string>
+    <string name="relateditem">Related Item</string>
+    <string name="featured">Featured</string>
+    <string name="food">Food</string>
+    <string name="categories">Categories</string>
+    <string name="search_for_items">Search items</string>
+    <string name="addtocart">Add to cart</string>
+    <string name="delivery">Delivery</string>
+    <string name="pickup">Pickup</string>
 
 
 </resources>

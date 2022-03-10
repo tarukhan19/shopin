@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".homePage.views.Activity.StoreDetailActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:background="@color/darkblue"
+               android:weightSum="1"
+               >
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.2"
+                   android:layout_gravity="center"
+                   >
+                   <ImageView
+                       android:id="@+id/backIV"
+                       android:layout_width="@dimen/_40dp"
+                       android:layout_height="@dimen/_40dp"
+                       android:src="@drawable/back"
+                       android:padding="@dimen/_8dp"
+                       android:layout_gravity="center"
+                       android:layout_marginLeft="@dimen/_8dp"
+                       android:background="@drawable/circlewhite"
+                       />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.6"
+                   android:orientation="vertical"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+
+                   >
+                   <com.app.shopin.customview.BoldTextView
+                       android:id="@+id/storenameTV"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="@dimen/_14sp"
+                       android:text="Key food harlem"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textColor="@color/white"
+
+                       />
+
+                   <com.app.shopin.customview.RegularTextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:textSize="@dimen/_12sp"
+                       android:text="Menu"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:textColor="@color/white"
+
+                       />
+               </LinearLayout>
+
+
+
+               <LinearLayout
+                   android:id="@+id/cartLL"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.2"
+                   android:layout_gravity="center"
+                   android:gravity="end"
+                   android:layout_marginRight="@dimen/_8dp"
+                   >
+                   <ImageView
+
+                       android:layout_width="@dimen/_40dp"
+                       android:layout_height="@dimen/_40dp"
+                       android:src="@drawable/cart"
+                       android:padding="@dimen/_8dp"
+                       android:layout_gravity="center"
+                       android:layout_marginLeft="@dimen/_8dp"
+
+                       android:background="@drawable/circlewhite"
+                       />
+               </LinearLayout>
+
+           </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkblue"
+                android:weightSum="1"
+                android:padding="@dimen/_8dp"
+                android:orientation="horizontal"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+
+
+                    >
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/addressTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_12sp"
+                        android:text="124 W, 124th street, New York, NY 110027"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="@dimen/_8dp" />
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:layout_marginLeft="@dimen/_8dp"
+                       android:layout_gravity="center"
+                       android:gravity="center_vertical"
+                       >
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:src="@drawable/clock"
+                           />
+                       <com.app.shopin.customview.RegularTextView
+                           android:id="@+id/timeTV"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textSize="@dimen/_12sp"
+                           android:text="9 AM- 9 PM  |  Open Now"
+                           android:src="@drawable/clock"
+                           android:textColor="@color/white"
+                           android:layout_marginLeft="@dimen/_8dp"
+
+                           />
+                   </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
+                        android:src="@drawable/heart"
+                        android:padding="@dimen/_8dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:background="@drawable/circlewhite"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/_30dp"
+                        android:layout_height="@dimen/_30dp"
+                        android:src="@drawable/menu"
+                        android:padding="@dimen/_8dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:background="@drawable/circlewhite"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/mainLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appbarlayout"
+            android:layout_marginBottom="@dimen/_70dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/lite_grey"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:elevation="@dimen/_8dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:weightSum="1"
+            >
+
+            <LinearLayout
+                android:id="@+id/featuredLL"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/orangecapsule"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/feature_wht"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/featured"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sp"
+
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/categoryLL"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_8dp"
+                android:background="@drawable/whitecapsule"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/categories"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/categories"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sp"
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/foodLL"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_5dp"
+                android:background="@drawable/whitecapsule"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/food"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/food"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sp"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

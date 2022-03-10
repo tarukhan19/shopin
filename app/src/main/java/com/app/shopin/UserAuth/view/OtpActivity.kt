@@ -198,22 +198,21 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     private fun verifyEmailWithOtp() {
 
         progressbarLL.visibility = View.VISIBLE
-        otpViewModel.getObserveData().observe(this,{
+        otpViewModel.getObserveData().observe(this) {
 
-            if (it?.status==true  && it.status_code==200)
-            {
+            if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
-                Preference.getInstance(this)?.setboolean(Constant.IS_LOGIN,true)
-                Preference.getInstance(this)?.setString(Constant.KEY_TOKEN,it.otpResponseItems.token)
-                Preference.getInstance(this)?.setString(Constant.KEY_USER_ID,it.otpResponseItems.user_id)
+                Preference.getInstance(this)?.setboolean(Constant.IS_LOGIN, true)
+                Preference.getInstance(this)
+                    ?.setString(Constant.KEY_TOKEN, it.otpResponseItems.token)
+                Preference.getInstance(this)
+                    ?.setString(Constant.KEY_USER_ID, it.otpResponseItems.user_id)
                 loadProfile()
-            }
-            else
-            {
+            } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast(it?.msg.toString(),this)
+                Utils.showToast(it?.msg.toString(), this)
             }
-        })
+        }
         otpViewModel.makeOtpApiCall(this,emailOrMobile,otp)
     }
 
@@ -222,33 +221,29 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
 
         if (Preference.getInstance(this)?.getString(Constant.KEY_FROM_EMAILID_OR_MOBNO).equals("mobileno"))
         {
-            mobileViewModel.getObserve().observe(this, {
-                if (it?.status==true  && it.status_code==200) {
+            mobileViewModel.getObserve().observe(this) {
+                if (it?.status == true && it.status_code == 200) {
                     progressbarLL.visibility = View.GONE
-                    Utils.showToast("OTP sent",this)
-                }
-                else
-                {
+                    Utils.showToast("OTP sent", this)
+                } else {
                     progressbarLL.visibility = View.GONE
-                    Utils.showToast("Something Went wrong",this)
+                    Utils.showToast("Something Went wrong", this)
                 }
-            })
+            }
             mobileViewModel.makeMobileApiCall(this, emailOrMobile)
         }
         else
         {
-                emailViewModel.getObserve().observe(this, {
-                    if (it?.status==true  && it.status_code==200) {
+                emailViewModel.getObserve().observe(this) {
+                    if (it?.status == true && it.status_code == 200) {
                         progressbarLL.visibility = View.GONE
-                        Utils.showToast("OTP sent",this)
-                    }
-                    else
-                    {
+                        Utils.showToast("OTP sent", this)
+                    } else {
                         progressbarLL.visibility = View.GONE
-                        Utils.showToast("Something Went wrong",this)
+                        Utils.showToast("Something Went wrong", this)
                     }
-                })
-                emailViewModel.makeEmailApiCall(this, emailOrMobile)
+                }
+            emailViewModel.makeEmailApiCall(this, emailOrMobile)
 
 
         }
@@ -343,32 +338,29 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
     fun loadProfile()
     {
         progressbarLL.visibility = View.VISIBLE
-        loadProfileViewModel.getObserve().observe(this, {
-            if (it?.status==true  && it.status_code==200) {
+        loadProfileViewModel.getObserve().observe(this) {
+            if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
 
-                if (it.profileResponseItems.user_profile.email!=null)
-                {
-                    val emailid=it.profileResponseItems.user_profile.email
-                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID,emailid)
+                if (it.profileResponseItems.user_profile.email != null) {
+                    val emailid = it.profileResponseItems.user_profile.email
+                    Preference.getInstance(this)?.setString(Constant.KEY_EMAIL_ID, emailid)
 
                 }
-                if (it.profileResponseItems.user_profile.phone_no!=null)
-                {
-                   val mobileno=it.profileResponseItems.user_profile.phone_no
-                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO,mobileno)
+                if (it.profileResponseItems.user_profile.phone_no != null) {
+                    val mobileno = it.profileResponseItems.user_profile.phone_no
+                    Preference.getInstance(this)?.setString(Constant.KEY_MOBILE_NO, mobileno)
 
                 }
-                if (it.profileResponseItems.user_profile.name!=null)
-                {
-                    val name=it.profileResponseItems.user_profile.name
-                    Preference.getInstance(this)?.setString(Constant.KEY_NAME,name)
+                if (it.profileResponseItems.user_profile.name != null) {
+                    val name = it.profileResponseItems.user_profile.name
+                    Preference.getInstance(this)?.setString(Constant.KEY_NAME, name)
                 }
 
-                if (it.profileResponseItems.user_profile.profile_img!=null)
-                {
-                    val profilepic="https://shopinzip.cladev.com"+it.profileResponseItems.user_profile.profile_img
-                    Preference.getInstance(this)?.setString(Constant.KEY_USER_PIC,profilepic)
+                if (it.profileResponseItems.user_profile.profile_img != null) {
+                    val profilepic =
+                        "https://shopinzip.cladev.com" + it.profileResponseItems.user_profile.profile_img
+                    Preference.getInstance(this)?.setString(Constant.KEY_USER_PIC, profilepic)
 
                 }
 
@@ -376,13 +368,11 @@ class OtpActivity : AppCompatActivity(), View.OnClickListener {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
 
-            }
-            else
-            {
+            } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast("Something Went wrong",this)
+                Utils.showToast("Something Went wrong", this)
             }
-        })
+        }
         loadProfileViewModel.makeLoadProfileApiCall(this)
     }
 

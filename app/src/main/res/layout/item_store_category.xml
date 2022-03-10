@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50dp"
+        android:background="@drawable/semicircleopp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_8dp"
+        android:weightSum="1"
+        >
+
+        <com.app.shopin.customview.RegularTextView
+            android:id="@+id/categorynameTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_10dp"
+            android:text="@string/size"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sp" />
+
+
+        <LinearLayout
+            android:id="@+id/seeallLL"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            android:gravity="end|center"
+            android:layout_marginRight="@dimen/_20dp"
+            >
+
+            <com.app.shopin.customview.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10dp"
+                android:text="@string/seeall"
+                android:paddingEnd="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next_black"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/prodRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:layout_marginTop="@dimen/_8dp"
+        />
+
+
+</LinearLayout>
+</layout>

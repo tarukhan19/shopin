@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".homePage.views.Fragment.StoreDetailFeatureFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#eaeaea"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/store_search_background"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:background="@drawable/searchedittext"
+                android:layout_marginStart="@dimen/_20dp"
+                android:layout_marginEnd="@dimen/_20dp"
+                android:elevation="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:layout_gravity="center"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/centerIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="@dimen/_5dp"
+                        android:src="@drawable/search" />
+
+                </LinearLayout>
+                <com.app.shopin.customview.RegularEditText
+                    android:id="@+id/searchET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:elevation="@dimen/_8dp"
+                    android:layout_weight="0.8"
+                    android:background="@null"
+                    android:textSize="@dimen/_14sp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    android:hint="@string/search_for_items"
+                    android:paddingLeft="@dimen/_10dp"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:id="@+id/filterIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:paddingEnd="@dimen/_5dp"
+                        android:visibility="gone"
+                        android:src="@drawable/filter" />
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:tabMode="fixed"
+                app:tabIndicatorHeight="0dp"
+                android:layout_marginLeft="@dimen/_50dp"
+                android:layout_marginRight="@dimen/_50dp"
+                android:layout_marginTop="@dimen/_5dp"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabBackground="@drawable/tab_selectdback"
+                android:background="@drawable/tabbackground"
+                app:tabGravity="fill"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </LinearLayout>
+
+</layout>

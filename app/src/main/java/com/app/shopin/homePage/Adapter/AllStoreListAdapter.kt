@@ -33,10 +33,8 @@ class AllStoreListAdapter : RecyclerView.Adapter<AllStoreListAdapter.ViewHolder>
 
     }
 
-
     class ViewHolder(var binding: ItemAllstoreDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: AllStoreCategoryData, allStoreListViewModel: AllStoreListViewModel) {
-
             binding.allstorerecyclerdata = data
             binding.executePendingBindings()
 

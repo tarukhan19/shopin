@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_180dp"
+            android:layout_height="@dimen/_220dp"
+            android:background="@color/white"
+            app:cardBackgroundColor="@color/white"
+            android:layout_margin="@dimen/_8dp"
+            app:cardCornerRadius="@dimen/_10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_margin="@dimen/_5dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="@dimen/_8dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/heartIV"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30dp"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/circle_fav"
+                        android:layout_marginBottom="@dimen/_8dp"
+                        />
+                    <ImageView
+                        android:id="@+id/prodIV"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_110dp"
+                        android:src="@drawable/new_store"
+                        android:layout_weight="0.6"
+                        android:layout_marginLeft="@dimen/_8dp"
+                        android:scaleType="fitXY"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_8dp">
+                        <ImageView
+                            android:id="@+id/plusIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30dp"
+                            android:src="@drawable/circle_plus"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/expandLL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:gravity="center"
+
+                            >
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="@dimen/_60dp"
+                                android:background="@color/gray"
+                                />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                >
+
+                                <ImageView
+                                    android:id="@+id/expplusIV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/circle_plus"
+                                    />
+                                <com.app.shopin.customview.RegularTextView
+                                    android:id="@+id/prodquantityTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_40dp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="@dimen/_3dp"
+                                    android:layout_marginRight="@dimen/_3dp"
+                                    android:text="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sp"
+                                    />
+                                <ImageView
+                                    android:id="@+id/expminusIV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/circle_minus"
+                                    />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="@dimen/_60dp"
+                                android:background="@color/gray"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <com.app.shopin.customview.BoldTextView
+                    android:id="@+id/prodnameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dove Hairfall rescue shampoo"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_5dp"
+
+                    />
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/produnitTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(125ml)"
+                    android:gravity="start"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_14sp"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/prodpriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$50/pc"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:layout_marginLeft="@dimen/_5dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+</layout>

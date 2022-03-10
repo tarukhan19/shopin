@@ -12,7 +12,7 @@ import retrofit2.http.*
 interface ApiServices {
 
     /// generate otp with email //
-
+//    https://shopinzip.cladev.com/api/v1.0/users/verifyotp/
     @FormUrlEncoded
     @POST("users/generateotp/")
     fun registerUserEmail(@Field("email") email: String): Call<EmailResponse>
@@ -33,7 +33,6 @@ interface ApiServices {
         @Field("email") email: String,
         @Field("otp") otp: String
     ): Call<OtpResponse>
-
 
     /*................editprofile.........................*/
     @Multipart
@@ -86,10 +85,9 @@ interface ApiServices {
     @GET("store/get_new_store/")
      fun getAllStoreListData(): Call<AllStoreListResponse>
 
-//    @GET("store-request/")
-//    fun fetchStoreDetail(
-//    ): retrofit2.Call<StoreListResponse>
-//
+    @GET("store/store_details/")
+    fun fetchStoreDetail(@Query("id") id: String): Call<StoreDetailApiResponse>
+
 //    @FormUrlEncoded
 //    @POST("user-store-map/save_default_store/")
 //    fun saveDefaultStore(
@@ -178,9 +176,27 @@ interface ApiServices {
         @Field("status")  status: String
     ): Call<GetMyStoreListedResponse>
 
+    @FormUrlEncoded
+    @POST("order/cart/save_cart/")
+    fun addToCart(
+        @Field("price")price : String,
+        @Field("quantity")quantity : String,
+        @Field("is_update")is_update : String,
+        @Field("inventory") inventory: String,
+        @Field("tax_amount") tax_amount: String,
+        @Field("total_amount")total_amount : String,
+        @Field("tax_percentage")  tax_percentage: String,
+        @Field("store")  store: String
+    ): Call<AddToCartResponse>
 
+    @DELETE("order/cart/remoove_cart/")
+    fun removeCart(@Query("inventory_id") id: String): Call<RemoveCartResponse>
 
-//    @GET("user-store-map/get_near_by_shop/")
-//    fun getNearByLocation(): retrofit2.Call<NearByModelResponse>
+    @GET("storeinventory/storeitem/inventory_details/")
+    fun prodDetail(@Query("id") id: String): Call<ProductDetailResponse>
+
+    @GET("order/cart/list_cart_items/")
+    fun getCartList(): Call<CartListResponse>
+
 
 }

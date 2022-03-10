@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        app:cardCornerRadius="@dimen/_8dp"
+        app:cardElevation="@dimen/_3dp"
+        android:background="@color/white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:weightSum="1"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.4"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/shoppicIV"
+                        android:layout_width="@dimen/_60dp"
+                        android:layout_height="@dimen/_60dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/freshys"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="1dp" />
+
+                    <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/shopnametv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/store"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.6"
+                    android:background="@drawable/tabbackground"
+                    >
+
+                    <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/deliveryTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/delivery"
+                        android:layout_weight="0.5"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@drawable/tabackgrnd"
+                        android:textSize="@dimen/_12sp" />
+
+                    <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/pickupTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/pickup"
+                        android:textColor="@color/gray"
+                        android:layout_weight="0.5"
+                        android:textSize="@dimen/_12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_8dp"
+                />
+            <com.app.shopin.customview.RegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14sp"
+                android:text="Store Info"
+                 android:layout_weight="0.3"
+                android:src="@drawable/clock"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/_8dp"
+
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5dp"
+                android:weightSum="1"
+                >
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/addressTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sp"
+                    android:text="124 W, 124th street, New York, NY 110027"
+                    android:gravity="start"
+                    android:layout_marginLeft="@dimen/_8dp"
+                    android:layout_weight="0.7"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="@dimen/_8dp"
+
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:orientation="horizontal"
+                    android:gravity="end|center"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/clock"
+                        />
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/timeTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_12sp"
+                        android:text="9 AM- 9 PM"
+                        android:src="@drawable/clock"
+                        android:layout_marginLeft="@dimen/_8dp"
+                        android:textColor="@color/black"
+                        android:layout_marginRight="@dimen/_8dp"
+
+                        />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_8dp"
+                />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clipToPadding="false"
+                android:layout_marginStart="@dimen/_8dp"
+                android:layout_marginEnd="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_8dp"
+
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_8dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:gravity="center"
+                >
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/minamountTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sp"
+                    android:text="The min order amount is $10.00"
+                    android:layout_weight="0.7"
+                    android:src="@drawable/clock"
+                    android:layout_marginLeft="@dimen/_8dp"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="@dimen/_8dp"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/totalpriceTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sp"
+                    android:text="Total \n$200.00"
+                    android:layout_weight="0.3"
+                    android:padding="@dimen/_5dp"
+                    android:gravity="center"
+                    android:src="@drawable/clock"
+                    android:background="@drawable/edittextbackgrnd"
+                    android:layout_marginLeft="@dimen/_8dp"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="@dimen/_8dp"
+
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

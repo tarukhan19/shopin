@@ -3,6 +3,7 @@ package com.app.shopin.homePage.Adapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.app.shopin.R
 import com.app.shopin.databinding.ItemStoreDataBinding
 import com.app.shopin.homePage.models.AllStoreDataValues
 import com.app.shopin.homePage.models.StoreInventoryData
+import com.app.shopin.homePage.views.Activity.ProductDetailActivity
+import com.app.shopin.homePage.views.Activity.StoreDetailActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.DistanceCalculationMethod
 import com.app.shopin.utils.Preference
@@ -90,7 +93,6 @@ class AllStoreDataAdapter(
             catch (e: Exception){
                 Log.e("exce",e.message.toString())
             }
-
         }
 
         if (data.rating.equals("0.0"))
@@ -102,6 +104,12 @@ class AllStoreDataAdapter(
             binding.ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
 
         }
+
+        binding.storeLL.setOnClickListener(View.OnClickListener {
+            val intent = Intent(ctx, StoreDetailActivity::class.java)
+            intent.putExtra("id",data.id)
+            ctx.startActivity(intent)
+        })
         DistanceCalculationMethod.getDistance(originlat!!,
             originlng!!, destlat!!, destlng!!,ctx,binding.distanceTV)
     }

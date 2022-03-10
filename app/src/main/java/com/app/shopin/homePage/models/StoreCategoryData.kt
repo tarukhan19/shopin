@@ -6,5 +6,6 @@ data class StoreCategoryData(
     val key: String?,
     val status: Int?,
     val value: String?,
-    val image: String?
+    val image: String?,
+    val inventory_items: ArrayList<StoreInventoryData>?,
 )

@@ -48,7 +48,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     var emailid: String = ""
     var mobileno: String = ""
     var profilepic: String=""
-
     var imageuri: Uri? =null
     private lateinit var loadProfileViewModel: LoadProfileViewModel
 
@@ -156,7 +155,6 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         {
             profilepicmultipartimage=prepareFilePart("profile_img", imageuri!!)
         }
-        // Parsing any Media type file
         val getResponse = ServiceBuilder.getApiService(this)
         val call = getResponse.editProfile(rbEmail, rbName, rbMobile,profilepicmultipartimage)
         call.enqueue(object : Callback<EditProfileResponse> {
