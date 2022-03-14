@@ -22,8 +22,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
     private val ID_HOME = 0
-    private val ID_STORE = 1
-    private val ID_SEARCH = 2
+    private val ID_SEARCH = 1
+    private val ID_STORE = 2
     private val ID_MORE = 3
     var CURRENT_TAG = ID_HOME
 
@@ -37,8 +37,8 @@ class HomeActivity : AppCompatActivity() {
         addFragment(HomeFragment.newInstance())
         bottomNavigation.show(0)
         bottomNavigation.add(MeowBottomNavigation.Model(0,R.drawable.home_inactive))
-        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.store_inactive))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.search_inactive))
+        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.search_inactive))
+        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.store_inactive))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.profile_inactive))
 
         bottomNavigation.setOnClickMenuListener {
@@ -47,14 +47,15 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(HomeFragment.newInstance())
                     CURRENT_TAG=ID_HOME
                 }
-                1 -> {
-                    replaceFragment(StoreFragment.newInstance())
-                    CURRENT_TAG=ID_STORE
 
-                }
-                2 -> {
+                1-> {
                     replaceFragment(SearchFragment.newInstance())
                     CURRENT_TAG=ID_SEARCH
+
+                }
+                2-> {
+                    replaceFragment(StoreFragment.newInstance())
+                    CURRENT_TAG=ID_STORE
 
                 }
                 3 -> {

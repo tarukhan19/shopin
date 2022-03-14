@@ -5,8 +5,6 @@ class Constant {
 
         companion object
         {
-
-
             const val MyPreferences = "myPreferences"
             const val IS_LOGIN = "Is_Login"
             const val KEY_EMAILID_OR_MOBNO="KEY_EMAILID_OR_MOBNO"

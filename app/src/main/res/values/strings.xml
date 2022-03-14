@@ -167,6 +167,7 @@
     <string name="addtocart">Add to cart</string>
     <string name="delivery">Delivery</string>
     <string name="pickup">Pickup</string>
+    <string name="checkout">Checkout</string>
 
 
 </resources>

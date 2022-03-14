@@ -1,6 +1,7 @@
 package com.app.shopin.homePage.views.Fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,12 +24,14 @@ import com.app.shopin.homePage.models.AllStoreDataValues
 import com.app.shopin.homePage.models.StoreCategoryData
 import com.app.shopin.homePage.models.StoreInventoryData
 import com.app.shopin.homePage.viewmodels.SearchPageListViewModel
+import com.app.shopin.homePage.views.Activity.CartPageActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
 import com.app.shopin.utils.SpacesItemDecoration
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.toolbar
+import kotlinx.android.synthetic.main.toolbar_search.*
 import kotlinx.android.synthetic.main.toolbar_search.view.*
 
 class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilterCallback {
@@ -84,6 +87,7 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
         x = (resources.displayMetrics.density * 4).toInt()
 
         filterIV.setOnClickListener(this)
+        addtocartLL.setOnClickListener(this)
 
 
         searchcategRecycler.addItemDecoration(SpacesItemDecoration(x))
@@ -236,6 +240,11 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
                 searchET.setText("")
                 searchET.setHint("Search for items or stores")
                 OpenDialogBox.openFilterDialog(this,requireActivity())
+            }
+
+            R.id.addtocartLL -> {
+                val in7 = Intent(requireActivity(), CartPageActivity::class.java)
+                startActivity(in7)
             }
         }
     }

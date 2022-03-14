@@ -1,6 +1,7 @@
 package com.app.shopin.homePage.views.Activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ import com.app.shopin.homePage.viewmodels.AddToCartViewModel
 import com.app.shopin.homePage.viewmodels.ProductDetailViewModel
 import com.app.shopin.homePage.viewmodels.RemoveCartViewModel
 import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.toolbar_search.*
 import kotlinx.android.synthetic.main.toolbar_search.view.*
 
 class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
@@ -44,7 +46,6 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
     private fun initialize()
     {
         prodid= intent.getStringExtra("id")!!
-        Log.e("prodid",prodid)
         productDetailViewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
         addToCartViewModel = ViewModelProvider(this).get(AddToCartViewModel::class.java)
         removeCartViewModel = ViewModelProvider(this).get(RemoveCartViewModel::class.java)
@@ -69,6 +70,8 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         addtocartBTN.setOnClickListener(this)
         expplussIV.setOnClickListener(this)
         expminussIV.setOnClickListener(this)
+        addtocartLL.setOnClickListener(this)
+        toolbar.back_LL.setOnClickListener(this)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -168,7 +171,23 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
                 }
 
             }
+
+            R.id.addtocartLL -> {
+                val in7 = Intent(this, CartPageActivity::class.java)
+                startActivity(in7)
+                overridePendingTransition(R.anim.no_animation, R.anim.no_animation)
+            }
+
+            R.id.back_LL ->
+            {
+                finish()
+            }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
     private fun addToCart(is_update:String,quantity:String,totalamount:String)
@@ -189,6 +208,8 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun removeCart()
     {
+        Log.e("prodid",prodid)
+
         removeCartViewModel.removecartviewmodel.removeObservers(this)
         removeCartViewModel.getObserveData().observe(this) {
 

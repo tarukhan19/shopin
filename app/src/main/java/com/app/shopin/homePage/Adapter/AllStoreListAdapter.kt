@@ -30,26 +30,20 @@ class AllStoreListAdapter : RecyclerView.Adapter<AllStoreListAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(searchCategoryArrayListData[position],allStoreListViewModel)
-
     }
 
     class ViewHolder(var binding: ItemAllstoreDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: AllStoreCategoryData, allStoreListViewModel: AllStoreListViewModel) {
             binding.allstorerecyclerdata = data
             binding.executePendingBindings()
-
             val allStoreDataList: ArrayList<AllStoreDataValues>? = data.allStoreDataList.allStoreCategoryData
             if (allStoreDataList != null) {
                 allStoreListViewModel.setallStoreDataAdapter(allStoreDataList)
             }
-
             binding.storeRV.apply {
                 binding.storeRV.setHasFixedSize(true)
                 binding.storeRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
             }
-
-
-
         }
     }
     override fun getItemCount(): Int {

@@ -58,7 +58,6 @@ class StoreDetailActivity : AppCompatActivity() , View.OnClickListener{
 
             R.id.cartLL -> {
                 val in7 = Intent(this, CartPageActivity::class.java)
-                in7.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(in7)
                 overridePendingTransition(R.anim.no_animation, R.anim.no_animation)
             }

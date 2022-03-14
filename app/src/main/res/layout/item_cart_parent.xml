@@ -94,7 +94,7 @@
             <com.app.shopin.customview.RegularTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_14sp"
+                android:textSize="@dimen/_12sp"
                 android:text="Store Info"
                  android:layout_weight="0.3"
                 android:src="@drawable/clock"
@@ -115,7 +115,7 @@
                     android:id="@+id/addressTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12sp"
+                    android:textSize="@dimen/_14sp"
                     android:text="124 W, 124th street, New York, NY 110027"
                     android:gravity="start"
                     android:layout_marginLeft="@dimen/_8dp"

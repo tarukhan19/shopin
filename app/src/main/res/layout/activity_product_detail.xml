@@ -11,11 +11,11 @@
         android:background="@color/lite_grey"
         android:orientation="vertical"
         >
+
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_search"
-            app:toolbar="@{1}"
-            />
+            app:toolbar="@{1}" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -363,6 +363,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
+                android:visibility="invisible"
                 android:gravity="center">
                 <View
                     android:layout_width="@dimen/_80dp"
@@ -417,6 +418,7 @@
                 android:layout_margin="@dimen/_10dp"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:background="@drawable/buttonbackground"
                 android:text="@string/addtocart"
                 android:textColor="@color/white"

@@ -38,6 +38,7 @@
         <entry key="app/src/main/res/drawable/tabackgrnd.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/tabbackground.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/whitebackground.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/drawable/whitebuttonbackground.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/whitecapsule.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/yellowback.xml" value="0.147" />
         <entry key="app/src/main/res/layout/activity_address_list.xml" value="0.21041666666666667" />

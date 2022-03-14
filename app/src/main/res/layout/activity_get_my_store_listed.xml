@@ -165,6 +165,7 @@
                                 android:inputType="textCapWords"
                                 android:paddingStart="@dimen/_5dp"
                                 android:paddingEnd="@dimen/_5dp"
+                                android:hint="Enter your name"
                                 android:textColor="@color/black"
                                 android:background="@null"
                                 android:textSize="14sp" />
@@ -208,6 +209,8 @@
                                 android:inputType="textCapWords"
                                 android:paddingStart="@dimen/_5dp"
                                 android:paddingEnd="@dimen/_5dp"
+                                android:hint="Enter your Business Name"
+
                                 android:textColor="@color/black"
                                 android:background="@null"
                                 android:textSize="14sp" />
@@ -254,6 +257,7 @@
                                 android:textColor="@color/black"
                                 android:background="@null"
                                 android:layout_gravity="start"
+                                android:hint="Enter your Business Address"
                                 android:gravity="start"
                                 android:textSize="14sp"
                                 android:paddingTop="@dimen/_8dp"
@@ -309,6 +313,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:gravity="center_vertical"
                                     android:paddingStart="@dimen/_8dp"
+                                    android:hint="Select your category"
                                     android:singleLine="true"
                                     android:textColor="@color/black"
                                     android:textSize="14sp" />
@@ -369,6 +374,7 @@
                                 android:inputType="number"
                                 android:paddingStart="@dimen/_5dp"
                                 android:paddingEnd="@dimen/_5dp"
+                                android:hint="Enter your Mobile No"
                                 android:textColor="@color/black"
                                 android:background="@null"
                                 android:maxLength="12"
@@ -412,6 +418,7 @@
                                 android:inputType="textEmailAddress"
                                 android:paddingStart="@dimen/_5dp"
                                 android:paddingEnd="@dimen/_5dp"
+                                android:hint="Enter your Email Id"
                                 android:textColor="@color/black"
                                 android:background="@null"
                                 android:textSize="14sp" />

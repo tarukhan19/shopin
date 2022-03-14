@@ -1,10 +1,16 @@
 
 package com.app.shopin.UserAuth.view
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.ParcelFileDescriptor
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -39,7 +45,10 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileDescriptor
+import java.io.IOException
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -50,6 +59,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     var profilepic: String=""
     var imageuri: Uri? =null
     private lateinit var loadProfileViewModel: LoadProfileViewModel
+    private val FINAL_TAKE_PHOTO = 1
+    private val FINAL_CHOOSE_PHOTO = 2
+    private var IMAGESOURCE :Int=0
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -116,10 +129,10 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id)
         {
             R.id.profilepicIV -> {
-                openSomeActivityForResult()
+                startDialog()
             }
             R.id.editProfileIV -> {
-                openSomeActivityForResult()
+                startDialog()
             }
             R.id.saveBTN ->
             {
@@ -202,24 +215,70 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK)
-        {
-            imageuri= result?.data?.data!!
-            profilepicIV.setImageURI(imageuri) // handle chosen image
-
-        }
-    }
-
-    fun openSomeActivityForResult() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        resultLauncher.launch(intent)
-    }
-
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
     }
+
+    private fun startDialog() {
+        val myAlertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        myAlertDialog.setTitle("Upload Images")
+        myAlertDialog.setPositiveButton("Gallery",
+            DialogInterface.OnClickListener { arg0, arg1 ->
+                IMAGESOURCE=FINAL_CHOOSE_PHOTO
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                resultLauncher.launch(Intent.createChooser(intent,"2"))
+
+            })
+        myAlertDialog.setNegativeButton("Camera",
+            DialogInterface.OnClickListener { arg0, arg1 ->
+                IMAGESOURCE=FINAL_TAKE_PHOTO
+                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                resultLauncher.launch(Intent.createChooser(cameraIntent, "1"))
+
+            })
+        myAlertDialog.show()
+    }
+
+
+
+    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+
+            when (IMAGESOURCE)
+            {
+                FINAL_TAKE_PHOTO->
+                {
+                   val bitmapImage = result.data?.getExtras()?.get("data") as Bitmap
+                    imageuri= getImageUri(bitmapImage)!!
+                    profilepicIV.setImageURI(imageuri)
+
+                }
+                FINAL_CHOOSE_PHOTO->
+                {
+                    val data: Intent? = result.data
+                    imageuri = data?.data!!
+                    profilepicIV.setImageURI(imageuri)
+                }
+            }
+
+        }
+    }
+
+    fun getImageUri(inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(
+            getContentResolver(),
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
+    }
+
+
+
 }
+

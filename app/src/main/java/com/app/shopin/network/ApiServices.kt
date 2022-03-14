@@ -188,7 +188,7 @@ interface ApiServices {
         @Field("tax_percentage")  tax_percentage: String,
         @Field("store")  store: String
     ): Call<AddToCartResponse>
-
+    //remove_cart
     @DELETE("order/cart/remoove_cart/")
     fun removeCart(@Query("inventory_id") id: String): Call<RemoveCartResponse>
 

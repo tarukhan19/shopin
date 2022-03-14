@@ -24,6 +24,7 @@ import com.app.shopin.autocompleteLib.model.PlaceDetails
 import com.app.shopin.databinding.ActivityDeliveryAddressAddBinding
 import com.app.shopin.homePage.viewmodels.DeliveryAddressAddViewModel
 import com.app.shopin.utils.LocationMethods
+import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Util.MyTextWatcher
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -234,7 +235,7 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
 
             if (it?.status == true && it.status_code == 200) {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast(getString(R.string.addadresssuc), this)
+                OpenDialogBox.openDialog(this,"Success",getString(R.string.addadresssuc))
             } else {
                 progressbarLL.visibility = View.GONE
                 Utils.showToast(it?.status.toString(), this)
