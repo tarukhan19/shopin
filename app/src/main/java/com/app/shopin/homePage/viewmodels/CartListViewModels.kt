@@ -39,7 +39,12 @@ class CartListViewModels : ViewModel() {
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     cartListViewModels.postValue(null)
-                    OpenDialogBox.openDialog(requireContext,"Error!", errorResponse!!.msg)
+                    OpenDialogBox.openDialog(
+                        requireContext,
+                        "Error!",
+                        errorResponse!!.msg,
+                        ""
+                    )
 
                 }
             }

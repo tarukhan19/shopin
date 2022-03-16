@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="recyclerdata"
             type="com.app.shopin.homePage.models.DeliveryAddressData" />
@@ -75,8 +74,10 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/editLL"
+
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.3"
                     android:gravity="end|center"

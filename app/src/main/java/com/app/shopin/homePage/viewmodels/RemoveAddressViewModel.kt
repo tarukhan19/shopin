@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.homePage.models.ErrorResponse
-import com.app.shopin.homePage.models.GetMyStoreListedResponse
+import com.app.shopin.homePage.models.RemoveAddressResponse
 import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.gson.Gson
@@ -14,33 +14,30 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GetMyStoreListedViewModel : ViewModel() {
-    var getMyStoreListedResponseLiveData: MutableLiveData<GetMyStoreListedResponse> = MutableLiveData()
+class RemoveAddressViewModel: ViewModel() {
+    var removeAddressViewModel: MutableLiveData<RemoveAddressResponse> = MutableLiveData()
 
-
-    fun getObserveData(): MutableLiveData<GetMyStoreListedResponse> {
-        return getMyStoreListedResponseLiveData
+    fun getObserveData(): MutableLiveData<RemoveAddressResponse> {
+        return removeAddressViewModel
     }
 
-    fun getMyStoreResp(requireContext: Context, name: String, businessname: String, businessaddress: String
-                                  , categoryId: String, emailid: String,
-                                  mobileno: String, status : String) {
+    fun removeAddressResponse(requireContext: Context, id:String) {
 
         val request = ServiceBuilder.getApiService(requireContext)
-        request.getMyStoreListed(name,businessname,businessaddress,categoryId, emailid, mobileno, status).enqueue(object :
-            Callback<GetMyStoreListedResponse> {
+        request.removeAddress(id).enqueue(object :
+            Callback<RemoveAddressResponse> {
             @SuppressLint("NullSafeMutableLiveData")
             override fun onResponse(
-                call: Call<GetMyStoreListedResponse>,
-                response: Response<GetMyStoreListedResponse>
+                call: Call<RemoveAddressResponse>,
+                response: Response<RemoveAddressResponse>
             ) {
                 if (response.isSuccessful) {
-                    getMyStoreListedResponseLiveData.postValue(response.body())
+                    removeAddressViewModel.postValue(response.body())
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
-                    getMyStoreListedResponseLiveData.postValue(null)
+                    removeAddressViewModel.postValue(null)
                     OpenDialogBox.openDialog(
                         requireContext,
                         "Error!",
@@ -52,8 +49,8 @@ class GetMyStoreListedViewModel : ViewModel() {
             }
 
             @SuppressLint("NullSafeMutableLiveData")
-            override fun onFailure(call: Call<GetMyStoreListedResponse>, t: Throwable) {
-                getMyStoreListedResponseLiveData.postValue(null)
+            override fun onFailure(call: Call<RemoveAddressResponse>, t: Throwable) {
+                removeAddressViewModel.postValue(null)
             }
 
         })

@@ -1,6 +1,7 @@
 package com.app.shopin.homePage.views.Fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.shopin.R
+import com.app.shopin.UserAuth.view.EditProfileActivity
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.FragmentSearchBinding
 import com.app.shopin.homePage.Adapter.AllStoreDataAdapter
@@ -25,6 +27,7 @@ import com.app.shopin.homePage.models.StoreCategoryData
 import com.app.shopin.homePage.models.StoreInventoryData
 import com.app.shopin.homePage.viewmodels.SearchPageListViewModel
 import com.app.shopin.homePage.views.Activity.CartPageActivity
+import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
@@ -41,6 +44,8 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
     lateinit var key:String
     lateinit var searchdata:String
     private lateinit var storeListAdapter: AllStoreDataAdapter
+    private lateinit var ctx: HomeActivity
+    var isLogin:Boolean=false
 
     companion object
     {
@@ -75,6 +80,17 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
     @SuppressLint("NotifyDataSetChanged")
     private fun initialize()
     {
+        isLogin=Preference.getInstance(requireActivity())?.getBoolean(Constant.IS_LOGIN)!!
+        if (isLogin)
+        {
+            mainLL.visibility=View.VISIBLE
+        }
+        else
+        {
+            mainLL.visibility=View.GONE
+            ctx.openBottomSheetDialog(requireActivity())
+
+        }
         searchPageListViewModel =
             ViewModelProvider(requireActivity()).get(SearchPageListViewModel::class.java)
         binding.itemViewModel = searchPageListViewModel
@@ -236,15 +252,32 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
         {
             R.id.filterIV ->
             {
-                searchdata=""
-                searchET.setText("")
-                searchET.setHint("Search for items or stores")
-                OpenDialogBox.openFilterDialog(this,requireActivity())
+                if (isLogin)
+                {
+                    searchdata=""
+                    searchET.setText("")
+                    searchET.setHint("Search for items or stores")
+                    OpenDialogBox.openFilterDialog(this,requireActivity())
+                }
+                else
+                {
+                    ctx.openBottomSheetDialog(requireActivity())
+
+                }
+
             }
 
             R.id.addtocartLL -> {
-                val in7 = Intent(requireActivity(), CartPageActivity::class.java)
-                startActivity(in7)
+                if (isLogin)
+                {
+                    val in7 = Intent(requireActivity(), CartPageActivity::class.java)
+                    startActivity(in7)
+                }
+                else
+                {
+                    ctx.openBottomSheetDialog(requireContext())
+                }
+
             }
         }
     }
@@ -277,6 +310,11 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
         fetchStoreCategory()
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        ctx = context as HomeActivity
+
+    }
 
 
 }

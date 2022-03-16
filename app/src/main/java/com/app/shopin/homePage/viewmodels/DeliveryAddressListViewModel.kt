@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class DeliveryAddressListViewModel : ViewModel() {
     private var deliveryAddressListLiveData: MutableLiveData<DeliveryAddressListResponse> = MutableLiveData()
-    private var deliveryAdapter: DeliveryAddressAdapter = DeliveryAddressAdapter()
+    lateinit var deliveryAdapter: DeliveryAddressAdapter
 
     fun getDeliveryAddressObserver(): MutableLiveData<DeliveryAddressListResponse> {
         return deliveryAddressListLiveData
@@ -30,8 +30,9 @@ class DeliveryAddressListViewModel : ViewModel() {
         return deliveryAdapter
     }
 
-    fun getDeliveryAddressList(requireContext: Context) {
-
+    fun getDeliveryAddressList(requireContext: Context)
+    {
+        deliveryAdapter = DeliveryAddressAdapter(requireContext)
         val request = ServiceBuilder.getApiService(requireContext)
         request.getDeliveryAddressList().enqueue(object : Callback<DeliveryAddressListResponse> {
             @SuppressLint("NullSafeMutableLiveData")

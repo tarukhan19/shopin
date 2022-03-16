@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
             android:background="@color/lite_grey"
             android:orientation="vertical">
@@ -30,8 +30,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/deliveryAddressRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:layout_height="match_parent"
+                android:visibility="gone"
                 android:layout_marginLeft="@dimen/_8dp"
                 android:layout_marginRight="@dimen/_8dp"
                 android:layout_marginTop="@dimen/_8dp"
@@ -42,13 +42,13 @@
             <com.app.shopin.customview.BoldTextView
                 android:id="@+id/norecrdfoundTV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/no_recrd_found"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </LinearLayout>
 

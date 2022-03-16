@@ -1,24 +1,31 @@
 package com.app.shopin.utils
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
+import android.widget.Button
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import com.app.shopin.R
+import com.app.shopin.UserAuth.view.EditProfileActivity
+import com.app.shopin.UserAuth.view.EmailRegisterActivity
 import com.app.shopin.UserAuth.view.WelcomeToShop
 import com.app.shopin.databinding.ItemFilterBinding
 import com.app.shopin.databinding.ItemLogoutBinding
 import com.app.shopin.databinding.ItemSuccessDialogBinding
 import com.app.shopin.homePage.Adapter.StoreCategoryAdapter
+import com.app.shopin.homePage.views.Activity.DeliveryAddressAddActivity
+import com.app.shopin.homePage.views.Activity.DeliveryAddressUpdateActivity
+import com.app.shopin.homePage.views.Activity.GetMyStoreListedActivity
 import com.app.shopin.homePage.views.Fragment.SearchFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class OpenDialogBox {
@@ -62,7 +69,7 @@ class OpenDialogBox {
 
 
 
-        fun openDialog(ctx: Context,title:String,msg:String)
+        fun openDialog(ctx: Context, title: String, msg: String, from: String)
         {
             val dialog = Dialog(ctx, R.style.CustomDialog)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -85,6 +92,23 @@ class OpenDialogBox {
             itemDataBinding.msgTV.setText(msg)
             itemDataBinding.okBTN.setOnClickListener {
                 dialog.dismiss()
+                if (from.equals("getmystorelisted"))
+                {
+                    GetMyStoreListedActivity.getInstance()?.runThread()
+                }
+                else if (from.equals("addaddress"))
+                {
+                    DeliveryAddressAddActivity.getInstance()?.runThread()
+                }
+                else if (from.equals("editprofile"))
+                {
+                    EditProfileActivity.getInstance()?.runThread()
+                }
+                else if (from.equals("updateaddress"))
+                {
+                    DeliveryAddressUpdateActivity.getInstance()?.runThread()
+                }
+
             }
         }
 
@@ -161,7 +185,12 @@ class OpenDialogBox {
 
     }
 
+
+
     interface SearchFilterCallback {
         fun getSearchFilter()
     }
+
+
+
 }

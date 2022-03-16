@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.app.shopin.Util.Utils
 import com.app.shopin.homePage.models.ErrorResponse
 import com.app.shopin.homePage.models.RemoveCartResponse
 import com.app.shopin.utils.OpenDialogBox
@@ -39,7 +38,12 @@ class RemoveCartViewModel: ViewModel() {
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     removecartviewmodel.postValue(null)
-                    OpenDialogBox.openDialog(requireContext,"Error!", errorResponse!!.msg)
+                    OpenDialogBox.openDialog(
+                        requireContext,
+                        "Error!",
+                        errorResponse!!.msg,
+                        ""
+                    )
 
                 }
             }

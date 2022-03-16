@@ -30,10 +30,14 @@
         android:theme="@style/Theme.Shopin"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".homePage.views.Activity.CartPageActivity"
+            android:name=".homePage.views.Activity.DeliveryAddressUpdateActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity
+            android:name=".homePage.views.Activity.CartPageActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".homePage.views.Activity.StoreDetailActivity"
             android:exported="false"

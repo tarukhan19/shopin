@@ -1,5 +1,6 @@
 package com.app.shopin.homePage.views.Activity
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -42,9 +43,20 @@ class GetMyStoreListedActivity : AppCompatActivity(), View.OnClickListener,Store
     lateinit var categoryListViewModel: CategoryListViewModel
     private lateinit var getMyStoreListedViewModel: GetMyStoreListedViewModel
 
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        var getMyStoreListedActivity: GetMyStoreListedActivity? = null
+        fun getInstance(): GetMyStoreListedActivity? {
+            return getMyStoreListedActivity
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_get_my_store_listed)
+        getMyStoreListedActivity = this
+
     }
 
     override fun onClick(v: View?) {
@@ -194,6 +206,7 @@ class GetMyStoreListedActivity : AppCompatActivity(), View.OnClickListener,Store
                     this,
                     "Success",
                     "Your store has been listed successfully."
+                ,"getmystorelisted"
                 )
             } else {
                 progressbarLL.visibility = View.GONE
@@ -239,5 +252,23 @@ class GetMyStoreListedActivity : AppCompatActivity(), View.OnClickListener,Store
         categorytypeTV.setText(value)
         categoryValue=value
         categoryID=id
+    }
+
+    fun runThread()
+    {
+        object : Thread()
+        {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun run() {
+                try
+                {
+                finish()
+                }
+                catch (e: InterruptedException)
+                {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
     }
 }

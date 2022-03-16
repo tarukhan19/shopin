@@ -66,18 +66,18 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/delivery"
+                        android:text="Delivery \nTomorrow 9PM"
                         android:layout_weight="0.5"
                         android:textColor="@color/colorPrimary"
                         android:background="@drawable/tabackgrnd"
-                        android:textSize="@dimen/_12sp" />
+                        android:textSize="@dimen/_10sp" />
 
                     <com.app.shopin.customview.BoldTextView
                         android:id="@+id/pickupTV"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/pickup"
+                        android:text="Pickup \n30min"
                         android:textColor="@color/gray"
                         android:layout_weight="0.5"
                         android:textSize="@dimen/_12sp" />
@@ -164,7 +164,7 @@
                 android:layout_height="0.5dp"
                 android:background="@color/gray"
                 android:layout_marginTop="@dimen/_8dp"
-                android:layout_marginBottom="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_3dp"
                 />
 
 
@@ -176,15 +176,14 @@
                 android:clipToPadding="false"
                 android:layout_marginStart="@dimen/_8dp"
                 android:layout_marginEnd="@dimen/_8dp"
-                android:layout_marginBottom="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_3dp"
 
                 />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/gray"
-                android:layout_marginTop="@dimen/_8dp"
-                android:layout_marginBottom="@dimen/_8dp"
+                android:layout_marginTop="@dimen/_3dp"
                 />
 
             <LinearLayout
@@ -192,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
+                android:layout_marginTop="@dimen/_8dp"
                 android:gravity="center"
                 >
 

@@ -76,7 +76,8 @@ class SplashActivity : AppCompatActivity() {
 
 
     fun openActivity()
-    { Handler(Looper.getMainLooper()).postDelayed({
+    {
+        Handler(Looper.getMainLooper()).postDelayed({
         if (Preference.getInstance(this)?.getBoolean(Constant.IS_LOGIN) == true)
         {
             val intent = Intent(this@SplashActivity, HomeActivity::class.java)

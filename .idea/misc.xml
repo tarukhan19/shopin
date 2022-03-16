@@ -45,7 +45,8 @@
         <entry key="app/src/main/res/layout/activity_cart_page.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/activity_delivery_address_add.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_delivery_address_list.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_delivery_address_update.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_email_register.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/activity_get_my_store_listed.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
@@ -95,6 +96,7 @@
         <entry key="app/src/main/res/layout/toolbar_product_detail.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/toolbar_search.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/toolbar_store.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/toolbar_updateaddress.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.23072916666666668" />
       </map>

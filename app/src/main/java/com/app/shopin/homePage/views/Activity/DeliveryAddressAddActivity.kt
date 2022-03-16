@@ -17,7 +17,6 @@ import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.autocompleteLib.adapter.PlacesAutoCompleteAdapter
 import com.app.shopin.autocompleteLib.listener.OnPlacesDetailsListener
-import com.app.shopin.autocompleteLib.model.Address
 import com.app.shopin.autocompleteLib.model.Place
 import com.app.shopin.autocompleteLib.model.PlaceAPI
 import com.app.shopin.autocompleteLib.model.PlaceDetails
@@ -34,29 +33,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteActivity
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import kotlinx.android.synthetic.main.activity_delivery_address_add.*
 import kotlinx.android.synthetic.main.activity_delivery_address_add.progressbarLL
 import kotlinx.android.synthetic.main.activity_delivery_address_add.toolbar
-import kotlinx.android.synthetic.main.activity_delivery_address_list.*
 import kotlinx.android.synthetic.main.toolbar.view.*
-import retrofit2.http.Field
-import java.util.*
 import kotlin.collections.ArrayList
 
 class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
     View.OnClickListener, OnMapReadyCallback {
     lateinit var binding: ActivityDeliveryAddressAddBinding
     private lateinit var deliveryAddressAddViewModel: DeliveryAddressAddViewModel
-
     lateinit var addresstypeArrayAdapter: ArrayAdapter<String>
     lateinit var addresstypebuilder: AlertDialog.Builder
     lateinit var addresstypeArrayList: ArrayList<String>
     lateinit var addresstypeLV: ListView
     lateinit var addresstypedialog: AlertDialog
-
     private val addresstypeList = arrayOf("Home", "Office")
     private var addresstypeS: String = "Home"
     private var addresstype: String = "1"
@@ -68,32 +59,39 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     private var  lat=0.0
     private var  lng=0.0
     lateinit var mMap: GoogleMap
+
     val placesApi = PlaceAPI.Builder()
         .apiKey("AIzaSyAdoq9IbV9WMAc_wAyEpNZslrPUmJ_RCLg")
         .build(this)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        var deliveryAddressAddActivity: DeliveryAddressAddActivity? = null
+        fun getInstance(): DeliveryAddressAddActivity? {
+            return deliveryAddressAddActivity
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_delivery_address_add)
         initialize()
-
     }
 
     fun initialize()
     {
+        deliveryAddressAddActivity=this
         toolbar.titleTV.text=getString(R.string.delivAddresAdd)
         toolbar.back_LL.setOnClickListener(this)
-
         deliveryAddressAddViewModel = ViewModelProvider(this).get(DeliveryAddressAddViewModel::class.java)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
         if (!Places.isInitialized()) {Places.initialize(
             applicationContext,
             getString(R.string.api_key)
         )}
-
         val returnedAddress=LocationMethods.getLocation(this)
         val strReturnedAddress = StringBuilder("")
         for (i in 0..returnedAddress!!.maxAddressLineIndex)
@@ -115,7 +113,6 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
                 nameTIL,
                 this)
         )
-
         addressET.addTextChangedListener(
             MyTextWatcher(
                 addressET,
@@ -151,7 +148,6 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
         addresstypeLV.setOnItemClickListener(this)
         addresstypeLL.setOnClickListener(this)
         addAddressBTN.setOnClickListener(this)
-
     }
 
     private fun getPlaceDetails(placeId: String) {
@@ -231,16 +227,19 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     fun addAddress()
     {
         progressbarLL.visibility = View.VISIBLE
+        deliveryAddressAddViewModel.getObserveData().removeObservers(this)
+
         deliveryAddressAddViewModel.getObserveData().observe(this) {
 
-            if (it?.status == true && it.status_code == 200) {
+            if (it?.status == true && it.status_code == 201) {
                 progressbarLL.visibility = View.GONE
-                OpenDialogBox.openDialog(this,"Success",getString(R.string.addadresssuc))
+
+                OpenDialogBox.openDialog(this,"Success",getString(R.string.addadresssuc),"addaddress")
             } else {
                 progressbarLL.visibility = View.GONE
-                Utils.showToast(it?.status.toString(), this)
             }
         }
+        Log.e("latlng",lat.toString()+" "+lng.toString())
 
         deliveryAddressAddViewModel.getDeliveryAddressAddResp(this,name,location,addresstype,
         deliveryinstruction,floor,isDefault,lat,lng)
@@ -259,7 +258,8 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
                     this,
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
-            ) {
+            )
+            {
 
                 return
             }
@@ -335,14 +335,28 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
 
                 }
 
-
-
             }
         }
 
     }
 
-
+    fun runThread()
+    {
+        object : Thread()
+        {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun run() {
+                try
+                {
+                    finish()
+                }
+                catch (e: InterruptedException)
+                {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
+    }
 
 
 }

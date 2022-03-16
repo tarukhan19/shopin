@@ -168,6 +168,10 @@
     <string name="delivery">Delivery</string>
     <string name="pickup">Pickup</string>
     <string name="checkout">Checkout</string>
+    <string name="delivAddresUpdate">Update Address</string>
+    <string name="updateadresssuc">Update Address Successfully</string>
+    <string name="removed">Address Removed Successfully</string>
+    <string name="updateadress">Update Address</string>
 
 
 </resources>

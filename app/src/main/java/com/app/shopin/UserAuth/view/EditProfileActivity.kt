@@ -1,17 +1,15 @@
 
 package com.app.shopin.UserAuth.view
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,15 +26,19 @@ import com.app.shopin.utils.FileUtils
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
 import com.customer.gogetme.Retrofit.ServiceBuilder
+import com.customer.gogetme.Util.MyTextWatcher
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_edit_profile.editProfileIV
+import kotlinx.android.synthetic.main.activity_edit_profile.emailTIL
+import kotlinx.android.synthetic.main.activity_edit_profile.emailidET
+import kotlinx.android.synthetic.main.activity_edit_profile.mobileTIL
 import kotlinx.android.synthetic.main.activity_edit_profile.mobilenoET
 import kotlinx.android.synthetic.main.activity_edit_profile.profilepicIV
 import kotlinx.android.synthetic.main.activity_edit_profile.progressbarLL
+import kotlinx.android.synthetic.main.activity_email_register.*
 import kotlinx.android.synthetic.main.activity_mobile_register.*
-import kotlinx.android.synthetic.main.fragment_more.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -47,8 +49,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileDescriptor
-import java.io.IOException
 
 
 class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
@@ -63,7 +63,13 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
     private val FINAL_CHOOSE_PHOTO = 2
     private var IMAGESOURCE :Int=0
 
-
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        var editProfileActivity: EditProfileActivity? = null
+        fun getInstance(): EditProfileActivity? {
+            return editProfileActivity
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -74,12 +80,28 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     fun initialize()
     {
+        editProfileActivity=this
         loadProfileViewModel = ViewModelProvider(this).get(LoadProfileViewModel::class.java)
         profilepicIV.setOnClickListener(this)
         editProfileIV.setOnClickListener(this)
         saveBTN.setOnClickListener(this)
         toolbar.titleTV.setText(R.string.editaddress)
         toolbar.back_LL.setOnClickListener(this)
+        mobilenoET.addTextChangedListener(
+            MyTextWatcher(
+                mobilenoET,
+                mobileTIL,
+                this)
+        )
+        emailidET.addTextChangedListener(
+            MyTextWatcher(
+                emailidET,
+                emailTIL,
+                this)
+        )
+
+
+
         loadProfile()
     }
 
@@ -153,7 +175,27 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         emailid=emailidET.text.toString()
 
 
-        updateProfile()
+        if (name.isEmpty())
+        {
+            Utils.validateEditText("name", nameET, nameTIL, this)
+
+        }
+        else if (emailid.isEmpty()) {
+            Utils.validateEditText("id", emailidET, emailTIL, this)
+        }
+        else if (mobileno.isEmpty()) {
+            Utils.validateEditText("phone", mobilenoET, mobileTIL, this)
+        }
+        else if (mobileno.length<10)
+        {
+            Utils.validateEditText("phone", mobilenoET, mobileTIL, this)
+        }
+        else
+        {
+            updateProfile()
+        }
+
+
     }
 
     fun updateProfile()
@@ -184,7 +226,7 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
 
                         binding.nameET.requestFocus()
                         loadProfile()
-                        OpenDialogBox.openDialog(this@EditProfileActivity,"Success","Your profile has been updated successfully.")
+                        OpenDialogBox.openDialog(this@EditProfileActivity,"Success","Your profile has been updated successfully.","editprofile")
 
                     }
                 } else {
@@ -278,7 +320,23 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         return Uri.parse(path)
     }
 
-
+    fun runThread()
+    {
+        object : Thread()
+        {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun run() {
+                try
+                {
+                    finish()
+                }
+                catch (e: InterruptedException)
+                {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
+    }
 
 }
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -54,10 +55,11 @@ class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
             if (it != null) {
                 if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
                     val addressList: ArrayList<DeliveryAddressData>? = it.data.customer_address
-                    if (addressList != null) {
+                    Log.e("addressList",addressList?.size.toString())
+                    if (addressList?.size!=0) {
                         deliveryAddressRecycler.visibility=View.VISIBLE
                         norecrdfoundTV.visibility=View.GONE
-                        deliveryAddressListViewModel.setAdapter(addressList)
+                        deliveryAddressListViewModel.setAdapter(addressList!!)
                     }
                     else
                     {

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".homePage.views.Activity.DeliveryAddressUpdateActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_updateaddress"
+            app:toolbar="@{1}" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10dp"
+
+            android:background="@color/lite_grey"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200dp"
+                android:background="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_10dp">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/cardView"
+                android:background="@color/lite_grey"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cardView"
+
+                    android:background="@color/lite_grey"
+                    android:orientation="vertical">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:background="@color/white"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/toolbar"
+                            android:layout_margin="@dimen/_15dp"
+                            android:orientation="vertical">
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/nameET"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_55dp"
+                                android:background="@drawable/edittextbackgrnd"
+                                android:hint="@string/names"
+                                android:inputType="textCapWords"
+                                android:paddingStart="@dimen/_15dp"
+                                android:paddingEnd="@dimen/_15dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/nameTIL"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <AutoCompleteTextView
+                                android:id="@+id/addressET"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_80dp"
+                                android:background="@drawable/edittextbackgrnd"
+                                android:hint="@string/address"
+                                android:inputType="textCapWords|textMultiLine"
+                                android:layout_gravity="bottom"
+                                android:gravity="start"
+                                android:paddingTop="@dimen/_10dp"
+                                android:paddingStart="@dimen/_15dp"
+                                android:paddingEnd="@dimen/_15dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/addressTIL"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/aptfloorcompET"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_55dp"
+                                android:layout_marginTop="@dimen/_5dp"
+                                android:background="@drawable/edittextbackgrnd"
+                                android:hint="@string/apt_floor_company_optional"
+                                android:inputType="textCapWords"
+                                android:paddingStart="@dimen/_15dp"
+                                android:paddingEnd="@dimen/_15dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/aptfloorcompTIL"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+                            <LinearLayout
+                                android:id="@+id/addresstypeLL"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_55dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/edittextbackgrnd"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="1"
+
+                                >
+
+                                <com.app.shopin.customview.RegularTextView
+                                    android:id="@+id/addresstypeTV"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.8"
+                                    android:gravity="center_vertical"
+                                    android:hint="@string/label"
+                                    android:paddingStart="@dimen/_15dp"
+                                    android:paddingEnd="@dimen/_15dp"
+                                    android:singleLine="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp" />
+
+                                <LinearLayout
+
+                                    android:id="@+id/downarrowLL"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="0.2"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/arrowdown" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/addresstypeTIL"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <com.app.shopin.customview.RegularEditText
+                                android:id="@+id/deliveryinstructionET"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_80dp"
+                                android:layout_marginTop="@dimen/_5dp"
+                                android:background="@drawable/edittextbackgrnd"
+                                android:gravity="start"
+                                android:hint="@string/delivery_instruction"
+                                android:inputType="textMultiLine"
+                                android:paddingStart="@dimen/_15dp"
+                                android:paddingTop="@dimen/_10dp"
+                                android:paddingEnd="@dimen/_15dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/gray"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:id="@+id/isdefaultswitchLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/defaulttxt"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sp" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/isdefaultswitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10dp"
+                            android:checked="false" />
+
+                    </LinearLayout>
+
+
+                    <com.app.shopin.customview.RegularButton
+                        android:id="@+id/addAddressBTN"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_10dp"
+                        android:layout_marginTop="@dimen/_10dp"
+                        android:layout_marginEnd="@dimen/_10dp"
+                        android:layout_marginBottom="@dimen/_10dp"
+                        android:background="@drawable/buttonbackground"
+                        android:gravity="center"
+                        android:text="@string/updateadress"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+            <LinearLayout
+                android:id="@+id/progressbarLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transgray"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/_50dp"
+                    android:layout_height="@dimen/_50dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>
