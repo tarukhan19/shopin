@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="searchrecyclerdata"
+            type="com.app.shopin.homePage.models.StoreCategoryData" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150dp"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_8dp"
+        android:layout_marginTop="@dimen/_8dp"
+        app:cardCornerRadius="@dimen/_15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_margin="@dimen/_8dp"
+
+                >
+
+                <ImageView
+                    android:id="@+id/productIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_8dp"
+                    android:background="@drawable/edittextbackgrnd"
+                    android:src="@drawable/dove" />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/prodcountTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/redoutlinecapsule"
+                    android:gravity="center"
+                    android:padding="@dimen/_5dp"
+
+                    android:text="10 More Items"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+                android:layout_marginTop="@dimen/_10dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/orderidLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <com.app.shopin.customview.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_id"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sp"
+                        />
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/orderidTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5dp"
+                        android:text="123AXD5476"
+                        android:textSize="@dimen/_12sp"
+                        />
+                </LinearLayout>
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/orderdateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderidLL"
+                    android:layout_marginTop="@dimen/_3dp"
+                    android:text="On Thu, 25 june 2020"
+                    android:textSize="@dimen/_12sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:orientation="vertical"
+                    >
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/prodnameTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Dove Shampoo"
+                        android:layout_marginTop="@dimen/_3dp"
+                        android:textSize="@dimen/_14sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/orderidLL"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_25dp"
+                        android:layout_height="@dimen/_25dp"
+                        android:background="@drawable/bluecircle"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:layout_marginTop="@dimen/_5dp"
+                        >
+
+                        <com.app.shopin.customview.BoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/white"
+                            android:baselineAligned="false"
+                            android:text="Freshy's"
+                            android:layout_margin="@dimen/_3dp"
+                            android:padding="@dimen/_2dp"
+                            android:textColor="@color/blue"
+                            android:textSize="3sp" />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_3dp"
+                >
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/orderstatusTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/ord_deliv_capsule"
+                    android:gravity="center"
+                    android:padding="@dimen/_8dp"
+                    android:text="Delivered"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp" />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/delvdateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/orderidLL"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:text="On Thu, 25 july 2020"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/next_black"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginRight="@dimen/_8dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

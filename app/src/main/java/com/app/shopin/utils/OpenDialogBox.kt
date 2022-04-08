@@ -21,6 +21,7 @@ import com.app.shopin.databinding.ItemFilterBinding
 import com.app.shopin.databinding.ItemLogoutBinding
 import com.app.shopin.databinding.ItemSuccessDialogBinding
 import com.app.shopin.homePage.Adapter.StoreCategoryAdapter
+import com.app.shopin.homePage.views.Activity.CartPageActivity
 import com.app.shopin.homePage.views.Activity.DeliveryAddressAddActivity
 import com.app.shopin.homePage.views.Activity.DeliveryAddressUpdateActivity
 import com.app.shopin.homePage.views.Activity.GetMyStoreListedActivity
@@ -108,7 +109,10 @@ class OpenDialogBox {
                 {
                     DeliveryAddressUpdateActivity.getInstance()?.runThread()
                 }
-
+                else if (from.equals("orderplace"))
+                {
+                   // CartPageActivity.getInstance()?.runThread("dialog","")
+                }
             }
         }
 

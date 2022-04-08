@@ -191,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_8dp"
                 android:gravity="center"
                 >
@@ -201,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12sp"
                     android:text="The min order amount is $10.00"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.3"
                     android:src="@drawable/clock"
                     android:layout_marginLeft="@dimen/_8dp"
                     android:textColor="@color/black"
@@ -209,12 +210,24 @@
 
                     />
 
+                <com.app.shopin.customview.RegularButton
+                    android:id="@+id/checkoutBTN"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:elevation="@dimen/_5dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/checkout"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sp" />
+
                 <com.app.shopin.customview.RegularTextView
                     android:id="@+id/totalpriceTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12sp"
-                    android:text="Total \n$200.00"
                     android:layout_weight="0.3"
                     android:padding="@dimen/_5dp"
                     android:gravity="center"
@@ -228,6 +241,10 @@
 
 
             </LinearLayout>
+
+
+
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

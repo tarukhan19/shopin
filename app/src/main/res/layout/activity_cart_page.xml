@@ -13,7 +13,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_60dp"
             android:orientation="vertical"
 
             >
@@ -114,7 +113,6 @@
                 android:layout_marginRight="@dimen/_8dp"
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70dp"
-
                 android:visibility="visible" />
 
 
@@ -141,43 +139,18 @@
 
 
         <LinearLayout
-            android:id="@+id/bottomLL"
+            android:id="@+id/progressbarLL"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:elevation="@dimen/_8dp"
-            android:weightSum="1"
-            >
+            android:layout_height="match_parent"
+            android:background="@color/transgray"
+            android:gravity="center"
+            android:visibility="gone">
 
-
-            <com.app.shopin.customview.RegularButton
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_10dp"
-                android:layout_weight="0.5"
-                android:gravity="center"
-
-                android:background="@drawable/whitebuttonbackground"
-                android:text="Total $2000"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_14sp" />
-
-
-            <com.app.shopin.customview.RegularButton
-                android:id="@+id/addtocartBTN"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_10dp"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:background="@drawable/buttonbackground"
-                android:text="@string/checkout"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sp" />
-
+            <ProgressBar
+                android:layout_width="@dimen/_50dp"
+                android:layout_height="@dimen/_50dp" />
         </LinearLayout>
+
 
 
     </RelativeLayout>

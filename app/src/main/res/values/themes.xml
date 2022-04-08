@@ -39,5 +39,19 @@
         <item name="android:windowEnterAnimation">@anim/slideup</item>
         <item name="android:windowExitAnimation">@anim/slidedown</item>
     </style>
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="ErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+    <item name="android:progressDrawable">@drawable/rating_custom_bar</item>
+        <item name="android:minHeight">5dip</item>
+        <item name="android:maxHeight">5dip</item>
+    </style>
+
 
 </resources>

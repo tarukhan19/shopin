@@ -2,6 +2,7 @@ package com.app.shopin.homePage.viewmodels
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.homePage.models.CartListResponse
@@ -10,6 +11,7 @@ import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,11 +36,13 @@ class CartListViewModels : ViewModel() {
             ) {
                 if (response.isSuccessful) {
                     cartListViewModels.postValue(response.body())
+
                 } else {
                     val gson = Gson()
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     cartListViewModels.postValue(null)
+                    Log.e("erooorr", errorResponse!!.msg)
                     OpenDialogBox.openDialog(
                         requireContext,
                         "Error!",

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/_35dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <com.app.shopin.customview.BoldTextView
+            android:id="@+id/backbtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:text="@string/pickupsch"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sp"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@+id/backbtn"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/_15dp"
+            android:layout_marginRight="@dimen/_15dp"
+            android:paddingTop="@dimen/_10dp"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <LinearLayout
+                android:id="@+id/instoreLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_15dp"
+
+                android:background="@drawable/home_address_backgrnd"
+
+                android:weightSum="1"
+                >
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/instoreTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp"
+                    android:text="@string/instorepickup"
+                    android:layout_weight="0.9"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/instoreIV"
+                        android:layout_width="@dimen/_15dp"
+                        android:layout_height="@dimen/_15dp"
+                        android:src="@drawable/select"
+                         />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/curbsideLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_15dp"
+                android:layout_marginBottom="@dimen/_15dp"
+                android:background="@drawable/home_address_backgrnd"
+                android:layout_marginTop="@dimen/_10dp"
+                android:weightSum="1"
+                >
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/curbsideTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sp"
+                    android:text="@string/curbpickup"
+                    android:layout_weight="0.9"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:gravity="center"
+
+                    >
+                    <ImageView
+                        android:id="@+id/curbsideIV"
+                        android:layout_width="@dimen/_15dp"
+                        android:layout_height="@dimen/_15dp"
+                        android:src="@drawable/deselect"
+                         />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/backbtn"
+                />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

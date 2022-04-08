@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,9 @@ import com.app.shopin.homePage.models.StoreInventoryData
 
 class StoreDetailAdapter(
     var ctx: Context,
-    var storeCategoryData: ArrayList<StoreCategoryData>) : RecyclerView.Adapter<StoreDetailAdapter.MyViewHolder>() {
+    var storeCategoryData: ArrayList<StoreCategoryData>,
+    var progressbarLL: LinearLayout
+) : RecyclerView.Adapter<StoreDetailAdapter.MyViewHolder>() {
     lateinit var binding: ItemStoreCategoryBinding
     var activity: Activity? = null
     lateinit var storeDetailItemAdapter:StoreDetailItemAdapter
@@ -46,7 +49,7 @@ class StoreDetailAdapter(
             binding.prodRV.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL ,false)
         }
 
-        storeDetailItemAdapter = StoreDetailItemAdapter(ctx, allStoreDataList!!)
+        storeDetailItemAdapter = StoreDetailItemAdapter(ctx, allStoreDataList!!,progressbarLL)
         binding.prodRV.adapter = storeDetailItemAdapter
         storeDetailItemAdapter.notifyDataSetChanged()
 

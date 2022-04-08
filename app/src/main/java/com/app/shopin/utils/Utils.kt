@@ -7,7 +7,6 @@ import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.location.Address
-import android.location.Geocoder
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.os.Build
@@ -26,12 +25,11 @@ import com.app.shopin.utils.Constant
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
-import kotlin.collections.ArrayList
 
 class Utils {
     companion object {
@@ -74,6 +72,13 @@ class Utils {
             Log.e(tag, msg)
         }
 
+        fun getCalculatedDate(dateFormat: String?, days: Int): String? {
+            val cal = Calendar.getInstance()
+            val s = SimpleDateFormat(dateFormat)
+            cal.add(Calendar.DAY_OF_YEAR, days)
+            Log.e("dates", s.format(Date(cal.timeInMillis)).toString())
+            return s.format(Date(cal.timeInMillis))
+        }
 
         public fun validateEditText(
             msg: String,
@@ -356,4 +361,4 @@ class Utils {
     }
 
 
-    }
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:id="@+id/prodLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="@dimen/_8dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_70dp"
+                android:layout_weight="0.2"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_10dp"
+                android:background="@color/lite_grey"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/productIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dove"
+                    android:layout_gravity="center"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+
+                >
+
+
+                <com.app.shopin.customview.BoldTextView
+                    android:id="@+id/prodnameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sp"
+                    android:text="Dove Hair fall rescue shampoo"
+                    android:src="@drawable/clock"
+                    android:textColor="@color/black"
+
+                    />
+
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/prodquantityTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sp"
+                    android:text="(180ml)"
+                    android:layout_marginTop="@dimen/_10dp"
+
+
+                    />
+
+
+                    <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/prodamountTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_12sp"
+                        android:text="$50.00/pc"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/clock"
+                        android:textColor="@color/black"
+
+                        />
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical"
+                >
+
+
+
+
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/quantityTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_12sp"
+                        android:text="1 item"
+                        android:gravity="center|bottom"
+                        android:textColor="@color/black"
+
+                        />
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0.5dp"-->
+        <!--            android:background="@color/gray"-->
+        <!--            android:layout_marginTop="@dimen/_5dp"-->
+        <!--            />-->
+
+    </LinearLayout>
+
+
+</layout>

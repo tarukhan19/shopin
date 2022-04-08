@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/surelogout"
                 android:gravity="center"
+                android:inputType="textMultiLine"
                 android:textSize="@dimen/_14sp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:textColor="@color/black"

@@ -172,6 +172,57 @@
     <string name="updateadresssuc">Update Address Successfully</string>
     <string name="removed">Address Removed Successfully</string>
     <string name="updateadress">Update Address</string>
+    <string name="make_payment">Make Payment</string>
 
+    <!--stripe screen-->
 
+    <string name="stripe_msg1">Payment</string>
+    <string name="stripe_msg2">Amount Due :</string>
+    <string name="stripe_msg3">Card Number*</string>
+    <string name="stripe_msg4">Expiration Date</string>
+    <string name="stripe_msg5">CVC/CVV</string>
+    <string name="stripe_msg6">Card Holder Name</string>
+    <string name="stripe_msg7">Month</string>
+    <string name="stripe_msg8">Year</string>
+    <string name="stripe_msg9">Submit Payment</string>
+    <string name="stripe_msg10">Review Order</string>
+    <string name="stripe_msg11">Enter your Card Information</string>
+    <string name="stripe_msg12">MM</string>
+    <string name="stripe_msg13">YY</string>
+
+    <string name="__stripe_invalidate_card_number">The card number entered is invalid</string>
+    <string name="__stripe_invalidate_expirymonth">The expiration month entered is invalid.</string>
+    <string name="__stripe_invalidate_expiryyear">The expiration year entered is invalid.</string>
+    <string name="__stripe_invalidate_cvc">The CVC code entered is invalid.</string>
+    <string name="__stripe_invalidate_card_detail">The card details entered are invalid.</string>
+    <string name="__stripe_invalidate_holder_name">Card Holder name is required.</string>
+    <string name="summary">Summary</string>
+    <string name="stripe_msg14">CVV Number</string>
+    <string name="orderhsitory">Order Details</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="slide_up">Slide up</string>
+    <string name="slide">Slide</string>
+    <string name="slide_down">Slide down</string>
+    <string name="random_color">Random color</string>
+    <string name="use_blur">Use blur</string>
+    <string name="items_clickables">Items clickables</string>
+    <string name="auto_dismiss">Auto dismiss</string>
+    <string name="blur_radius">Blur Radius</string>
+    <string name="blur_downscale">Blur Downscale</string>
+    <string name="done">Done</string>
+    <string name="instorepickup">In-Store Pickup</string>
+    <string name="curbpickup">Curb side Pickup</string>
+    <string name="pickupsch">Pickup Scheduled</string>
 </resources>

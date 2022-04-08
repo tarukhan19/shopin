@@ -15,7 +15,6 @@ import com.app.shopin.databinding.FragmentDeliveryBinding
 import com.app.shopin.homePage.Adapter.StoreDetailAdapter
 import com.app.shopin.homePage.models.StoreCategoryData
 import com.app.shopin.homePage.viewmodels.StoreDetailViewModel
-import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_delivery.*
 
 
@@ -24,6 +23,13 @@ class DeliveryFragment : Fragment() {
     var id:String=""
    lateinit var storeDetailAdapter:StoreDetailAdapter
 
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+            DeliveryFragment().apply {
+                arguments = Bundle().apply {}
+            }
+    }
 lateinit var binding : FragmentDeliveryBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +61,8 @@ lateinit var binding : FragmentDeliveryBinding
             if (it?.status == true && it.status_code == 200) {
                 val storeprodList: ArrayList<StoreCategoryData>? = it.data.category
                 if (storeprodList != null) {
-                    storeDetailAdapter = StoreDetailAdapter(requireActivity(),storeprodList)
+                    progressbarLL.visibility = View.GONE
+                    storeDetailAdapter = StoreDetailAdapter(requireActivity(),storeprodList,progressbarLL)
                     storeRV.adapter = storeDetailAdapter
                     storeDetailAdapter.notifyDataSetChanged()
                 }
@@ -69,6 +76,8 @@ lateinit var binding : FragmentDeliveryBinding
 
     override fun onResume() {
         super.onResume()
+        progressbarLL.visibility = View.VISIBLE
+
         loadStore()
     }
 }

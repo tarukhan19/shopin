@@ -15,6 +15,7 @@ import com.app.shopin.homePage.views.Fragment.SearchFragment
 import com.app.shopin.homePage.views.Fragment.StoreFragment
 import com.app.shopin.R
 import com.app.shopin.UserAuth.view.EmailRegisterActivity
+import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityHomeBinding
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -40,6 +41,7 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.search_inactive))
         bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.store_inactive))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.profile_inactive))
+
 
         bottomNavigation.setOnClickMenuListener {
             when(it.id){

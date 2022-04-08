@@ -21,6 +21,7 @@ import com.app.shopin.homePage.views.Activity.StoreDetailActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.DistanceCalculationMethod
 import com.app.shopin.utils.Preference
+import kotlinx.android.synthetic.main.fragment_search.*
 import java.lang.Exception
 
 class AllStoreDataAdapter(
@@ -50,21 +51,22 @@ class AllStoreDataAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = allStoreDataValues[position]
 
-        binding.allstoredata = data
-        binding.executePendingBindings()
         val originlat= Preference.getInstance(ctx)?.getString(Constant.CURRENT_LOCATION_LAT)?.toDouble()
         val originlng= Preference.getInstance(ctx)?.getString(Constant.CURRENT_LOCATION_LONG)?.toDouble()
         val destlat=data.lattitude?.toDouble()
         val destlng=data.longitude?.toDouble()
+        holder.binding.nameTV.text=data.name
+        holder.binding.ratingTV.text=data.rating
 
         val key= Preference.getInstance(ctx)?.getString(Constant.EXTERNAL_SEARCH_FILTER)!!
         if (key.equals("1"))
         {
-            binding.productLL.visibility= View.GONE
+            holder.binding.productLL.visibility= View.GONE
         }
         else
         {
-            binding.productLL.visibility= View.VISIBLE
+            holder.binding.productLL.visibility= View.VISIBLE
+
             try {
                 val storeInventoryData:ArrayList<StoreInventoryData>
                 Log.e("isSearch",isSearch.toString())
@@ -85,9 +87,11 @@ class AllStoreDataAdapter(
 
                 val adapter = SearchProductAdapter(ctx, storeInventoryData!!)
                 val layoutManager = LinearLayoutManager(ctx)
-                binding.productRV.setHasFixedSize(true)
-                binding.productRV.layoutManager = layoutManager
-                binding.productRV.adapter = adapter
+                holder.binding.productRV.setHasFixedSize(true)
+                holder.binding.productRV.isNestedScrollingEnabled = false
+
+                holder.binding.productRV.layoutManager = layoutManager
+                holder.binding.productRV.adapter = adapter
                 adapter.notifyDataSetChanged()
             }
             catch (e: Exception){
@@ -97,21 +101,21 @@ class AllStoreDataAdapter(
 
         if (data.rating.equals("0.0"))
         {
-            binding.ratingLL.setBackgroundResource(R.drawable.ratinggrayback)
+            holder.binding.ratingLL.setBackgroundResource(R.drawable.ratinggrayback)
         }
         else
         {
-            binding.ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
+            holder.binding.ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
 
         }
 
-        binding.storeLL.setOnClickListener(View.OnClickListener {
+        holder.binding.storeLL.setOnClickListener(View.OnClickListener {
             val intent = Intent(ctx, StoreDetailActivity::class.java)
             intent.putExtra("id",data.id)
             ctx.startActivity(intent)
         })
         DistanceCalculationMethod.getDistance(originlat!!,
-            originlng!!, destlat!!, destlng!!,ctx,binding.distanceTV)
+            originlng!!, destlat!!, destlng!!,ctx,holder.binding.distanceTV)
     }
 
     override fun getItemCount(): Int {

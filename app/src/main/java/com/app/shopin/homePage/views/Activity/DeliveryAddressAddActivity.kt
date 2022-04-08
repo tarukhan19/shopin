@@ -51,7 +51,7 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     private val addresstypeList = arrayOf("Home", "Office")
     private var addresstypeS: String = "Home"
     private var addresstype: String = "1"
-    private var isDefault: String = "0"
+    lateinit var isDefault: String
     lateinit var name: String
     lateinit var location: String
     lateinit var floor: String
@@ -84,6 +84,19 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
         deliveryAddressAddActivity=this
         toolbar.titleTV.text=getString(R.string.delivAddresAdd)
         toolbar.back_LL.setOnClickListener(this)
+
+        var addresslistsize=intent.getStringExtra("addresslist")
+        if (addresslistsize.equals("0"))
+        {
+            isDefault="1"
+            isdefaultswitchLL.visibility=View.GONE
+        }
+        else
+        {
+            isDefault="0"
+            isdefaultswitchLL.visibility=View.VISIBLE
+        }
+
         deliveryAddressAddViewModel = ViewModelProvider(this).get(DeliveryAddressAddViewModel::class.java)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment

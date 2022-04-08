@@ -30,10 +30,22 @@
         android:theme="@style/Theme.Shopin"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".homePage.views.Activity.DeliveryAddressUpdateActivity"
+            android:name=".Orders.views.Activity.OrderHistoryDetailListingActivity"
             android:exported="false"
             android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity
+            android:name=".Orders.views.Activity.OrderHistoryListActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Payment.StripePaymentActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".homePage.views.Activity.DeliveryAddressUpdateActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".homePage.views.Activity.CartPageActivity"
             android:exported="false"

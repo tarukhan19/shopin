@@ -16,7 +16,6 @@ import com.app.shopin.homePage.models.DeliveryAddressData
 import com.app.shopin.homePage.models.DeliveryAddressListResponse
 import com.app.shopin.homePage.viewmodels.DeliveryAddressListViewModel
 import com.app.shopin.R
-import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityDeliveryAddressListBinding
 import kotlinx.android.synthetic.main.activity_delivery_address_list.*
 import kotlinx.android.synthetic.main.toolbar.view.*
@@ -24,7 +23,15 @@ import kotlinx.android.synthetic.main.toolbar.view.*
 class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityDeliveryAddressListBinding
     lateinit var deliveryAddressListViewModel: DeliveryAddressListViewModel
-
+     var addressList= ArrayList<DeliveryAddressData>()
+    companion object
+    {
+        @SuppressLint("StaticFieldLeak")
+        var deliveryAddressListActivity: DeliveryAddressListActivity? = null
+        fun getInstance(): DeliveryAddressListActivity? {
+            return deliveryAddressListActivity
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +42,7 @@ class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.addAddressTV -> {
                 val in7 = Intent(this, DeliveryAddressAddActivity::class.java)
+                in7.putExtra("addresslist",addressList.size.toString())
                 startActivity(in7)
             }
             R.id.back_LL -> {
@@ -54,7 +62,7 @@ class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
         deliveryAddressListViewModel.getDeliveryAddressObserver().observe(this, Observer<DeliveryAddressListResponse> {
             if (it != null) {
                 if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
-                    val addressList: ArrayList<DeliveryAddressData>? = it.data.customer_address
+                    addressList = it.data.customer_address!!
                     Log.e("addressList",addressList?.size.toString())
                     if (addressList?.size!=0) {
                         deliveryAddressRecycler.visibility=View.VISIBLE
@@ -79,6 +87,7 @@ class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initialize()
     {
+        deliveryAddressListActivity=this
         deliveryAddressListViewModel = ViewModelProvider(this).get(DeliveryAddressListViewModel::class.java)
         binding.itemViewModel = deliveryAddressListViewModel
         toolbar.titleTV.text=getString(R.string.delivAddresList)
@@ -96,6 +105,25 @@ class DeliveryAddressListActivity : AppCompatActivity(), View.OnClickListener {
         super.onResume()
         getAllAddress()
     }
+
+    fun runThread() {
+        object : Thread() {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun run() {
+                try {
+                    runOnUiThread {
+                        CartPageActivity.getInstance()?.runThread("addressselect","")
+                        finish()
+                    }
+                    sleep(300)
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
+    }
+
+
 }
 
 

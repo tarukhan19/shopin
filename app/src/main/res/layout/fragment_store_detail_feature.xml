@@ -83,27 +83,49 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginLeft="@dimen/_20dp"
+            android:layout_marginRight="@dimen/_20dp"
+            android:background="@drawable/tabbackground"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/_5dp"
+            >
 
+            <com.app.shopin.customview.RegularTextView
+                android:id="@+id/deliveryTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/tabackgrnd"
+                android:textSize="@dimen/_14sp"
+                android:textColor="@color/black"
+                android:text="Delivery \n Tomorrow 9 AM"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                app:tabMode="fixed"
-                app:tabIndicatorHeight="0dp"
-                android:layout_marginLeft="@dimen/_50dp"
-                android:layout_marginRight="@dimen/_50dp"
-                android:layout_marginTop="@dimen/_5dp"
-                app:tabIndicatorColor="@android:color/transparent"
-                app:tabBackground="@drawable/tab_selectdback"
-                android:background="@drawable/tabbackground"
-                app:tabGravity="fill"/>
+            <com.app.shopin.customview.RegularTextView
+                android:id="@+id/pickupTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:textSize="@dimen/_14sp"
+                android:textColor="@color/black"
+                android:text="Pickup \n in 30 min"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_marginTop="@dimen/_10dp"
+            />
+
 
 
     </LinearLayout>

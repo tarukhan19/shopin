@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable-mdpi/yellowback.xml" value="0.2050925925925926" />
         <entry key="app/src/main/res/drawable-xhdpi/greyback.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/drawable/background_top_corner_blue.xml" value="0.690625" />
+        <entry key="app/src/main/res/drawable/bluecircle.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/buttonbackground.xml" value="0.11510416666666666" />
         <entry key="app/src/main/res/drawable/capsule.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.1325" />
@@ -23,9 +24,16 @@
         <entry key="app/src/main/res/drawable/lite_grey_rectentagle_backgroud.xml" value="0.147" />
         <entry key="app/src/main/res/drawable/my_message_bubble.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/orangecapsule.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/ord_cancel_capsule.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/ord_deliv_capsule.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/ord_inprocess_capsule.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/ord_pending_capsule.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/other_message_bubble.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/rating_custom_bar.xml" value="0.169" />
         <entry key="app/src/main/res/drawable/ratinggrayback.xml" value="0.1585" />
+        <entry key="app/src/main/res/drawable/ratingstars.xml" value="0.169" />
         <entry key="app/src/main/res/drawable/ratingyellowback.xml" value="0.1325" />
+        <entry key="app/src/main/res/drawable/redoutlinecapsule.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/search_background.xml" value="0.22625127681307455" />
         <entry key="app/src/main/res/drawable/search_edittext_background.xml" value="0.22625127681307455" />
         <entry key="app/src/main/res/drawable/searchedittext.xml" value="0.22625127681307455" />
@@ -52,10 +60,13 @@
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_mobile_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_order_history_detail_listing.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_order_history_list.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2056159420289855" />
         <entry key="app/src/main/res/layout/activity_store_detail.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_stripe_payment.xml" value="0.17175925925925925" />
         <entry key="app/src/main/res/layout/activity_welcome_to_shop.xml" value="0.165" />
         <entry key="app/src/main/res/layout/autocomplete_list_item.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/demo_store_fragment.xml" value="0.18703703703703703" />
@@ -80,7 +91,13 @@
         <entry key="app/src/main/res/layout/item_filter.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_logout.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/item_new_stores.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_order_history_detail_list.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_order_history_list.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_pickup_slots.xml" value="0.1782178217821782" />
+        <entry key="app/src/main/res/layout/item_pickup_type.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_prod_history.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_rating_review.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_search_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_search_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_search_products.xml" value="0.25" />
@@ -88,6 +105,7 @@
         <entry key="app/src/main/res/layout/item_spinner.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/item_store_category.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_store_data.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_store_item_history_detail.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_storecategory_recycleview.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_success_dialog.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/iten_store_data.xml" value="0.18703703703703703" />
@@ -107,5 +125,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.18703703703703703" />
+      </ProjectState>
+    </option>
   </component>
 </project>

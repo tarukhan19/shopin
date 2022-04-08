@@ -15,7 +15,6 @@ object ServiceBuilder {
             .build()
     }
 
-
     private lateinit var apiService: ApiServices
 
 
@@ -31,4 +30,6 @@ object ServiceBuilder {
         }
         return apiService
     }
+
+
 }

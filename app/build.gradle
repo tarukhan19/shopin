@@ -10,7 +10,7 @@ android {
     compileSdk 31
     defaultConfig {
         applicationId "com.app.shopin"
-        minSdk 19
+        minSdk 21
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -77,7 +77,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.android.libraries.places:places:2.4.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+    implementation 'com.stripe:stripe-android:16.0.0'
+    implementation 'com.ramesh.mypicker:pickerview:1.1'
 }
 
 repositories {

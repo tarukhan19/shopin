@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".Orders.views.Activity.OrderHistoryListActivity">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lite_grey"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5dp"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/_20dp"
+            android:visibility="visible" />
+
+
+
+
+        <com.app.shopin.customview.RegularTextView
+            android:id="@+id/norecrdfoundTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="No Record Found"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/_3dp"
+            android:paddingRight="@dimen/_3dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/_14sp"
+
+            />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
+
+</layout>

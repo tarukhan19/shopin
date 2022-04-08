@@ -21,9 +21,11 @@ import com.app.shopin.homePage.models.*
 import com.app.shopin.homePage.viewmodels.AddToCartViewModel
 import com.app.shopin.homePage.viewmodels.ProductDetailViewModel
 import com.app.shopin.homePage.viewmodels.RemoveCartViewModel
+import com.app.shopin.utils.Constant
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import kotlinx.android.synthetic.main.toolbar_search.*
 import kotlinx.android.synthetic.main.toolbar_search.view.*
+import java.lang.Exception
 
 class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var binding:ActivityProductDetailBinding
@@ -79,6 +81,8 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         productDetailViewModel.getproductDetailObserveData().observe(this, Observer<ProductDetailResponse> {
             if (it != null) {
                 if (this.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                    binding.progressbarLL.visibility=View.GONE
+
                     cart_quantity= it.data.cart_quantity
 
                     val inventeryItem = it.data.inventry_item
@@ -86,6 +90,8 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
 
                 }
             } else {
+                binding.progressbarLL.visibility=View.GONE
+
                 Toast.makeText(this, "Something wrong with DeliveryAddress Api", Toast.LENGTH_SHORT).show()
             }
         })
@@ -120,36 +126,58 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
+        binding.progressbarLL.visibility=View.VISIBLE
         getProductDetail()
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.addtocartBTN -> {
+                binding.progressbarLL.visibility=View.VISIBLE
+
                 expanddLL.visibility=View.VISIBLE
                 addtocartBTN.visibility=View.INVISIBLE
                 cart_quantity=0
                 cart_quantity=cart_quantity+1
                 productquantityTV.setText(cart_quantity.toString())
                 val totalamount= price*cart_quantity
-                addToCart("0",cart_quantity.toString(), totalamount.toString())
+                try {
+                    addToCart("0",cart_quantity.toString(), totalamount.toString())
+
+                }catch (e:Exception)
+                {}
             }
             R.id.expminussIV -> {
+                binding.progressbarLL.visibility=View.VISIBLE
+
                 cart_quantity=productquantityTV.text.toString().toInt()
 
                 if (cart_quantity==1)
                 {
                     addtocartBTN.visibility=View.VISIBLE
                     expanddLL.visibility=View.INVISIBLE
-                    removeCart()
+                    try {
+                        removeCart()
+
+                    }
+                    catch (e:Exception)
+                    {
+
+                    }
 
                 }
                 else
                 {
+                    binding.progressbarLL.visibility=View.VISIBLE
+
                     cart_quantity=cart_quantity-1
                     productquantityTV.setText(cart_quantity.toString())
                     val totalamount= price*cart_quantity
-                    addToCart("1",cart_quantity.toString(), totalamount.toString())
+                    try {
+                        addToCart("1",cart_quantity.toString(), totalamount.toString())
+
+                    }catch (e:Exception)
+                    {}
 
                 }
 
@@ -162,7 +190,11 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
                     cart_quantity=cart_quantity+1
                     productquantityTV.setText(cart_quantity.toString())
                     val totalamount= price*cart_quantity
-                    addToCart("1",cart_quantity.toString(), totalamount.toString())
+                    try {
+                        addToCart("1",cart_quantity.toString(), totalamount.toString())
+
+                    }catch (e:Exception)
+                    {}
                 }
                 else
                 {
@@ -196,26 +228,31 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         addToCartViewModel.getObserveData().observe(this) {
 
             if (it?.status == true && it.status_code==201) {
+                binding.progressbarLL.visibility=View.GONE
+
             }
             else {
+                binding.progressbarLL.visibility=View.GONE
+
             }
         }
         addToCartViewModel.addToCartResponse(
-            this, price.toString(),quantity, is_update, prodid,
-            "",totalamount,"", storeid
-        )
+            this, Constant.DELIVERY,price.toString(),quantity, is_update, prodid,
+            "",totalamount,"", storeid)
     }
 
     private fun removeCart()
     {
-        Log.e("prodid",prodid)
 
         removeCartViewModel.removecartviewmodel.removeObservers(this)
         removeCartViewModel.getObserveData().observe(this) {
 
             if (it?.status == true && it.status_code==201) {
+                binding.progressbarLL.visibility=View.GONE
 
             } else {
+                binding.progressbarLL.visibility=View.GONE
+
             }
         }
         removeCartViewModel.removeCartResponse(

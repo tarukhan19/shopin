@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.app.shopin.Orders.views.Activity.OrderHistoryListActivity
 import com.app.shopin.R
 import com.app.shopin.UserAuth.view.EditProfileActivity
 import com.app.shopin.UserAuth.view.EmailRegisterActivity
-import com.app.shopin.UserAuth.view.WelcomeToShop
 import com.app.shopin.UserAuth.viewmodel.LoadProfileViewModel
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.FragmentMoreBinding
@@ -82,6 +82,7 @@ class MoreFragment : Fragment(),View.OnClickListener
         deliveryaddressLL.setOnClickListener(this)
         loginBTN.setOnClickListener(this)
         getmystorelistedLL.setOnClickListener(this)
+        orderLL.setOnClickListener(this)
         loadProfile()
     }
 
@@ -111,6 +112,7 @@ class MoreFragment : Fragment(),View.OnClickListener
                 if (isLogin)
                 {
                     val in7 = Intent(requireActivity(), DeliveryAddressListActivity::class.java)
+                    in7.putExtra("from","profile")
                     startActivity(in7)
                 }
                 else
@@ -120,6 +122,21 @@ class MoreFragment : Fragment(),View.OnClickListener
 
 
             }
+            R.id.orderLL ->
+            {
+                if (isLogin)
+                {
+                    val in7 = Intent(requireActivity(), OrderHistoryListActivity::class.java)
+                    startActivity(in7)
+                }
+                else
+                {
+                    ctx.openBottomSheetDialog(requireContext())
+                }
+
+
+            }
+
 
 
             R.id.logoutBTN -> {

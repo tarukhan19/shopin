@@ -14,7 +14,10 @@ import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ItemDeliveryAddressListBinding
 import com.app.shopin.homePage.models.DeliveryAddressData
+import com.app.shopin.homePage.views.Activity.DeliveryAddressListActivity
 import com.app.shopin.homePage.views.Activity.DeliveryAddressUpdateActivity
+import com.app.shopin.utils.Constant
+import com.app.shopin.utils.Preference
 
 class DeliveryAddressAdapter(
     var ctx: Context) : RecyclerView.Adapter<DeliveryAddressAdapter.MyViewHolder>() {
@@ -58,6 +61,13 @@ class DeliveryAddressAdapter(
             val in7 = Intent(ctx, DeliveryAddressUpdateActivity::class.java)
             in7.putExtra("id",data.id.toString())
             ctx.startActivity(in7)
+        }
+
+        holder.binding.cardview.setOnClickListener {
+            Preference.getInstance(ctx)?.setString(Constant.DELIVERY_ADDRESS, data.address!!)
+            Preference.getInstance(ctx)?.setString(Constant.DELIVERY_ADDRESS_ID, data.id!!)
+            DeliveryAddressListActivity.getInstance()?.runThread()
+
         }
         holder.binding.recyclerdata = data
         holder.binding.executePendingBindings()

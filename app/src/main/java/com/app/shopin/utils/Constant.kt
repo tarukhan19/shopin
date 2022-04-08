@@ -5,6 +5,7 @@ class Constant {
 
         companion object
         {
+            const val publishableTestKey: String="pk_test_0ojTYUIvFm85KFVksJVnMZ7h00EYQm46Jj"
             const val MyPreferences = "myPreferences"
             const val IS_LOGIN = "Is_Login"
             const val KEY_EMAILID_OR_MOBNO="KEY_EMAILID_OR_MOBNO"
@@ -23,6 +24,20 @@ class Constant {
             const val FILTER_STORE: String = "1"
             const val FILTER_PRODUCT: String = "2"
             const val FILTER_CATEGORY: String = "3"
+            const val INSTORE_OR_DELIVERY: String = "INSTORE_OR_DELIVERY"
+            const val PICKUP: String = "1"
+            const val DELIVERY: String = "2"
+            const val CURBSIDE_PICKUP: String = "3"
+
+            const val DELIVERY_ADDRESS: String = "DELIVERY_ADDRESS"
+            const val DELIVERY_ADDRESS_ID: String = "DELIVERY_ADDRESS_ID"
+
+//            (1,'Pickup'),
+//
+//            (2,'Delivery'),
+//
+//            (3,'Curbside Pickup')
+
         }
 
 }

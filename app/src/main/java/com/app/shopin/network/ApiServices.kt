@@ -1,11 +1,13 @@
 package com.app.shopin.network
 
+import com.app.shopin.Orders.models.*
 import com.app.shopin.UserAuth.model.EditProfileResponse
 import com.app.shopin.UserAuth.model.LoadProfileResponse
 import com.app.shopin.homePage.models.*
 import com.app.shopin.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -101,7 +103,6 @@ interface ApiServices {
     @GET("delivery-address/get_delivery_address/")
     fun getSingleDeliveryAddress(@Query("id") id: String): Call<SingleDeliveryAddressResponse>
 
-
     @FormUrlEncoded
     @POST("store-request/")
     fun getMyStoreListed(
@@ -117,6 +118,7 @@ interface ApiServices {
     @FormUrlEncoded
     @POST("order/cart/save_cart/")
     fun addToCart(
+        @Field("order_type")ordertype : String,
         @Field("price")price : String,
         @Field("quantity")quantity : String,
         @Field("is_update")is_update : String,
@@ -132,12 +134,41 @@ interface ApiServices {
     fun removeCart(@Query("inventory_id") id: String): Call<RemoveCartResponse>
 
 
-
-
     @GET("storeinventory/storeitem/inventory_details/")
     fun prodDetail(@Query("id") id: String): Call<ProductDetailResponse>
 
     @GET("order/cart/list_cart_items/")
     fun getCartList(): Call<CartListResponse>
+
+//    @FormUrlEncoded
+//    @POST("useror/der/order/place_order/")
+//    fun placeOrder(
+//
+//    ): Call<PlaceOrderResponse>
+//
+
+    /*................placeoreder.........................*/
+    @Headers("Content-Type: application/json")
+    @POST("useror/der/order/place_order/")
+    fun placeOrder(@Body placeOrderResponse: PlaceOrder): Call<PlaceOrderResponse>
+
+
+    @GET("useror/der/order/order_list/")
+    fun getOrderList(): Call<OrderHistoryListResponse>
+
+    @GET("useror/der/order/order_detail/")
+    fun getOrderDetails(@Query("order_id") id: String): Call<OrderHistoryDetailsResponse>
+
+    @GET("store/get_store_timeslot/")
+    fun getTimeslotList(@Query("id") id: String): Call<TimeSlotListResponse>
+
+    @FormUrlEncoded
+    @POST("store-review/user-store-reeview/save_store_rating/")
+    fun ratingReviewSubmit(
+        @Field("store")id : String,
+        @Field("rating")rating : String,
+        @Field("comment")comment : String
+
+    ): Call<RatingReviewResponse>
 
 }

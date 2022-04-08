@@ -15,7 +15,6 @@ import okhttp3.Response
     override fun intercept(chain: Interceptor.Chain): Response
     {
         lateinit var newRequest:Request
-       // val token="690aa36ab0fc75764056c0560c062a8de0aedbe0"
         val token:String= Preference.getInstance(context)?.getString(Constant.KEY_TOKEN).toString()
         Log.e("token",token)
         if (!token.isEmpty())

@@ -14,6 +14,7 @@
     <color name="darkgray">#0e212e</color>
     <color name="transgray">#80888888</color>
     <color name="translitegray">#20888888</color>
+    <color name="background_picker">#ff579fff</color>
 
 
     <color name="gray">#888888</color>

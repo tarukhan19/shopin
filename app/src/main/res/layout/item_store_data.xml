@@ -4,10 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <data>
-        <variable
-            name="allstoredata"
-            type="com.app.shopin.homePage.models.AllStoreDataValues" />
-
 
     </data>
 
@@ -75,9 +71,10 @@
                     android:weightSum="1"
                     >
                     <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/nameTV"
+
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:text="@{allstoredata.name}"
                         android:gravity="start"
                         android:inputType="textMultiLine"
                         android:maxLines="2"
@@ -111,9 +108,9 @@
                                 android:src="@drawable/bigstar"
                                 />
                             <com.app.shopin.customview.RegularTextView
+                                android:id="@+id/ratingTV"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{allstoredata.rating}"
                                 android:layout_marginEnd="@dimen/_5dp"
                                 android:layout_marginStart="@dimen/_3dp"
                                 android:textColor="@color/white"
