@@ -5,7 +5,11 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.Orders.models.TimeSlotListResponse
+import com.app.shopin.homePage.models.ErrorResponse
+import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Retrofit.ServiceBuilder
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +32,18 @@ class TimeSlotListViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     timeSlotListResponse.postValue(response.body())
                 } else {
+
+                    val gson = Gson()
+                    val type = object : TypeToken<ErrorResponse>() {}.type
+                    var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
                     timeSlotListResponse.postValue(null)
+                    OpenDialogBox.openDialog(
+                        requireContext,
+                        "Error!",
+                        errorResponse!!.msg,
+                        ""
+                    )
+
                 }
             }
 

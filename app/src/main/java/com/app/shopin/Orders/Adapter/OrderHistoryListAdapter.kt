@@ -86,7 +86,7 @@ class OrderHistoryListAdapter(
         {
             holder.binding.orderstatusTV.setBackgroundResource(R.drawable.ord_pending_capsule)
         }
-        else   if (data.order_status.equals("Cancelled"))
+        else   if (data.order_status.equals("Rejected"))
         {
             holder.binding.orderstatusTV.setBackgroundResource(R.drawable.ord_cancel_capsule)
         }

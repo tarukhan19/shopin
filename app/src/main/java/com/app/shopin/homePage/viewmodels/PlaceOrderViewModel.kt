@@ -40,6 +40,7 @@ class PlaceOrderViewModel : ViewModel() {
                     response: Response<PlaceOrderResponse>
                 ) {
 
+                    Utils.showToast(response.isSuccessful.toString(),requireContext)
                     if (response.isSuccessful) {
                         placeOrderViewModel.postValue(response.body())
                     } else {

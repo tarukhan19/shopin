@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/_35dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <com.app.shopin.customview.BoldTextView
+            android:id="@+id/backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+
+            />
+
+        <com.app.shopin.customview.BoldTextView
+            android:id="@+id/curbpickup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/curbpickup"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sp"
+            android:layout_marginTop="@dimen/_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backbtn"
+
+            />
+
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/curbpickup"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_40dp"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pointer"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:text="Head to the shop"
+                    android:layout_marginLeft="@dimen/_8dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pointer"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:text="Park in a spot as close as possible to the shop."
+                    android:layout_marginLeft="@dimen/_8dp"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pointer"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:text="Add your vehicle number and tap I'm here"
+                    android:layout_marginLeft="@dimen/_8dp"
+
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pointer"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:text="A shop member will bring your order out of car"
+                    android:layout_marginLeft="@dimen/_8dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/_15dp"
+                android:layout_marginRight="@dimen/_15dp"
+                android:layout_marginTop="@dimen/_5dp"
+                android:gravity="center_vertical"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pointer"
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+                    android:text="Call store 123456 (For Any assistance)"
+                    android:layout_marginLeft="@dimen/_8dp"
+
+                    />
+
+
+            </LinearLayout>
+
+            <com.app.shopin.customview.RegularEditText
+                android:id="@+id/reviewET"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_85dp"
+                android:inputType="textMultiLine"
+                android:paddingStart="@dimen/_5dp"
+                android:paddingEnd="@dimen/_5dp"
+                android:textColor="@color/black"
+                android:layout_gravity="start"
+                android:padding="@dimen/_8dp"
+                android:background="@drawable/edittextbackgrnd"
+                android:hint="Tap your vehicle details and your location here."
+                android:gravity="start"
+                android:textSize="14sp"
+
+                android:layout_marginStart="@dimen/_10dp"
+                android:layout_marginTop="@dimen/_10dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/writerevTV"
+                />
+
+        </LinearLayout>
+
+        <com.app.shopin.customview.RegularButton
+            android:id="@+id/iamherebtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_30dp"
+            android:background="@drawable/buttonbackground"
+            android:text="I am here"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

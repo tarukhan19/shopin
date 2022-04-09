@@ -58,6 +58,7 @@
         <entry key="app/src/main/res/layout/activity_email_register.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/activity_get_my_store_listed.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_issue_with_items.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_mobile_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_order_history_detail_listing.xml" value="0.25" />
@@ -87,6 +88,7 @@
         <entry key="app/src/main/res/layout/item_cart_child.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_cart_parent.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_curbside_pickup.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_delivery_address_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_filter.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_logout.xml" value="0.16077898550724637" />
@@ -108,6 +110,7 @@
         <entry key="app/src/main/res/layout/item_store_item_history_detail.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_storecategory_recycleview.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_success_dialog.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_tip_amount.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/iten_store_data.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/toolbar_home.xml" value="0.25" />

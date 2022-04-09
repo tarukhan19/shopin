@@ -171,4 +171,15 @@ interface ApiServices {
 
     ): Call<RatingReviewResponse>
 
+    @FormUrlEncoded
+    @POST("useror/der/order/delivery_tip/")
+    fun tipSubmit(
+        @Field("store")id : String,
+        @Field("order")rating : String,
+        @Field("comments")comment : String,
+        @Field("amount")amount : String
+
+
+    ): Call<TipResponse>
+
 }

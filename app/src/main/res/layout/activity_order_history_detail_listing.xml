@@ -197,12 +197,12 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5dp"
                                         android:clickable="true"
+                                        android:focusable="true"
                                         android:isIndicator="true"
                                         android:maxHeight="@dimen/_40dp"
                                         android:numStars="5"
-                                        android:stepSize="0.5"
 
-                                        android:focusable="true" />
+                                        android:stepSize="0.5" />
 
                                 </LinearLayout>
 

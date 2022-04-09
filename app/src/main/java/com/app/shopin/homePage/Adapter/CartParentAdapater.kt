@@ -193,14 +193,14 @@ class CartParentAdapater(
 
 
     private fun createJsonFormat() {
-        var total_amount=overalltotal.toInt()
+        var total_amount=overalltotal.toFloat()
+
         storelist.get(selectpos).store_total_amount=total_amount
-        Log.e("storelist",storelist.toString())
 
         val userInfo = PlaceOrder(
             order_type=order_type_key.toInt(),
             tax_percentage =0,
-//            total_amount =overalltotal.toInt(),
+            total_amount=overalltotal.toInt(),
             delivery_address = Preference.getInstance(ctx as CartPageActivity)?.getString(Constant.DELIVERY_ADDRESS_ID)?.toInt(),
             payment_method =2,
             pikcup_comment ="",
@@ -210,38 +210,36 @@ class CartParentAdapater(
             store =storelist
         )
 
-//        placeOrderViewModel.getObserveData().removeObservers(ctx as CartPageActivity)
-//        placeOrderViewModel.getObserveData()
-//            .observe(ctx as CartPageActivity) {
-//
-//                if (it != null) {
-//
-//                    progressbarLL.visibility=View.GONE
-//
-//                    CartPageActivity.getInstance()?.runThread("cartdata","")
-//
-//
-//                    OpenDialogBox.openDialog(ctx as CartPageActivity,"Success","Your order has been placed!","orderplace")
-//
-//
-//                }
-//                else
-//                {
-//                    progressbarLL.visibility=View.GONE
-//
-//                    Utils.showToast("error",ctx as CartPageActivity)
-//
-//                }
-//            }
-//        placeOrderViewModel.placeOrderResponse(ctx as CartPageActivity,userInfo)
+        placeOrderViewModel.getObserveData().removeObservers(ctx as CartPageActivity)
+        placeOrderViewModel.getObserveData()
+            .observe(ctx as CartPageActivity) {
+
+                if (it != null) {
+
+                    progressbarLL.visibility=View.GONE
+
+                    CartPageActivity.getInstance()?.runThread("cartdata","")
+
+
+                    OpenDialogBox.openDialog(ctx as CartPageActivity,"Success","Your order has been placed!","orderplace")
+
+
+                }
+                else
+                {
+                    progressbarLL.visibility=View.GONE
+
+                    Utils.showToast("error",ctx as CartPageActivity)
+
+                }
+            }
+        placeOrderViewModel.placeOrderResponse(ctx as CartPageActivity,userInfo)
 
     }
 
 
     fun setpicker()
-
     {
-
         for (i in 0 ..4)
         {
             selectedDate= Utils.getCalculatedDate("dd-MM-yyyy",0)!!
@@ -315,7 +313,8 @@ class CartParentAdapater(
         val curbsideLL = view.findViewById<LinearLayout>(R.id.curbsideLL)
 
         curbsideLL.setOnClickListener {
-            Preference.getInstance(ctx as CartPageActivity)?.setString(Constant.INSTORE_OR_DELIVERY,Constant.PICKUP)
+            order_type_key=Constant.CURBSIDE_PICKUP
+
             curbsideIV.setImageResource(R.drawable.select)
             instoreIV.setImageResource(R.drawable.deselect)
             twoPicker.show()
@@ -324,6 +323,8 @@ class CartParentAdapater(
         }
 
         instoreLL.setOnClickListener {
+            order_type_key=Constant.PICKUP
+
             instoreIV.setImageResource(R.drawable.select)
             curbsideIV.setImageResource(R.drawable.deselect)
             twoPicker.show()

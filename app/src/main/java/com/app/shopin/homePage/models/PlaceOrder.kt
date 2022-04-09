@@ -7,7 +7,7 @@ data class PlaceOrder(
 
     @SerializedName("order_type") val order_type: Int?,
     @SerializedName("tax_percentage") val tax_percentage: Int?,
-//    @SerializedName("total_amount") val total_amount: Int?,
+    @SerializedName("total_amount") val total_amount: Int?,
     @SerializedName("delivery_address") val delivery_address: Int?,
     @SerializedName("payment_method") val payment_method: Int?,
     @SerializedName("pikcup_comment") val pikcup_comment: String?,

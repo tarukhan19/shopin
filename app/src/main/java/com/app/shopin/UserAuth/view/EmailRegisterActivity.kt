@@ -3,6 +3,7 @@ package com.app.shopin.UserAuth.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -49,6 +50,7 @@ class EmailRegisterActivity : AppCompatActivity(), View.OnClickListener {
         emailViewModel.getObserve().observe(this) {
 
             if (it?.status == true && it.status_code == 200) {
+
                 progressbarLL.visibility = View.GONE
                 val intent = Intent(this@EmailRegisterActivity, OtpActivity::class.java)
                 Preference.getInstance(this)?.setString(Constant.KEY_EMAILID_OR_MOBNO, emailID)

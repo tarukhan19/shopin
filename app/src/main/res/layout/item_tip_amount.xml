@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/please_write_a_review"
+                android:text="@string/tip_del_amnt"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sp"
                 android:layout_marginTop="@dimen/_10dp"
@@ -54,8 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/your_review_matters_a_lot_to_us_it_helps_us_to_improve_nour_stores"
+                android:text="@string/thank_del_exce"
                 android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginRight="@dimen/_8dp"
                 android:textSize="@dimen/_14sp"
                 android:layout_marginTop="@dimen/_10dp"
                 android:gravity="center"
@@ -65,24 +67,74 @@
                 />
 
 
-            <RatingBar
-                android:id="@+id/ratingbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5dp"
-                android:theme="@style/Widget.AppCompat.RatingBar"
-                android:numStars="5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/needloginTV"
-                android:stepSize="0.5" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:weightSum="1.3"
+               android:layout_marginLeft="@dimen/_15dp"
+               android:layout_marginRight="@dimen/_15dp"
+               android:layout_marginTop="@dimen/_15dp"
+               >
+               <com.app.shopin.customview.BoldTextView
+                   android:id="@+id/amount2TV"
+                   android:layout_width="0dp"
+                   android:layout_height="@dimen/_50dp"
+                   android:background="@drawable/tabackgrnd"
+                   android:text="$2"
+                   android:layout_weight="0.3"
+                   android:textColor="@color/black"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   />
+
+               <com.app.shopin.customview.BoldTextView
+                   android:id="@+id/amount4TV"
+                   android:layout_width="0dp"
+                   android:layout_height="@dimen/_50dp"
+                   android:background="@drawable/tabackgrnd"
+                   android:text="$4"
+                   android:layout_weight="0.3"
+                    android:layout_marginLeft="@dimen/_8dp"
+                   android:textColor="@color/black"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   />
+
+               <com.app.shopin.customview.BoldTextView
+                   android:id="@+id/amount5TV"
+                   android:layout_width="0dp"
+                   android:layout_height="@dimen/_50dp"
+                   android:background="@drawable/tabackgrnd"
+                   android:text="$5"
+                   android:layout_weight="0.3"
+                   android:layout_marginLeft="@dimen/_8dp"
+                   android:textColor="@color/black"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   />
+
+               <com.app.shopin.customview.RegularEditText
+                   android:id="@+id/customET"
+                   android:layout_width="0dp"
+                   android:layout_height="@dimen/_50dp"
+                   android:background="@drawable/tabackgrnd"
+                   android:hint="Custom"
+                   android:layout_weight="0.4"
+                   android:layout_marginLeft="@dimen/_8dp"
+                   android:textColor="@color/black"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   />
+
+           </LinearLayout>
 
             <com.app.shopin.customview.BoldTextView
                 android:id="@+id/writerevTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/write_a_review"
+                android:text="@string/like_abt_del"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sp"
                 android:layout_marginTop="@dimen/_10dp"
