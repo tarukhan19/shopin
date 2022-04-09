@@ -93,10 +93,10 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
                 if (store_order_type.equals("Delivery") && order_status.equals("Completed"))
                 {
 
-                    if (ordertiplength==0)
-                    {
+//                    if (ordertiplength==0)
+//                    {
                         openTipPopUp()
-                    }
+//                    }
 
                 }
 
@@ -202,16 +202,18 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         {
             binding.button2LL.visibility=View.VISIBLE
         //    Log.e("ordertipdata",ordertipdata.has("id").toString())
-            if (ordertiplength==0)
-            {
-                binding.buttonTV2.setText("Tip")
-            }
-            else
-            {
-                binding.buttonTV2.setText("Tipped")
-                binding.buttonIV2.visibility=View.GONE
+            binding.buttonTV2.setText("Tip")
 
-            }
+//            if (ordertiplength==0)
+//            {
+//                binding.buttonTV2.setText("Tip")
+//            }
+//            else
+//            {
+//                binding.buttonTV2.setText("Tipped")
+//                binding.buttonIV2.visibility=View.GONE
+//
+//            }
         }
     }
 

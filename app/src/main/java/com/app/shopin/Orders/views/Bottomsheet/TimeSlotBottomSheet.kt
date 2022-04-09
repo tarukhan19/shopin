@@ -92,14 +92,12 @@ class TimeSlotBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
         twoPicker.setTitle("two Picker")
         twoPicker.setSubmitButtonText("done")
         twoPicker.btnSubmit.setOnClickListener {
-            Toast.makeText(requireContext(),  "done", Toast.LENGTH_SHORT).show();
         }
         twoPicker.setCyclic(false, false, false)
         twoPicker.setSelectOptions(0, 0)
-        twoPicker.setOnoptionsSelectListener(MyOptionsPickerView.OnOptionsSelectListener { options1, option2, options3 -> // twoTVOptions.setText("Two Options " + twoItemsOptions1.get(options1) + " " + twoItemsOptions2.get(option2));
-            Toast.makeText(requireContext(),  "pick", Toast.LENGTH_SHORT).show();
-
-        })
+//        twoPicker.setOnoptionsSelectListener(MyOptionsPickerView.OnOptionsSelectListener { options1, option2, options3 -> // twoTVOptions.setText("Two Options " + twoItemsOptions1.get(options1) + " " + twoItemsOptions2.get(option2));
+//
+//        })
 
 
     }

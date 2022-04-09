@@ -40,7 +40,6 @@ class PlaceOrderViewModel : ViewModel() {
                     response: Response<PlaceOrderResponse>
                 ) {
 
-                    Utils.showToast(response.isSuccessful.toString(),requireContext)
                     if (response.isSuccessful) {
                         placeOrderViewModel.postValue(response.body())
                     } else {
@@ -49,7 +48,7 @@ class PlaceOrderViewModel : ViewModel() {
                             Toast.makeText(
                                 requireContext,
                                 jObjError.getString("msg"),
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show()
                         } catch (e: Exception) {
                             Toast.makeText(requireContext, e.message, Toast.LENGTH_LONG).show()

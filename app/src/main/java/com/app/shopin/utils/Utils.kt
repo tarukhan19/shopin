@@ -65,7 +65,7 @@ class Utils {
         }
 
         fun showToast(msg: String, ctx: Context) {
-            Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show()
+            Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show()
         }
 
         fun printLog(msg: String, tag: String) {

@@ -31,7 +31,6 @@ class TipViewModel: ViewModel() {
                 response: Response<TipResponse>
             ) {
                 if (response.isSuccessful) {
-                    Utils.showToast("Rating given successfully",requireContext)
                     tipResponse.postValue(response.body())
                 } else {
 
