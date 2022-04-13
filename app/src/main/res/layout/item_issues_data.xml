@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/prodLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_10dp"
+                android:layout_weight="0.2"
+                android:background="@color/lite_grey"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/productIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dove"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5dp"
+                android:layout_marginRight="@dimen/_5dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical"
+
+                >
+
+
+                <com.app.shopin.customview.BoldTextView
+                    android:id="@+id/prodnameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clock"
+                    android:text="Dove Hair fall rescue shampoo"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/proddescTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clock"
+                    android:text="Dove Hair fall rescue shampoo"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+
+                    />
+
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/prodquantityTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:text="(180ml)"
+                    android:textSize="@dimen/_12sp"
+
+
+                    />
+
+
+                <com.app.shopin.customview.BoldTextView
+                    android:id="@+id/prodamountTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/clock"
+                    android:text="$50.00/pc"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sp"
+
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_8dp"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                android:layout_marginStart="@dimen/_8dp"
+
+                >
+
+
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QTY"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+
+                    />
+                <com.app.shopin.customview.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15 Items"
+                    android:layout_marginLeft="@dimen/_8dp"
+                    android:layout_marginRight="@dimen/_8dp"
+                    android:padding="8dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittextbackgrnd"
+                    android:textSize="@dimen/_14sp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/selectissueLL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:layout_marginStart="@dimen/_15dp"
+                android:layout_marginEnd="@dimen/_8dp"
+                android:background="@drawable/edittextbackgrnd"
+
+                >
+
+
+                    <com.app.shopin.customview.RegularTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:padding="8dp"
+                        android:hint="Select Items"
+                        android:layout_weight="0.8"
+                        android:textColorHint="@color/gray"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sp"
+
+                        />
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:src="@drawable/arrowdown"
+                    android:layout_marginRight="@dimen/_5dp"
+                    android:layout_gravity="center_vertical"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                >
+                <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/issuestatusTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:padding="8dp"
+                    android:text="Select Items"
+                    android:textColorHint="@color/gray"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
+
+                    />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</layout>

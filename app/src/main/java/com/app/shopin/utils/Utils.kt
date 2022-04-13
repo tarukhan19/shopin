@@ -27,6 +27,7 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
@@ -50,6 +51,24 @@ class Utils {
                 return pattern.matcher(mail).matches()
             }
 
+        }
+
+        suspend fun dateFormat(createdDate: String?):String {
+            var formatted:String=""
+            try {
+                var date = createdDate
+                val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                val output = SimpleDateFormat("EEE, d MMM, yyyy")
+
+                var d: Date? = null
+                input.setTimeZone(TimeZone.getTimeZone("UTC"));
+                d = input.parse(date)
+                formatted = output.format(d)
+
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return formatted
         }
 
         fun underline(textView: TextView) {

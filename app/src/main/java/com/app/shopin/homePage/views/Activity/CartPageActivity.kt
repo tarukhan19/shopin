@@ -4,13 +4,15 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.shopin.Orders.views.Bottomsheet.TimeSlotBottomSheet
 import com.app.shopin.R
 import com.app.shopin.databinding.ActivityCartPageBinding
 import com.app.shopin.homePage.Adapter.CartParentAdapater
@@ -27,7 +29,7 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var cartListViewModels: CartListViewModels
     lateinit var cartParentAdapater: CartParentAdapater
     lateinit var addressid: String
-    lateinit var storelist:ArrayList<CartParentData>
+    lateinit var storelist: ArrayList<CartParentData>
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -61,8 +63,7 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun fetchCartData()
-    {
+    private fun fetchCartData() {
         cartListViewModels.getObserveData().removeObservers(this)
         cartListViewModels.getObserveData()
             .observe(this) {
@@ -74,7 +75,7 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
                     Preference.getInstance(this)?.setString(Constant.DELIVERY_ADDRESS_ID, addressid)
 
                     addressTV.text = address
-                     storelist= it.data.store!!
+                    storelist = it.data.store!!
 
                     if (storelist.size == 0) {
                         recycleview.visibility = View.GONE
@@ -86,7 +87,13 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
 //                        bottomLL.visibility = View.VISIBLE
 
                     }
-                    cartParentAdapater = CartParentAdapater(storelist, norecrdfoundTV, recycleview,binding.progressbarLL,this)
+                    cartParentAdapater = CartParentAdapater(
+                        storelist,
+                        norecrdfoundTV,
+                        recycleview,
+                        binding.progressbarLL,
+                        this
+                    )
                     recycleview.adapter = cartParentAdapater
                     cartParentAdapater.notifyDataSetChanged()
 
@@ -112,53 +119,63 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             R.id.adressLL -> {
-//                val in7 = Intent(this, DeliveryAddressListActivity::class.java)
-//                in7.putExtra("from","cartpage")
-//                startActivity(in7)
-
-                val activity = unwrap(v.context)
-
-
-                val pickUpBottomSheetDialogFragment: TimeSlotBottomSheet =
-                    TimeSlotBottomSheet.newInstance()
-                pickUpBottomSheetDialogFragment.show(
-                    supportFragmentManager,
-                    TimeSlotBottomSheet.TAG
-                )
-
+                val in7 = Intent(this, DeliveryAddressListActivity::class.java)
+                in7.putExtra("from", "cartpage")
+                startActivity(in7)
             }
         }
     }
 
 
     fun runThread(from: String, total: String) {
-        object : Thread() {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun run() {
-                try {
-                    runOnUiThread {
-                        if (from.equals("cartdata"))
-                        {
-                            fetchCartData()
-                        }
-                        else if (from.equals("addressselect")) {
-                            addressTV.setText(Preference.getInstance(this@CartPageActivity)?.getString(Constant.DELIVERY_ADDRESS))
+        runOnUiThread {
+            if (from.equals("cartdata")) {
+                fetchCartData()
+            } else if (from.equals("addressselect")) {
+                addressTV.setText(
+                    Preference.getInstance(this@CartPageActivity)
+                        ?.getString(Constant.DELIVERY_ADDRESS)
+                )
 
-                        }
-                    }
-                    sleep(300)
-                } catch (e: InterruptedException) {
-                    e.printStackTrace()
-                }
             }
-        }.start()
+        }
+
+
+
+        Handler(Looper.getMainLooper()).post(Runnable
+        {
+            if (from.equals("cartdata")) {
+                fetchCartData()
+            } else if (from.equals("addressselect")) {
+                addressTV.setText(
+                    Preference.getInstance(this@CartPageActivity)
+                        ?.getString(Constant.DELIVERY_ADDRESS)
+                )
+            }
+        })
+
+
+//        object : Thread() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            override fun run() {
+//                try {
+//                    runOnUiThread {
+//                        if (from.equals("cartdata"))
+//                        {
+//                            fetchCartData()
+//                        }
+//                        else if (from.equals("addressselect")) {
+//                            addressTV.setText(Preference.getInstance(this@CartPageActivity)?.getString(Constant.DELIVERY_ADDRESS))
+//
+//                        }
+//                    }
+//                    sleep(300)
+//                } catch (e: InterruptedException) {
+//                    e.printStackTrace()
+//                }
+//            }
+//        }.start()
     }
 
-    private fun unwrap(context: Context): Activity? {
-        var context: Context? = context
-        while (context !is Activity && context is ContextWrapper) {
-            context = context.baseContext
-        }
-        return context as Activity?
-    }
+
 }

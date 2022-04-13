@@ -23,37 +23,37 @@ class TipViewModel: ViewModel() {
     }
 
     fun tipSubmission(requireContext: Context, storeid: String, orderid: String, comment: String,amount:String) {
-        val request = ServiceBuilder.getApiService(requireContext)
-        request.tipSubmit(storeid,orderid,comment,amount).enqueue(object : Callback<TipResponse> {
-            @SuppressLint("NullSafeMutableLiveData")
-            override fun onResponse(
-                call: Call<TipResponse>,
-                response: Response<TipResponse>
-            ) {
-                if (response.isSuccessful) {
-                    tipResponse.postValue(response.body())
-                } else {
-
-                    val gson = Gson()
-                    val type = object : TypeToken<ErrorResponse>() {}.type
-                    var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
-                    tipResponse.postValue(null)
-                    OpenDialogBox.openDialog(
-                        requireContext,
-                        "Error!",
-                        errorResponse!!.msg,
-                        ""
-                    )
-
-                }
-            }
-
-            @SuppressLint("NullSafeMutableLiveData")
-            override fun onFailure(call: Call<TipResponse>, t: Throwable) {
-                tipResponse.postValue(null)
-            }
-
-        })
+//        val request = ServiceBuilder.getApiService(requireContext)
+//        request.tipSubmit(storeid,orderid,comment,amount).enqueue(object : Callback<TipResponse> {
+//            @SuppressLint("NullSafeMutableLiveData")
+//            override fun onResponse(
+//                call: Call<TipResponse>,
+//                response: Response<TipResponse>
+//            ) {
+//                if (response.isSuccessful) {
+//                    tipResponse.postValue(response.body())
+//                } else {
+//
+//                    val gson = Gson()
+//                    val type = object : TypeToken<ErrorResponse>() {}.type
+//                    var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
+//                    tipResponse.postValue(null)
+//                    OpenDialogBox.openDialog(
+//                        requireContext,
+//                        "Error!",
+//                        errorResponse!!.msg,
+//                        ""
+//                    )
+//
+//                }
+//            }
+//
+//            @SuppressLint("NullSafeMutableLiveData")
+//            override fun onFailure(call: Call<TipResponse>, t: Throwable) {
+//                tipResponse.postValue(null)
+//            }
+//
+//        })
 
     }
 }

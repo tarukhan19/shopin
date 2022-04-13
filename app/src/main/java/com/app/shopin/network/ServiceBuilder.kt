@@ -9,11 +9,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ServiceBuilder {
 
+//
+//
     private fun client(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(TokenInterceptor(context))
             .build()
     }
+//
+//
+//    private val retrofit:Retrofit by lazy {
+//        Retrofit.Builder()
+//            .baseUrl(ApiBaseUrl.BASE_URL)
+//            .build()
+//    }
+//
 
     private lateinit var apiService: ApiServices
 
@@ -30,6 +40,7 @@ object ServiceBuilder {
         }
         return apiService
     }
+
 
 
 }

@@ -91,7 +91,7 @@ class OrderHistoryListAdapter(
             holder.binding.orderstatusTV.setBackgroundResource(R.drawable.ord_cancel_capsule)
         }
 
-        else   if (data.order_status.equals("In-Process"))
+        else   if (data.order_status.equals("In Progress"))
         {
             holder.binding.orderstatusTV.setBackgroundResource(R.drawable.ord_inprocess_capsule)
         }

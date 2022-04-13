@@ -12,7 +12,7 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <com.app.shopin.customview.BoldTextView
-            android:id="@+id/backbtn"
+            android:id="@+id/tipbackbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back"
@@ -26,14 +26,13 @@
             />
 
         <LinearLayout
-            android:id="@+id/ratereviewLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backbtn"
+            app:layout_constraintTop_toBottomOf="@+id/tipbackbtn"
 
             >
             <com.app.shopin.customview.BoldTextView
@@ -86,6 +85,8 @@
                    android:textColor="@color/black"
                    android:layout_gravity="center"
                    android:gravity="center"
+                   android:textSize="@dimen/_12sp"
+
                    />
 
                <com.app.shopin.customview.BoldTextView
@@ -99,6 +100,8 @@
                    android:textColor="@color/black"
                    android:layout_gravity="center"
                    android:gravity="center"
+                   android:textSize="@dimen/_12sp"
+
                    />
 
                <com.app.shopin.customview.BoldTextView
@@ -112,6 +115,7 @@
                    android:textColor="@color/black"
                    android:layout_gravity="center"
                    android:gravity="center"
+                   android:textSize="@dimen/_12sp"
                    />
 
                <com.app.shopin.customview.RegularEditText
@@ -120,6 +124,7 @@
                    android:layout_height="@dimen/_50dp"
                    android:background="@drawable/tabackgrnd"
                    android:hint="Custom"
+                   android:textSize="@dimen/_12sp"
                    android:layout_weight="0.4"
                    android:layout_marginLeft="@dimen/_8dp"
                    android:textColor="@color/black"
@@ -146,7 +151,7 @@
                 />
 
             <com.app.shopin.customview.RegularEditText
-                android:id="@+id/reviewET"
+                android:id="@+id/tipexpET"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_85dp"
                 android:inputType="textMultiLine"
@@ -168,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/writerevTV"
                 />
             <com.app.shopin.customview.RegularButton
-                android:id="@+id/submitBTN"
+                android:id="@+id/tipsubmitBTN"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55dp"
                 android:layout_marginStart="@dimen/_10dp"
@@ -187,51 +192,6 @@
 
         </LinearLayout>
 
-
-
-        <LinearLayout
-            android:id="@+id/thanksLL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratereviewLL"
-
-            >
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/thanku"
-                />
-
-            <com.app.shopin.customview.BoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="For"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_20sp"
-                android:layout_marginTop="@dimen/_10dp"
-
-                />
-
-
-            <com.app.shopin.customview.BoldTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Your Review"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_25sp"
-                android:layout_marginTop="@dimen/_10dp"
-
-                />
-
-        </LinearLayout>
 
 
 

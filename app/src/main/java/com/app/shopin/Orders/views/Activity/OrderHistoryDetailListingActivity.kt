@@ -1,48 +1,59 @@
 package com.app.shopin.Orders.views.Activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnFocusChangeListener
-import android.widget.*
+import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.shopin.Orders.Adapter.StoreItemHistoryAdapter
-import com.app.shopin.Orders.models.Ordertipdata
-import com.app.shopin.Orders.viewmodels.OrderHistoryViewModel
-import com.app.shopin.Orders.viewmodels.RatingReviewViewModel
-import com.app.shopin.Orders.viewmodels.TipViewModel
+import com.app.shopin.Orders.models.*
 import com.app.shopin.R
-import com.app.shopin.UserAuth.view.EmailRegisterActivity
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityOrderHistoryDetailListingBinding
+import com.app.shopin.databinding.ItemCurbsidePickupBinding
+import com.app.shopin.databinding.ItemRatingReviewBinding
+import com.app.shopin.databinding.ItemTipAmountBinding
 import com.app.shopin.homePage.models.CartChildData
+import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_order_history_detail_listing.*
-import kotlinx.android.synthetic.main.activity_order_history_list.toolbar
 import kotlinx.android.synthetic.main.toolbar.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONException
 import org.json.JSONObject
-import java.text.ParseException
-import java.text.SimpleDateFormat
+import retrofit2.HttpException
 import java.util.*
 
 
 class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityOrderHistoryDetailListingBinding
-    lateinit var orderHistoryViewModel: OrderHistoryViewModel
     lateinit var orderid: String
     lateinit var storeid: String
     lateinit var store_order_type: String
-    lateinit var ratingReviewViewModel: RatingReviewViewModel
-    lateinit var tipViewModel: TipViewModel
-    lateinit var order_status:String
-     var  ordertiplength: Int=0
+    lateinit var ordresponse:OrderHistoryDetailsResponse
+    lateinit var ratingReviewResponse: RatingReviewResponse
+    lateinit var tipResponse: TipResponse
+    lateinit var curbsidemsgResponse: CurbsideMsgResponse
+    lateinit var order_status: String
+    lateinit var rating: String
+    lateinit var review: String
+    lateinit var tipamount: String
+    lateinit var tipcomment: String
+    lateinit var curbsidemsg:String
+     lateinit var rrbindingSheet:ItemRatingReviewBinding
+    lateinit var curbsidebindingSheet:ItemCurbsidePickupBinding
+    lateinit var tipbindingSheet:ItemTipAmountBinding
+    var ordertipJson: String = ""
+    lateinit var orderrateJson: JSONObject
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =
@@ -52,23 +63,23 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
     @SuppressLint("ClickableViewAccessibility")
     fun initialize() {
+
         orderid = intent.getStringExtra("orderid")!!
-        orderHistoryViewModel = ViewModelProvider(this).get(OrderHistoryViewModel::class.java)
-        ratingReviewViewModel= ViewModelProvider(this).get(RatingReviewViewModel::class.java)
-        tipViewModel= ViewModelProvider(this).get(TipViewModel::class.java)
         toolbar.titleTV.text = getString(R.string.orderhsitory)
         toolbar.back_LL.setOnClickListener(this)
         ratingRB.setOnTouchListener(View.OnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                openRatingReviewDialog()
+                try {
+                    openRatingReviewDialog()
+                } catch (e: java.lang.Exception)
+                {Log.e("exc", e.localizedMessage!!.toString())}
             }
             return@OnTouchListener true
         })
-        binding.progressbarLL.visibility = View.VISIBLE
-        binding.button2LL.setOnClickListener(this)
-        binding.button1LL.setOnClickListener(this)
-
-        loadOrderHistoryDetails()
+        progressbarLL.visibility = View.VISIBLE
+        button2LL.setOnClickListener(this)
+        button1LL.setOnClickListener(this)
+        callApiFunction("orderdetail")
     }
 
     override fun onClick(v: View?) {
@@ -79,332 +90,348 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
             R.id.button1LL -> {
 
-                if (store_order_type.equals("Curbside Pickup"))
-                {
-
+                if (store_order_type.equals("Curbside Pickup")) {
 
                     openCurbSideDialog()
-
 
                 }
 
             }
             R.id.button2LL -> {
-                if (store_order_type.equals("Delivery") && order_status.equals("Completed"))
-                {
 
-//                    if (ordertiplength==0)
-//                    {
+                if (store_order_type.equals("Delivery") && order_status.equals("Completed")) {
+                    button2LL.visibility = VISIBLE
+                    if (ordertipJson.equals("{}")) {
                         openTipPopUp()
-//                    }
-
-                }
-
-                if (store_order_type.equals("Curbside pickup"))
-                {
-
-
-                    openCurbSideDialog()
-
-
+                    }
                 }
 
             }
         }
     }
+
 
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun loadOrderHistoryDetails() {
-        orderHistoryViewModel.getAllStoreListObserver().removeObservers(this)
-        orderHistoryViewModel.getAllStoreListObserver()
-            .observe(this) {
-                if (it != null) {
-                    if (it.status_code == 200)
+    private fun setData(data: OrderHistoryDetail) {
+        storeid = data.store!!
+
+        val orderratedata = data.store_rating!!
+        val gson = Gson()
+        val jsonString = gson.toJson(orderratedata)
+        try {
+            orderrateJson = JSONObject(jsonString)
+        } catch (e: JSONException) {
+            // TODO Auto-generated catch block
+            e.printStackTrace()
+        }
+
+
+        val tipdata = data.order_tip!!
+        val tipgson = Gson()
+        ordertipJson = tipgson.toJson(tipdata)
+
+       orderidTV.setText(data.order_no)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val date = Utils.dateFormat(data.created_date)
+            dateTV.text = date
+
+        }
+        storenameTV.setText(data.store_name)
+        Utils.setImage(shopIV, data.store_image, R.drawable.store)
+        store_order_type = data.store_order_type
+        order_status = data.order_status
+        buttonTV1.text = store_order_type
+        totalpriceTV.text = "Total \n$ " + data.store_total_amount
+        Log.e("orderrateJson", orderrateJson.toString())
+        if (!orderrateJson.equals("{}")) {
+            var avgrating = orderrateJson.optDouble("rating__avg")
+            val myrating = orderrateJson.optDouble("user_rating")
+            val reviewcount = orderrateJson.optString("rating__count")
+
+            totalreviewTV.setText("$reviewcount Ratings")
+            ratingTV.setText(String.format("%.2f", avgrating))
+
+            ratingRB.rating = myrating.toFloat()
+            if (avgrating.toString().equals("0.0")) {
+                ratingLL.setBackgroundResource(R.drawable.ratinggrayback)
+            } else {
+                ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
+            }
+        }
+
+
+        if (store_order_type.equals("Delivered")) {
+            button1LL.setBackgroundResource(R.drawable.ord_deliv_capsule)
+        } else if (store_order_type.equals("Pending")) {
+            button1LL.setBackgroundResource(R.drawable.ord_pending_capsule)
+        } else if (store_order_type.equals("Cancelled")) {
+            button1LL.setBackgroundResource(R.drawable.ord_cancel_capsule)
+        }
+
+        try {
+            val storeInventoryData: ArrayList<CartChildData> =
+                data.order_item!!
+            val adapter = StoreItemHistoryAdapter(this, storeInventoryData)
+            val layoutManager = LinearLayoutManager(this)
+            productRV.setHasFixedSize(false)
+            productRV.layoutManager = layoutManager
+            productRV.adapter = adapter
+            adapter.notifyDataSetChanged()
+
+        } catch (e: Exception) {
+            Log.e("exce", e.message.toString())
+        }
+
+        if (order_status.equals("Rejected")) {
+            buttonIV1.visibility = View.GONE
+        }
+
+        if (store_order_type.equals("Delivery") && order_status.equals("Completed")) {
+            button2LL.visibility = VISIBLE
+            if (ordertipJson.equals("{}")) {
+                buttonTV2.setText("Tip")
+            } else {
+               buttonTV2.setText("Tipped")
+                buttonIV2.visibility = GONE
+
+            }
+        }
+    }
+
+
+    fun callApiFunction(from:String)
+    {
+        val service = ServiceBuilder.getApiService(this)
+        CoroutineScope(Dispatchers.IO).launch{
+            try {
+                if (from.equals("orderdetail"))
+                {
+                    ordresponse = service.getOrderDetails(orderid)
+                }
+                else if (from.equals("ratingreview"))
+                {
+                    ratingReviewResponse = service.ratingReviewSubmit(storeid, orderid, rating, review)
+                }
+                else if (from.equals("tip"))
+                {
+                    Log.e("storeid",storeid)
+                    Log.e("orderid",orderid)
+                    Log.e("tipcomment",tipcomment)
+                    Log.e("tipamount",tipamount)
+
+                    tipResponse = service.tipSubmit(storeid, orderid, tipcomment, tipamount)
+                }
+                else if (from.equals("curbsidemsg"))
+                {
+                    curbsidemsgResponse= service.curbsidemsgSubmit(orderid, curbsidemsg)
+                }
+            }catch (e:java.lang.Exception)
+            {
+
+            }
+
+            withContext(Dispatchers.Main) {
+                try {
+                    progressbarLL.visibility = GONE
+                    if (from.equals("orderdetail"))
                     {
-                        binding.cardview.visibility = View.VISIBLE
-                        binding.progressbarLL.visibility = View.GONE
-                        val data = it.data.order_drtail
-                        storeid= data.store!!
-                        val storedata = it.data.order_drtail
-                        val storeratedata = it.data.order_drtail.store_rating
-                        val tipdata = it.data.order_drtail.order_tip!!
-                        val gson = Gson()
-                        val json = gson.toJson(tipdata)
-                        ordertiplength=json.length
-                        Log.e("ordertipdata",ordertiplength.toString())
-
-                        binding.orderidTV.setText(data.order_no)
-                        dateFormat(data.created_date, binding.dateTV)
-                        binding.storenameTV.setText(storedata.store_name)
-                        Utils.setImage(binding.shopIV, storedata.store_image, R.drawable.store)
-                        store_order_type = storedata.store_order_type
-                        order_status=storedata.order_status
-                        binding.buttonTV1.text = store_order_type
-                        binding.totalpriceTV.text = "$ " + storedata.store_total_amount
-                        binding.ratingTV.setText(storeratedata?.rating__avg)
-
-                        if (storeratedata?.rating__avg.equals("0.0"))
+                        if (ordresponse.status==true)
                         {
-                            binding.ratingLL.setBackgroundResource(R.drawable.ratinggrayback)
+                            setData(ordresponse.data.order_drtail)
+
+                        }
+                    }
+                    else if (from.equals("ratingreview"))
+                    {
+                        if (ratingReviewResponse.status==true)
+                        {
+                            rrbindingSheet.ratereviewLL.visibility= GONE
+                            rrbindingSheet.thanksLL.visibility= VISIBLE
+                            ordresponse = service.getOrderDetails(orderid)
+
+                            setData(ordresponse.data.order_drtail)
+                        }
+
+
+                    }
+                    else if (from.equals("curbsidemsg"))
+                    {
+
+                        if (curbsidemsgResponse.status==true)
+                        {
+                            Utils.showToast("Message has been sent.", this@OrderHistoryDetailListingActivity)
+
+                        }
+
+                    }
+                    else if (from.equals("tip"))
+                    {
+
+                        if (tipResponse.status==true)
+                        {
+                            Utils.showToast("Thank you for your tip", this@OrderHistoryDetailListingActivity)
+                            buttonTV2.setText("Tipped")
+                            ordresponse = service.getOrderDetails(orderid)
+                            setData(ordresponse.data.order_drtail)
+
                         }
                         else
                         {
-                            binding.ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
+                            Utils.showToast(tipResponse.msg, this@OrderHistoryDetailListingActivity)
+
                         }
-
-
-                        binding.totalreviewTV.setText(storeratedata?.rating__count + " Ratings")
-                        if (store_order_type.equals("Delivered")) {
-                            binding.button1LL.setBackgroundResource(R.drawable.ord_deliv_capsule)
-                        } else if (store_order_type.equals("Pending")) {
-                            binding.button1LL.setBackgroundResource(R.drawable.ord_pending_capsule)
-                        } else if (store_order_type.equals("Cancelled")) {
-                            binding.button1LL.setBackgroundResource(R.drawable.ord_cancel_capsule)
-                        }
-
-                        try {
-                            val storeInventoryData: ArrayList<CartChildData> =
-                                storedata.order_item!!
-                            val adapter = StoreItemHistoryAdapter(this, storeInventoryData)
-                            val layoutManager = LinearLayoutManager(this)
-                            binding.productRV.setHasFixedSize(false)
-                            binding.productRV.layoutManager = layoutManager
-                            binding.productRV.adapter = adapter
-                            adapter.notifyDataSetChanged()
-
-                        } catch (e: Exception) {
-                            Log.e("exce", e.message.toString())
-                        }
-                        setButton()
-
-
-                    } else {
-                        binding.progressbarLL.visibility = View.GONE
 
                     }
 
 
+                } catch (e: HttpException) {
+                    Utils.showToast(
+                        "Exception ${e.message}",
+                        this@OrderHistoryDetailListingActivity
+                    )
+
+                } catch (e: Throwable) {
+                    Utils.showToast(
+                        e.localizedMessage,
+                        this@OrderHistoryDetailListingActivity
+                    )
+
                 }
             }
 
-        orderHistoryViewModel.getAllOrderHistoryList(this, orderid)
-    }
-
-    private fun setButton() {
-        if (order_status.equals("Rejected"))
-        {
-            binding.buttonIV1.visibility=View.GONE
-        }
-
-        if (store_order_type.equals("Delivery") && order_status.equals("Completed"))
-        {
-            binding.button2LL.visibility=View.VISIBLE
-        //    Log.e("ordertipdata",ordertipdata.has("id").toString())
-            binding.buttonTV2.setText("Tip")
-
-//            if (ordertiplength==0)
-//            {
-//                binding.buttonTV2.setText("Tip")
-//            }
-//            else
-//            {
-//                binding.buttonTV2.setText("Tipped")
-//                binding.buttonIV2.visibility=View.GONE
-//
-//            }
         }
     }
 
 
-
-    fun dateFormat(createdDate: String?, orderdateTV: TextView) {
-        try {
-            var date = createdDate
-            val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-            val output = SimpleDateFormat("EEE, d MMM, yyyy")
-
-            var d: Date? = null
-            input.setTimeZone(TimeZone.getTimeZone("UTC"));
-            d = input.parse(date)
-            val formatted: String = output.format(d)
-            Log.i("DATE", "" + formatted)
-            orderdateTV.text = formatted
-
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-    }
-
-
-    private fun openRatingReviewDialog() {
-
+    fun openCurbSideDialog() {
         val dialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.item_rating_review, null)
-        val backbtn = view.findViewById<TextView>(R.id.backbtn)
-        val ratingBar = view.findViewById<RatingBar>(R.id.ratingbar)
-        val reviewET = view.findViewById<EditText>(R.id.reviewET)
-        val submitBTN = view.findViewById<Button>(R.id.submitBTN)
-        val ratereviewLL = view.findViewById<LinearLayout>(R.id.ratereviewLL)
-        val thanksLL = view.findViewById<LinearLayout>(R.id.thanksLL)
-
-        backbtn.setOnClickListener { dialog.dismiss() }
-        submitBTN.setOnClickListener {
-            val rating=ratingBar.rating.toString()
-            val review=reviewET.text.toString()
-            Log.e("rating",rating)
-
-
-
-            binding.progressbarLL.visibility=View.VISIBLE
-            reviewRatingSubmit(storeid ,rating,review,ratereviewLL,thanksLL)
-
-
-        }
-
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
+        curbsidebindingSheet = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.item_curbside_pickup,
+            null,
+            false
+        )
+        dialog.setContentView(curbsidebindingSheet.root)
         dialog.show()
 
-
-    }
-
-    private fun reviewRatingSubmit(
-        id: String,
-        rating: String,
-        review: String,
-        ratereviewLL: LinearLayout,
-        thanksLL: LinearLayout
-    )
-    {
-        progressbarLL.visibility = View.VISIBLE
-        ratingReviewViewModel.getRatingReviewObserver().removeObservers(this)
-        ratingReviewViewModel.getRatingReviewObserver().observe(this) {
-
-            if (it?.status == true) {
-                progressbarLL.visibility = View.GONE
-                ratereviewLL.visibility=View.GONE
-                thanksLL.visibility=View.VISIBLE
-            } else {
-                progressbarLL.visibility = View.GONE
-            }
-        }
-        ratingReviewViewModel.ratingReviewSubmission(this,id,rating,review)
-    }
-
-
-    private fun openTipPopUp()
-    {
-        val dialog = BottomSheetDialog(this)
-        var tipamount:Int=0
-        var isTipEnter=false
-
-        val view = layoutInflater.inflate(R.layout.item_tip_amount, null)
-        val backbtn = view.findViewById<TextView>(R.id.backbtn)
-        val submitBTN = view.findViewById<Button>(R.id.submitBTN)
-        val  amount2TV= view.findViewById<TextView>(R.id.amount2TV)
-        val  amount4TV= view.findViewById<TextView>(R.id.amount4TV)
-        val  amount5TV= view.findViewById<TextView>(R.id.amount5TV)
-        val  customET= view.findViewById<TextView>(R.id.customET)
-        val  reviewET= view.findViewById<TextView>(R.id.reviewET)
-
-        backbtn.setOnClickListener { dialog.dismiss() }
-        submitBTN.setOnClickListener {
-            if (!isTipEnter)
+        curbsidebindingSheet.curbbackbtn.setOnClickListener { dialog.dismiss() }
+        curbsidebindingSheet.iamherebtn.setOnClickListener {
+            curbsidemsg = curbsidebindingSheet.curbsidemsgET.text.toString()
+            if (curbsidemsg.isEmpty()) {
+                Utils.showToast("Enter msg here", this)
+            } else
             {
-                val tipamounts=customET.text.toString()
-                tipamount=tipamounts.toInt()
+                dialog.dismiss()
+                callApiFunction("curbsidemsg")
+
             }
-            val review=reviewET.text.toString()
-            Log.e("tipamount",tipamount.toString())
-            submitTip(tipamount,review)
+
+        }
+
+
+
+
+    }
+
+    private fun openRatingReviewDialog() {
+        val bottomSheet = BottomSheetDialog(this)
+         rrbindingSheet = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.item_rating_review,
+            null,
+            false
+        )
+        bottomSheet.setContentView(rrbindingSheet.root)
+        bottomSheet.show()
+
+            rrbindingSheet.rrbackbtn.setOnClickListener { bottomSheet.dismiss() }
+            rrbindingSheet.rrsubmitBTN.setOnClickListener {
+                rating = rrbindingSheet.ratingbar.rating.toString()
+                review = rrbindingSheet.reviewET.text.toString()
+                Log.e("rating",rating)
+                progressbarLL.visibility = VISIBLE
+                callApiFunction("ratingreview")
+
+            }
+
+
+
+
+
+    }
+
+    private fun openTipPopUp() {
+        val dialog = BottomSheetDialog(this)
+        var isTipEnter = false
+        tipbindingSheet = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.item_tip_amount,
+            null,
+            false
+        )
+        dialog.setContentView(tipbindingSheet.root)
+        dialog.show()
+
+        tipbindingSheet.tipbackbtn.setOnClickListener { dialog.dismiss() }
+        tipbindingSheet.tipsubmitBTN.setOnClickListener {
+            if (!isTipEnter) {
+                tipamount =  tipbindingSheet.customET.text.toString()
+            }
+            tipcomment =  tipbindingSheet.tipexpET.text.toString()
+            callApiFunction("tip")
             dialog.dismiss()
 
         }
-        amount2TV.setOnClickListener {
-            amount2TV.setBackgroundResource(R.drawable.orangecapsule)
-            amount2TV.setTextColor(resources.getColor(R.color.white))
-            amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount4TV.setTextColor(resources.getColor(R.color.black))
-            amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount5TV.setTextColor(resources.getColor(R.color.black))
-            tipamount=2
-            isTipEnter=true
+        tipbindingSheet.amount2TV.setOnClickListener {
+            tipbindingSheet.amount2TV.setBackgroundResource(R.drawable.orangecapsule)
+            tipbindingSheet.amount2TV.setTextColor(resources.getColor(R.color.white))
+            tipbindingSheet.amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount4TV.setTextColor(resources.getColor(R.color.black))
+            tipbindingSheet.amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount5TV.setTextColor(resources.getColor(R.color.black))
+            tipamount = "2"
+            isTipEnter = true
 
         }
-        amount4TV.setOnClickListener {
-            amount4TV.setBackgroundResource(R.drawable.orangecapsule)
-            amount4TV.setTextColor(resources.getColor(R.color.white))
-            amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount2TV.setTextColor(resources.getColor(R.color.black))
-            amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount5TV.setTextColor(resources.getColor(R.color.black))
-            tipamount=4
-            isTipEnter=true
+        tipbindingSheet.amount4TV.setOnClickListener {
+            tipbindingSheet.amount4TV.setBackgroundResource(R.drawable.orangecapsule)
+            tipbindingSheet.amount4TV.setTextColor(resources.getColor(R.color.white))
+            tipbindingSheet.amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount2TV.setTextColor(resources.getColor(R.color.black))
+            tipbindingSheet.amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount5TV.setTextColor(resources.getColor(R.color.black))
+            tipamount = "4"
+            isTipEnter = true
 
         }
-        amount5TV.setOnClickListener {
-            amount5TV.setBackgroundResource(R.drawable.orangecapsule)
-            amount5TV.setTextColor(resources.getColor(R.color.white))
-            amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount2TV.setTextColor(resources.getColor(R.color.black))
-            amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
-            amount4TV.setTextColor(resources.getColor(R.color.black))
-            tipamount=5
-            isTipEnter=true
+        tipbindingSheet.amount5TV.setOnClickListener {
+            tipbindingSheet.amount5TV.setBackgroundResource(R.drawable.orangecapsule)
+            tipbindingSheet.amount5TV.setTextColor(resources.getColor(R.color.white))
+            tipbindingSheet.amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount2TV.setTextColor(resources.getColor(R.color.black))
+            tipbindingSheet.amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
+            tipbindingSheet.amount4TV.setTextColor(resources.getColor(R.color.black))
+            tipamount = "5"
+            isTipEnter = true
         }
 
-        customET.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+        tipbindingSheet.customET.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
-                amount5TV.setTextColor(resources.getColor(R.color.black))
-                amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
-                amount2TV.setTextColor(resources.getColor(R.color.black))
-                amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
-                amount4TV.setTextColor(resources.getColor(R.color.black))
-                tipamount=0
-                isTipEnter=false
+                tipbindingSheet.amount5TV.setBackgroundResource(R.drawable.tabackgrnd)
+                tipbindingSheet.amount5TV.setTextColor(resources.getColor(R.color.black))
+                tipbindingSheet.amount2TV.setBackgroundResource(R.drawable.tabackgrnd)
+                tipbindingSheet.amount2TV.setTextColor(resources.getColor(R.color.black))
+                tipbindingSheet.amount4TV.setBackgroundResource(R.drawable.tabackgrnd)
+                tipbindingSheet.amount4TV.setTextColor(resources.getColor(R.color.black))
+                tipamount = "0"
+                isTipEnter = false
 
             }
         })
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
-    }
 
-    private fun submitTip(tipamount: Int, review: String) {
-        progressbarLL.visibility = View.VISIBLE
-        tipViewModel.tipObserver().removeObservers(this)
-        tipViewModel.tipObserver().observe(this) {
-            if (it?.status == true) {
-                Utils.showToast("Thank you for your tip",this)
-                progressbarLL.visibility = View.GONE
-
-            } else {
-                progressbarLL.visibility = View.GONE
-            }
-        }
-        tipViewModel.tipSubmission(this,storeid,orderid, review, tipamount.toString() )
-    }
-
-    fun  openCurbSideDialog()
-    {
-        val dialog = BottomSheetDialog(this)
-        val view = layoutInflater.inflate(R.layout.item_curbside_pickup, null)
-        val backbtn = view.findViewById<TextView>(R.id.backbtn)
-        val iamherebtn = view.findViewById<Button>(R.id.iamherebtn)
-
-        backbtn.setOnClickListener { dialog.dismiss() }
-        iamherebtn.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
 
     }
-
-
 }

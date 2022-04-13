@@ -95,13 +95,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="@dimen/_8dp"
+                        android:layout_margin="@dimen/_8dp"
                         android:weightSum="1">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.6"
+                            android:layout_weight="0.7"
                             android:orientation="vertical">
 
                             <LinearLayout
@@ -173,7 +173,7 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginStart="@dimen/_3dp"
                                                 android:layout_marginEnd="@dimen/_5dp"
-                                                android:text="4.5"
+                                                android:text="0"
                                                 android:textColor="@color/white"
                                                 android:textSize="@dimen/_10sp" />
                                         </LinearLayout>
@@ -184,25 +184,32 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/_3dp"
-                                            android:text="124 Ratings"
+                                            android:text="0 Review"
                                             android:textColor="@color/darkgray"
                                             android:textSize="@dimen/_10sp" />
                                     </LinearLayout>
 
-
                                     <RatingBar
                                         android:id="@+id/ratingRB"
-                                        style="@style/customRatingBar"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/_5dp"
-                                        android:clickable="true"
-                                        android:focusable="true"
-                                        android:isIndicator="true"
-                                        android:maxHeight="@dimen/_40dp"
                                         android:numStars="5"
+                                        android:isIndicator="true"
+                                        style="@style/Widget.AppCompat.RatingBar.Indicator"
 
-                                        android:stepSize="0.5" />
+                                        />
+<!--                                    <RatingBar-->
+<!--                                        android:id="@+id/ratingRB"-->
+<!--                                        style="@style/customRatingBar"-->
+<!--                                        android:layout_width="wrap_content"-->
+<!--                                        android:layout_height="match_parent"-->
+<!--                                        android:clickable="true"-->
+<!--                                        android:focusable="true"-->
+<!--                                        android:isIndicator="true"-->
+<!--                                        android:maxHeight="30dp"-->
+<!--                                        android:numStars="5"-->
+<!--                                        android:rating="2"-->
+<!--                                        android:stepSize="0.5" />-->
 
                                 </LinearLayout>
 
@@ -214,7 +221,7 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.3"
                             android:orientation="vertical">
 
                             <LinearLayout

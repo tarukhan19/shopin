@@ -9,6 +9,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiServices {
@@ -42,7 +43,6 @@ interface ApiServices {
         @Part("phone_no") mobileno: RequestBody,
         @Part multipartimage: MultipartBody.Part?
     ): Call<EditProfileResponse>
-
 
     @GET("masters/category/get_store_category/")
     fun getCategoryData(): Call<StoreCategoryListResponse>
@@ -154,32 +154,38 @@ interface ApiServices {
 
 
     @GET("useror/der/order/order_list/")
-    fun getOrderList(): Call<OrderHistoryListResponse>
+    suspend fun getOrderList(): Response<OrderHistoryListResponse>
 
     @GET("useror/der/order/order_detail/")
-    fun getOrderDetails(@Query("order_id") id: String): Call<OrderHistoryDetailsResponse>
+    suspend fun getOrderDetails(@Query("order_id") id: String):OrderHistoryDetailsResponse
 
     @GET("store/get_store_timeslot/")
     fun getTimeslotList(@Query("id") id: String): Call<TimeSlotListResponse>
 
     @FormUrlEncoded
-    @POST("store-review/user-store-reeview/save_store_rating/")
-    fun ratingReviewSubmit(
+    @POST("order-review/user-store-reeview/save_store_rating/")
+    suspend fun ratingReviewSubmit(
         @Field("store")id : String,
+        @Field("order")order : String,
         @Field("rating")rating : String,
         @Field("comment")comment : String
 
-    ): Call<RatingReviewResponse>
+    ): RatingReviewResponse
 
     @FormUrlEncoded
     @POST("useror/der/order/delivery_tip/")
-    fun tipSubmit(
+    suspend fun tipSubmit(
         @Field("store")id : String,
         @Field("order")rating : String,
         @Field("comments")comment : String,
         @Field("amount")amount : String
+    ): TipResponse
 
-
-    ): Call<TipResponse>
+    @FormUrlEncoded
+    @POST("useror/der/order/save_curbside_cumment/")
+    suspend fun curbsidemsgSubmit(
+        @Field("order_id")order_id : String,
+        @Field("curbside_pickup_comment")comment : String
+    ): CurbsideMsgResponse
 
 }

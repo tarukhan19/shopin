@@ -12,7 +12,7 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <com.app.shopin.customview.BoldTextView
-            android:id="@+id/backbtn"
+            android:id="@+id/rrbackbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/back"
@@ -116,7 +116,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/writerevTV"
                 />
             <com.app.shopin.customview.RegularButton
-                android:id="@+id/submitBTN"
+                android:id="@+id/rrsubmitBTN"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55dp"
                 android:layout_marginStart="@dimen/_10dp"
