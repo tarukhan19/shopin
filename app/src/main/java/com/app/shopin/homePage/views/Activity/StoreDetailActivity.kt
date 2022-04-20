@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -22,6 +23,7 @@ import com.app.shopin.homePage.viewmodels.StoreDetailViewModel
 import com.app.shopin.homePage.views.Fragment.StoreDetailFeatureFragment
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.Preference
+import com.app.shopin.utils.TimeDateConversion
 import kotlinx.android.synthetic.main.activity_delivery_address_list.*
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.activity_store_detail.*
@@ -74,9 +76,29 @@ class StoreDetailActivity : AppCompatActivity() , View.OnClickListener{
         storeDetailViewModel.getStoreDetailObserver().observe(this) {
             if (it?.status == true && it.status_code == 200) {
                 val data= it.data.store
+                Log.e("storedata",data.toString())
                 storenameTV.text=data.name
                 addressTV.text=data.address
+                try {
+                    val storeTime = it.data.store_timmings
+                    val openTime = TimeDateConversion.convertTime(storeTime.opening_time)
+                    val closetime = TimeDateConversion.convertTime(storeTime.closing_time)
+                    val businesstype=data.business_type
+                    if (businesstype)
+                    {
+                        val time=openTime + " - " + closetime +" Open"
+                        binding.timeTV.text =time
 
+                    }
+                    else
+                    {
+                        val time=openTime + " - " + closetime +" Close"
+                        binding.timeTV.text =time
+
+                    }
+                } catch (e: Exception) {
+                    Log.e("exce", e.message.toString())
+                }
             } else {
                 progressbarLL.visibility = View.GONE
                 Utils.showToast("Something Went wrong", this)

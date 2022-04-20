@@ -98,7 +98,35 @@
 
 
 
+                <LinearLayout
+                    android:id="@+id/checkissuestatusLL"
 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:orientation="horizontal"
+                    >
+                    <com.app.shopin.customview.BoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Issue Status"
+                        android:src="@drawable/arrow_forward"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_8sp"
+
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/_5dp"
+                        android:layout_height="@dimen/_5dp"
+                        android:src="@drawable/next_red"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_3dp"
+
+                        />
+                </LinearLayout>
 
                     <com.app.shopin.customview.RegularTextView
                         android:id="@+id/quantityTV"

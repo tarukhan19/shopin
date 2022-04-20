@@ -20,288 +20,311 @@
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8dp"
-                android:layout_marginTop="@dimen/_8dp"
-                android:layout_marginEnd="@dimen/_8dp"
-                android:background="@color/white"
-                android:elevation="@dimen/_5dp"
-                android:visibility="visible"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/_15dp">
+                android:layout_height="match_parent">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   >
+                   <androidx.cardview.widget.CardView
+                       android:id="@+id/cardview"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/_8dp"
+                       android:layout_marginTop="@dimen/_8dp"
+                       android:layout_marginEnd="@dimen/_8dp"
+                       android:background="@color/white"
+                       android:elevation="@dimen/_5dp"
+                       android:visibility="visible"
+                       app:cardBackgroundColor="@color/white"
+                       app:cardCornerRadius="@dimen/_15dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-
-
-                    <LinearLayout
-                        android:id="@+id/storeLL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_8dp"
-                        android:weightSum="1">
-
-
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="0.2"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    tools:ignore="MissingConstraints">
-
-                                    <ImageView
-                                        android:id="@+id/shopIV"
-                                        android:layout_width="@dimen/_60dp"
-                                        android:layout_height="@dimen/_60dp"
-                                        android:layout_gravity="center"
-                                        android:src="@drawable/store"
-                                        android:padding="@dimen/_10dp"
-                                        android:background="@drawable/bluecircle"
-
-                                        android:textSize="5sp" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/_8dp"
-                                    android:layout_weight="0.7"
-                                    android:orientation="vertical">
-
-                                    <com.app.shopin.customview.BoldTextView
-                                        android:id="@+id/storenameTV"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="@dimen/_3dp"
-                                        android:background="@color/white"
-                                        android:padding="@dimen/_2dp"
-                                        android:text="Freshy's"
-                                        android:textColor="@color/black"
-                                        android:textSize="@dimen/_12sp" />
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <LinearLayout
-                                            android:id="@+id/ratingLL"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:background="@drawable/ratinggrayback"
-                                            android:gravity="center"
-                                            android:paddingStart="@dimen/_8dp"
-                                            android:paddingEnd="@dimen/_8dp"
-                                            android:paddingBottom="@dimen/_3dp">
-
-                                            <ImageView
-                                                android:layout_width="@dimen/_12dp"
-                                                android:layout_height="@dimen/_12dp"
-                                                android:src="@drawable/bigstar" />
-
-                                            <com.app.shopin.customview.RegularTextView
-                                                android:id="@+id/ratingTV"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginStart="@dimen/_3dp"
-                                                android:layout_marginEnd="@dimen/_5dp"
-                                                android:text="0"
-                                                android:textColor="@color/white"
-                                                android:textSize="@dimen/_10sp" />
-                                        </LinearLayout>
-
-
-                                        <com.app.shopin.customview.RegularTextView
-                                            android:id="@+id/totalreviewTV"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="@dimen/_3dp"
-                                            android:text="0 Review"
-                                            android:textColor="@color/darkgray"
-                                            android:textSize="@dimen/_10sp" />
-                                    </LinearLayout>
-
-
-                                    <com.app.shopin.customview.RegularTextView
-                                        android:id="@+id/addressTV"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="@dimen/_3dp"
-                                        android:text="0 Review"
-                                        android:layout_marginTop="@dimen/_5dp"
-                                        android:textColor="@color/darkgray"
-                                        android:textSize="@dimen/_10sp" />
-                                </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:orientation="vertical">
 
 
 
-
-                        <LinearLayout
-                            android:id="@+id/mapLL"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.1"
-                            android:gravity="bottom|end"
-                            android:orientation="vertical">
-                            <ImageView
-                                android:id="@+id/mapIV"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/location"
-                                android:layout_marginRight="@dimen/_5dp"
-                                tools:ignore="UseAppTint" />
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/productLL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <View
-                            android:id="@+id/view"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="@color/gray" />
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_10dp"
-
-                            >
-                            <com.app.shopin.customview.RegularTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_3dp"
-                                android:text="Store Time"
-                                android:layout_marginTop="@dimen/_5dp"
-                                android:textColor="@color/darkgray"
-                                android:textSize="@dimen/_10sp" />
-
-                            <com.app.shopin.customview.RegularTextView
-                                android:id="@+id/storetimeTV"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_3dp"
-                                android:text="9 AM- 9 PM"
-                                android:layout_marginTop="@dimen/_5dp"
-                                android:textColor="@color/darkgray"
-                                android:textSize="@dimen/_10sp" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_marginTop="@dimen/_5dp"
-                            android:background="@color/gray" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="@dimen/_10dp"
-                            >
-                            <com.app.shopin.customview.RegularTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_3dp"
-                                android:text="Store's Return Policy"
-                                android:layout_marginTop="@dimen/_5dp"
-                                android:textColor="@color/darkgray"
-                                android:textSize="@dimen/_10sp" />
-
-                            <com.app.shopin.customview.RegularTextView
-                                android:id="@+id/storereturnpolicyTV"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_3dp"
-                                android:text="@string/loremipsum"
-                                android:layout_marginTop="@dimen/_5dp"
-                                android:textColor="@color/darkgray"
-                                android:textSize="@dimen/_10sp" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
+                           <LinearLayout
+                               android:id="@+id/storeLL"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:orientation="horizontal"
+                               android:padding="@dimen/_8dp"
+                               android:weightSum="1">
 
 
 
-                </LinearLayout>
+                               <LinearLayout
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_weight="0.2"
+                                   android:layout_gravity="center"
+                                   android:gravity="center"
+                                   tools:ignore="MissingConstraints">
+
+                                   <ImageView
+                                       android:id="@+id/shopIV"
+                                       android:layout_width="@dimen/_60dp"
+                                       android:layout_height="@dimen/_60dp"
+                                       android:layout_gravity="center"
+                                       android:src="@drawable/store"
+                                       android:padding="@dimen/_10dp"
+                                       android:background="@drawable/bluecircle"
+
+                                       android:textSize="5sp" />
 
 
-            </androidx.cardview.widget.CardView>
+                               </LinearLayout>
+
+                               <LinearLayout
+                                   android:layout_width="0dp"
+                                   android:layout_height="wrap_content"
+                                   android:layout_marginLeft="@dimen/_8dp"
+                                   android:layout_weight="0.7"
+                                   android:orientation="vertical">
+
+                                   <com.app.shopin.customview.BoldTextView
+                                       android:id="@+id/storenameTV"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:layout_margin="@dimen/_3dp"
+                                       android:background="@color/white"
+                                       android:padding="@dimen/_2dp"
+                                       android:textColor="@color/black"
+                                       android:textSize="@dimen/_12sp" />
+
+                                   <LinearLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content">
+
+                                       <LinearLayout
+                                           android:id="@+id/ratingLL"
+                                           android:layout_width="wrap_content"
+                                           android:layout_height="wrap_content"
+                                           android:background="@drawable/ratinggrayback"
+                                           android:gravity="center"
+                                           android:paddingStart="@dimen/_8dp"
+                                           android:paddingEnd="@dimen/_8dp"
+                                           android:paddingBottom="@dimen/_3dp">
+
+                                           <ImageView
+                                               android:layout_width="@dimen/_12dp"
+                                               android:layout_height="@dimen/_12dp"
+                                               android:src="@drawable/bigstar" />
+
+                                           <com.app.shopin.customview.RegularTextView
+                                               android:id="@+id/ratingTV"
+                                               android:layout_width="match_parent"
+                                               android:layout_height="wrap_content"
+                                               android:layout_marginStart="@dimen/_3dp"
+                                               android:layout_marginEnd="@dimen/_5dp"
+                                               android:text="0"
+                                               android:textColor="@color/white"
+                                               android:textSize="@dimen/_10sp" />
+                                       </LinearLayout>
+
+
+                                       <com.app.shopin.customview.RegularTextView
+                                           android:id="@+id/totalreviewTV"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_marginLeft="@dimen/_3dp"
+                                           android:text="0 Review"
+                                           android:textColor="@color/darkgray"
+                                           android:textSize="@dimen/_10sp" />
+                                   </LinearLayout>
+
+
+                                   <com.app.shopin.customview.RegularTextView
+                                       android:id="@+id/addressTV"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="@dimen/_3dp"
+                                       android:layout_marginTop="@dimen/_5dp"
+                                       android:textColor="@color/darkgray"
+                                       android:textSize="@dimen/_10sp" />
+                               </LinearLayout>
 
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8dp"
-            android:layout_marginTop="@dimen/_20dp"
-            android:layout_marginEnd="@dimen/_8dp"
-            android:background="@color/white"
-            android:elevation="@dimen/_5dp"
-            android:visibility="visible"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_15dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
 
-                <com.app.shopin.customview.RegularTextView
-                    android:id="@+id/issueTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40dp"
-                    android:background="#466f81"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="Please select the item you have issues with"
-                    />
+                               <LinearLayout
+                                   android:id="@+id/mapLL"
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_weight="0.1"
+                                   android:gravity="bottom|end"
+                                   android:orientation="vertical">
+                                   <ImageView
+                                       android:id="@+id/mapIV"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       android:src="@drawable/location"
+                                       android:layout_marginRight="@dimen/_5dp"
+                                       tools:ignore="UseAppTint" />
 
 
+                               </LinearLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/deliveryAddressRecycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/_8dp"
-                        android:layout_marginRight="@dimen/_8dp"
-                        android:layout_marginTop="@dimen/_8dp"
-                        android:clipToPadding="false"
-                        android:layout_marginBottom="@dimen/_10dp"
+                           </LinearLayout>
+
+                           <LinearLayout
+                               android:id="@+id/productLL"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:orientation="vertical">
+
+                               <View
+                                   android:id="@+id/view"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="0.5dp"
+                                   android:background="@color/gray" />
+
+
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:orientation="vertical"
+                                   android:padding="@dimen/_10dp"
+
+                                   >
+                                   <com.app.shopin.customview.RegularTextView
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="@dimen/_3dp"
+                                       android:text="Store Time"
+                                       android:layout_marginTop="@dimen/_5dp"
+                                       android:textColor="@color/darkgray"
+                                       android:textSize="@dimen/_10sp" />
+
+                                   <com.app.shopin.customview.RegularTextView
+                                       android:id="@+id/storetimeTV"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="@dimen/_3dp"
+                                       android:text="NA"
+                                       android:layout_marginTop="@dimen/_5dp"
+                                       android:textColor="@color/darkgray"
+                                       android:textSize="@dimen/_10sp" />
+                               </LinearLayout>
+
+                               <View
+                                   android:layout_width="match_parent"
+                                   android:layout_height="0.5dp"
+                                   android:layout_marginTop="@dimen/_5dp"
+                                   android:background="@color/gray" />
+
+                               <LinearLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   android:layout_gravity="center"
+                                   android:gravity="center"
+                                   android:orientation="vertical"
+                                   android:padding="@dimen/_10dp"
+                                   >
+                                   <com.app.shopin.customview.RegularTextView
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="@dimen/_3dp"
+                                       android:text="Store's Return Policy"
+                                       android:layout_marginTop="@dimen/_5dp"
+                                       android:textColor="@color/darkgray"
+                                       android:textSize="@dimen/_10sp" />
+
+                                   <com.app.shopin.customview.RegularTextView
+                                       android:id="@+id/storereturnpolicyTV"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_marginLeft="@dimen/_3dp"
+                                       android:text="@string/loremipsum"
+                                       android:layout_marginTop="@dimen/_5dp"
+                                       android:textColor="@color/darkgray"
+                                       android:textSize="@dimen/_10sp" />
+
+                               </LinearLayout>
+
+
+                           </LinearLayout>
+
+
+
+                       </LinearLayout>
+
+
+                   </androidx.cardview.widget.CardView>
+
+
+
+                   <androidx.cardview.widget.CardView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/_8dp"
+                       android:layout_marginTop="@dimen/_20dp"
+                       android:layout_marginEnd="@dimen/_8dp"
+                       android:background="@color/white"
+                       android:elevation="@dimen/_5dp"
+                       android:visibility="visible"
+                       app:cardBackgroundColor="@color/white"
+                       app:cardCornerRadius="@dimen/_15dp">
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:orientation="vertical">
+
+                           <com.app.shopin.customview.RegularTextView
+                               android:id="@+id/issueTV"
+                               android:layout_width="match_parent"
+                               android:layout_height="@dimen/_40dp"
+                               android:background="#466f81"
+                               android:textColor="@color/white"
+                               android:textSize="@dimen/_12sp"
+                               android:layout_gravity="center"
+                               android:gravity="center"
+                               android:text="Please select the item you have issues with"
+                               />
+
+
+
+                           <androidx.recyclerview.widget.RecyclerView
+                               android:id="@+id/productRV"
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_marginLeft="@dimen/_8dp"
+                               android:layout_marginRight="@dimen/_8dp"
+                               android:layout_marginTop="@dimen/_8dp"
+                               android:clipToPadding="false"
+                               android:layout_marginBottom="@dimen/_10dp"
+                               />
+
+
+
+
+
+                       </LinearLayout>
+                   </androidx.cardview.widget.CardView>
+
+
+
+
+                   <com.app.shopin.customview.RegularButton
+                       android:id="@+id/nextBTN"
+                       android:layout_width="match_parent"
+                       android:layout_height="@dimen/_55dp"
+                       android:background="@drawable/buttonbackground"
+                       android:layout_marginLeft="@dimen/_10dp"
+                       android:layout_marginRight="@dimen/_10dp"
+                       android:layout_marginTop="@dimen/_20dp"
+                       android:text="@string/submit"
+                       android:layout_marginBottom="@dimen/_30dp"
+                       android:textColor="@color/white"
+                       android:textSize="@dimen/_14sp"
                        />
-
-
-
-
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
+               </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
 
         </LinearLayout>

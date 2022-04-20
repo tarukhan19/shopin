@@ -145,7 +145,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:textSize="@dimen/_12sp"
-                           android:text="9 AM- 9 PM  |  Open Now"
+                           android:text="NA"
                            android:src="@drawable/clock"
                            android:textColor="@color/white"
                            android:layout_marginLeft="@dimen/_8dp"

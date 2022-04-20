@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -68,7 +69,7 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
         cartListViewModels.getObserveData()
             .observe(this) {
                 if (it != null) {
-
+                    Log.e("cartlistdata",it.data.toString())
                     val address = it.data?.default_address?.address
                     addressid = it.data?.default_address?.id!!
                     Preference.getInstance(this)?.setString(Constant.DELIVERY_ADDRESS, address!!)
@@ -155,26 +156,6 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
         })
 
 
-//        object : Thread() {
-//            @SuppressLint("NotifyDataSetChanged")
-//            override fun run() {
-//                try {
-//                    runOnUiThread {
-//                        if (from.equals("cartdata"))
-//                        {
-//                            fetchCartData()
-//                        }
-//                        else if (from.equals("addressselect")) {
-//                            addressTV.setText(Preference.getInstance(this@CartPageActivity)?.getString(Constant.DELIVERY_ADDRESS))
-//
-//                        }
-//                    }
-//                    sleep(300)
-//                } catch (e: InterruptedException) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        }.start()
     }
 
 

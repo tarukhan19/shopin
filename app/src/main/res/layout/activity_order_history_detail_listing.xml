@@ -336,13 +336,14 @@
                             android:weightSum="1">
 
                             <LinearLayout
+                                android:id="@+id/issuewithitemTV"
+
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="0.7"
                                 android:gravity="center_vertical">
 
                                 <com.app.shopin.customview.RegularTextView
-                                    android:id="@+id/minamountTV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"

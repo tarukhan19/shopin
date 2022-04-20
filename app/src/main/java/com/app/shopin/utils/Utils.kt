@@ -55,6 +55,7 @@ class Utils {
 
         suspend fun dateFormat(createdDate: String?):String {
             var formatted:String=""
+            Log.e("createdDate",createdDate.toString())
             try {
                 var date = createdDate
                 val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")

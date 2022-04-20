@@ -28,7 +28,6 @@ class HomeActivity : AppCompatActivity() {
     private val ID_MORE = 3
     var CURRENT_TAG = ID_HOME
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(
@@ -85,10 +84,6 @@ class HomeActivity : AppCompatActivity() {
         fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
     }
 
-
-
-
-
     override fun onBackPressed() {
         super.onBackPressed()
         if (CURRENT_TAG == ID_HOME) {
@@ -99,8 +94,6 @@ class HomeActivity : AppCompatActivity() {
             bottomNavigation.show(0)
         }
     }
-
-
 
     fun  openBottomSheetDialog(context: Context)
     {

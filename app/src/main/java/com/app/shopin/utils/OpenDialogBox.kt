@@ -109,7 +109,7 @@ class OpenDialogBox {
                 {
                     DeliveryAddressUpdateActivity.getInstance()?.runThread()
                 }
-                else if (from.equals("orderplace"))
+                else if (from.equals("issue"))
                 {
                    // CartPageActivity.getInstance()?.runThread("dialog","")
                 }

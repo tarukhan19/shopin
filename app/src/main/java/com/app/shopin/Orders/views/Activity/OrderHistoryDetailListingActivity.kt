@@ -1,6 +1,7 @@
 package com.app.shopin.Orders.views.Activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
@@ -18,9 +19,12 @@ import com.app.shopin.databinding.ItemCurbsidePickupBinding
 import com.app.shopin.databinding.ItemRatingReviewBinding
 import com.app.shopin.databinding.ItemTipAmountBinding
 import com.app.shopin.homePage.models.CartChildData
+import com.app.shopin.homePage.models.ErrorResponse
+import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_order_history_detail_listing.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import kotlinx.coroutines.CoroutineScope
@@ -30,19 +34,19 @@ import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
+import retrofit2.Response
 import java.util.*
-
-
 class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityOrderHistoryDetailListingBinding
     lateinit var orderid: String
     lateinit var storeid: String
     lateinit var store_order_type: String
     lateinit var ordresponse:OrderHistoryDetailsResponse
-    lateinit var ratingReviewResponse: RatingReviewResponse
-    lateinit var tipResponse: TipResponse
-    lateinit var curbsidemsgResponse: CurbsideMsgResponse
+    lateinit var ratingReviewResponse: Response<RatingReviewResponse>
+    lateinit var tipResponse: Response<TipResponse>
+    lateinit var curbsidemsgResponse: Response<CurbsideMsgResponse>
     lateinit var order_status: String
+    lateinit var order_no:String
     lateinit var rating: String
     lateinit var review: String
     lateinit var tipamount: String
@@ -79,6 +83,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         progressbarLL.visibility = View.VISIBLE
         button2LL.setOnClickListener(this)
         button1LL.setOnClickListener(this)
+        issuewithitemTV.setOnClickListener(this)
         callApiFunction("orderdetail")
     }
 
@@ -91,9 +96,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
             R.id.button1LL -> {
 
                 if (store_order_type.equals("Curbside Pickup")) {
-
                     openCurbSideDialog()
-
                 }
 
             }
@@ -101,11 +104,16 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
                 if (store_order_type.equals("Delivery") && order_status.equals("Completed")) {
                     button2LL.visibility = VISIBLE
-                    if (ordertipJson.equals("{}")) {
+                   // if (ordertipJson.equals("{}")) {
                         openTipPopUp()
-                    }
+                   // }
                 }
 
+            }
+            R.id.issuewithitemTV-> {
+                val in7 = Intent(this, IssueWithItemsActivity::class.java)
+                in7.putExtra("order_no",order_no)
+                startActivity(in7)
             }
         }
     }
@@ -115,6 +123,8 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setData(data: OrderHistoryDetail) {
+        Log.e("data",data.toString())
+
         storeid = data.store!!
 
         val orderratedata = data.store_rating!!
@@ -131,8 +141,8 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         val tipdata = data.order_tip!!
         val tipgson = Gson()
         ordertipJson = tipgson.toJson(tipdata)
-
-       orderidTV.setText(data.order_no)
+        order_no=data.order_no.toString()
+       orderidTV.setText(order_no)
 
         CoroutineScope(Dispatchers.Main).launch {
             val date = Utils.dateFormat(data.created_date)
@@ -145,14 +155,24 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         order_status = data.order_status
         buttonTV1.text = store_order_type
         totalpriceTV.text = "Total \n$ " + data.store_total_amount
-        Log.e("orderrateJson", orderrateJson.toString())
         if (!orderrateJson.equals("{}")) {
-            var avgrating = orderrateJson.optDouble("rating__avg")
+            val avgrating = orderrateJson.optDouble("rating__avg")
             val myrating = orderrateJson.optDouble("user_rating")
             val reviewcount = orderrateJson.optString("rating__count")
 
-            totalreviewTV.setText("$reviewcount Ratings")
-            ratingTV.setText(String.format("%.2f", avgrating))
+            totalreviewTV.setText("$reviewcount Reviews")
+
+                if (avgrating.toString().equals("NaN"))
+                {
+                    ratingTV.setText("0.0")
+                }
+                else
+                {
+                    ratingTV.setText(String.format("%.2f", avgrating))
+                }
+
+
+
 
             ratingRB.rating = myrating.toFloat()
             if (avgrating.toString().equals("0.0")) {
@@ -174,7 +194,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         try {
             val storeInventoryData: ArrayList<CartChildData> =
                 data.order_item!!
-            val adapter = StoreItemHistoryAdapter(this, storeInventoryData)
+            val adapter = StoreItemHistoryAdapter(this, storeInventoryData,order_no)
             val layoutManager = LinearLayoutManager(this)
             productRV.setHasFixedSize(false)
             productRV.layoutManager = layoutManager
@@ -186,7 +206,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         }
 
         if (order_status.equals("Rejected")) {
-            buttonIV1.visibility = View.GONE
+            buttonIV1.visibility = GONE
         }
 
         if (store_order_type.equals("Delivery") && order_status.equals("Completed")) {
@@ -209,6 +229,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
             try {
                 if (from.equals("orderdetail"))
                 {
+                    Log.e("orderid",orderid)
                     ordresponse = service.getOrderDetails(orderid)
                 }
                 else if (from.equals("ratingreview"))
@@ -217,11 +238,6 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
                 }
                 else if (from.equals("tip"))
                 {
-                    Log.e("storeid",storeid)
-                    Log.e("orderid",orderid)
-                    Log.e("tipcomment",tipcomment)
-                    Log.e("tipamount",tipamount)
-
                     tipResponse = service.tipSubmit(storeid, orderid, tipcomment, tipamount)
                 }
                 else if (from.equals("curbsidemsg"))
@@ -246,23 +262,49 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
                     }
                     else if (from.equals("ratingreview"))
                     {
-                        if (ratingReviewResponse.status==true)
+
+
+                        if (ratingReviewResponse.isSuccessful)
                         {
                             rrbindingSheet.ratereviewLL.visibility= GONE
                             rrbindingSheet.thanksLL.visibility= VISIBLE
                             ordresponse = service.getOrderDetails(orderid)
-
                             setData(ordresponse.data.order_drtail)
                         }
+                        else
+                        {
+                            val gson = Gson()
+                            val type = object : TypeToken<ErrorResponse>() {}.type
+                            val errorResponse: ErrorResponse? = gson.fromJson(ratingReviewResponse.errorBody()!!.charStream(), type)
+                            OpenDialogBox.openDialog(
+                                this@OrderHistoryDetailListingActivity,
+                                "Error!",
+                                errorResponse!!.msg,
+                                ""
+                            )
 
+                        }
 
                     }
                     else if (from.equals("curbsidemsg"))
                     {
 
-                        if (curbsidemsgResponse.status==true)
+                        if (curbsidemsgResponse.isSuccessful)
                         {
                             Utils.showToast("Message has been sent.", this@OrderHistoryDetailListingActivity)
+
+                        }
+                        else
+                        {
+                            val gson = Gson()
+                            val type = object : TypeToken<ErrorResponse>() {}.type
+                            val errorResponse: ErrorResponse? = gson.fromJson(curbsidemsgResponse.errorBody()!!.charStream(), type)
+                            OpenDialogBox.openDialog(
+                                this@OrderHistoryDetailListingActivity,
+                                "Error!",
+                                errorResponse!!.msg,
+                                ""
+                            )
 
                         }
 
@@ -270,7 +312,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
                     else if (from.equals("tip"))
                     {
 
-                        if (tipResponse.status==true)
+                        if (tipResponse.isSuccessful)
                         {
                             Utils.showToast("Thank you for your tip", this@OrderHistoryDetailListingActivity)
                             buttonTV2.setText("Tipped")
@@ -278,9 +320,17 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
                             setData(ordresponse.data.order_drtail)
 
                         }
-                        else
+                      else
                         {
-                            Utils.showToast(tipResponse.msg, this@OrderHistoryDetailListingActivity)
+                            val gson = Gson()
+                            val type = object : TypeToken<ErrorResponse>() {}.type
+                            var errorResponse: ErrorResponse? = gson.fromJson(tipResponse.errorBody()!!.charStream(), type)
+                            OpenDialogBox.openDialog(
+                                this@OrderHistoryDetailListingActivity,
+                                "Error!",
+                                errorResponse!!.msg,
+                                ""
+                            )
 
                         }
 
@@ -295,7 +345,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
                 } catch (e: Throwable) {
                     Utils.showToast(
-                        e.localizedMessage,
+                        "t>> "+e.localizedMessage,
                         this@OrderHistoryDetailListingActivity
                     )
 
@@ -330,9 +380,6 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
             }
 
         }
-
-
-
 
     }
 

@@ -28,20 +28,6 @@ class TimeSlotListViewModel : ViewModel() {
         return timeSlotListResponse
     }
 
-//    fun gettimeSlotList(requireContext: Context, id:String) {
-//
-//        val request = ServiceBuilder.getApiService(requireContext)
-//
-//        viewModelScope.launch {
-//            request.getTimeslotList(id).catch { e->
-//                    Log.d("main", "getPost: ${e.message}")
-//                }
-//                .collect {postData1->
-//                    postData.value=postData1
-//                }
-//        }
-//    }
-
     fun getTimeSlotList(requireContext: Context, id:String) {
         val request = ServiceBuilder.getApiService(requireContext)
         request.getTimeslotList(id).enqueue(object : Callback<TimeSlotListResponse> {

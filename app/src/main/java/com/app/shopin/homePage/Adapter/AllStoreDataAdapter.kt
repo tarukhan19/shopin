@@ -21,7 +21,11 @@ import com.app.shopin.homePage.views.Activity.StoreDetailActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.DistanceCalculationMethod
 import com.app.shopin.utils.Preference
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_issue_with_items.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.Exception
 
 class AllStoreDataAdapter(
@@ -53,10 +57,39 @@ class AllStoreDataAdapter(
 
         val originlat= Preference.getInstance(ctx)?.getString(Constant.CURRENT_LOCATION_LAT)?.toDouble()
         val originlng= Preference.getInstance(ctx)?.getString(Constant.CURRENT_LOCATION_LONG)?.toDouble()
-        val destlat=data.lattitude?.toDouble()
+        val destlat=data.latitude?.toDouble()
         val destlng=data.longitude?.toDouble()
         holder.binding.nameTV.text=data.name
-        holder.binding.ratingTV.text=data.rating
+
+//        val storerating = data.rating_details
+//        val gson = Gson()
+//        val jsonString = gson.toJson(storerating)
+//        var orderrateJson = JSONObject()
+//
+//        try {
+//            orderrateJson = JSONObject(jsonString)
+//            if (!orderrateJson.equals("{}")) {
+//                val avgrating = orderrateJson.optDouble("ratining_avg")
+//                val reviewcount = orderrateJson.optString("total_review")
+//                Log.e("reviewcount",avgrating.toString())
+//                holder.binding.reviewcountTV.setText("$reviewcount Reviews")
+//
+//                if (avgrating.toString().equals("NaN")) {
+//                    holder.binding.ratingTV.setText("0.0")
+//                } else {
+//                    holder.binding.ratingTV.setText(String.format("%.2f", avgrating))
+//                }
+//
+//                if (avgrating.toString().equals("0.0")) {
+//                    holder.binding.ratingLL.setBackgroundResource(R.drawable.ratinggrayback)
+//                } else {
+//                    holder.binding.ratingLL.setBackgroundResource(R.drawable.ratingyellowback)
+//                }
+//            }
+//        } catch (e: JSONException) {
+//            e.printStackTrace()
+//        }
+
 
         val key= Preference.getInstance(ctx)?.getString(Constant.EXTERNAL_SEARCH_FILTER)!!
         if (key.equals("1"))
@@ -114,8 +147,15 @@ class AllStoreDataAdapter(
             intent.putExtra("id",data.id)
             ctx.startActivity(intent)
         })
-        DistanceCalculationMethod.getDistance(originlat!!,
-            originlng!!, destlat!!, destlng!!,ctx,holder.binding.distanceTV)
+        try {
+            DistanceCalculationMethod.getDistance(originlat!!,
+                originlng!!, destlat!!, destlng!!,ctx,holder.binding.distanceTV)
+        }
+        catch (e:Exception)
+        {
+            Log.e("distexcep",e.message.toString())
+        }
+
     }
 
     override fun getItemCount(): Int {

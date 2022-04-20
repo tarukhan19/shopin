@@ -153,14 +153,16 @@ interface ApiServices {
     fun placeOrder(@Body placeOrderResponse: PlaceOrder): Call<PlaceOrderResponse>
 
 
-    @GET("useror/der/order/order_list/")
-    suspend fun getOrderList(): Response<OrderHistoryListResponse>
-
-    @GET("useror/der/order/order_detail/")
-    suspend fun getOrderDetails(@Query("order_id") id: String):OrderHistoryDetailsResponse
 
     @GET("store/get_store_timeslot/")
     fun getTimeslotList(@Query("id") id: String): Call<TimeSlotListResponse>
+
+    @GET("useror/der/order/order_list/")
+    suspend fun getOrderList(): Response<OrderHistoryListResponse>
+
+
+    @GET("useror/der/order/order_detail/")
+    suspend fun getOrderDetails(@Query("order_id") id: String):OrderHistoryDetailsResponse
 
     @FormUrlEncoded
     @POST("order-review/user-store-reeview/save_store_rating/")
@@ -170,7 +172,7 @@ interface ApiServices {
         @Field("rating")rating : String,
         @Field("comment")comment : String
 
-    ): RatingReviewResponse
+    ): Response<RatingReviewResponse>
 
     @FormUrlEncoded
     @POST("useror/der/order/delivery_tip/")
@@ -179,13 +181,21 @@ interface ApiServices {
         @Field("order")rating : String,
         @Field("comments")comment : String,
         @Field("amount")amount : String
-    ): TipResponse
+    ): Response<TipResponse>
 
     @FormUrlEncoded
     @POST("useror/der/order/save_curbside_cumment/")
     suspend fun curbsidemsgSubmit(
         @Field("order_id")order_id : String,
         @Field("curbside_pickup_comment")comment : String
-    ): CurbsideMsgResponse
+    ): Response<CurbsideMsgResponse>
+
+
+    @GET("order-issue/get_list/")
+   suspend fun issuewithitemdetail(@Query("order_no") order_no: String): Response<IssueWithItemResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("order-issue/create_issue/")
+    suspend  fun createIssueWithItem(@Body sendSelectedIssue: SendSelectedIssue): Response<CreateIssueResponse>
 
 }

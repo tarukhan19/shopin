@@ -2,18 +2,23 @@ package com.app.shopin.Orders.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.app.shopin.Orders.views.Activity.IssueWithItemsActivity
 import com.app.shopin.R
 import com.app.shopin.databinding.ItemProdHistoryBinding
 import com.app.shopin.homePage.models.CartChildData
 
 class StoreItemHistoryAdapter(
-    var ctx:Context,
-    var cartChildData: ArrayList<CartChildData>) : RecyclerView.Adapter<StoreItemHistoryAdapter.MyViewHolder>() {
+    var ctx: Context,
+    var cartChildData: ArrayList<CartChildData>,
+    var order_no: String
+) : RecyclerView.Adapter<StoreItemHistoryAdapter.MyViewHolder>() {
     lateinit var binding: ItemProdHistoryBinding
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -30,6 +35,20 @@ class StoreItemHistoryAdapter(
 
         holder.binding.prodnameTV.text=data.inventory_name
         holder.binding.prodamountTV.text="$"+data.price+"/pc"
+        if (data.item_issue)
+        {
+            holder.binding.checkissuestatusLL.visibility=View.VISIBLE
+        }
+        else
+        {
+            holder.binding.checkissuestatusLL.visibility=View.GONE
+
+        }
+        holder.binding.checkissuestatusLL.setOnClickListener {
+            val in7 = Intent(ctx, IssueWithItemsActivity::class.java)
+            in7.putExtra("order_no",order_no)
+            ctx.startActivity(in7)
+        }
         if (data.quantity.equals("1"))
         {
             holder.binding.quantityTV.text=data.quantity +" Item"

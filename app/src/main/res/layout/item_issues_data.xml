@@ -45,16 +45,24 @@
                 >
 
 
-                <com.app.shopin.customview.BoldTextView
-                    android:id="@+id/prodnameTV"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/clock"
-                    android:text="Dove Hair fall rescue shampoo"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sp"
+                    android:orientation="horizontal"
+                    >
+                    <com.app.shopin.customview.BoldTextView
+                        android:id="@+id/prodnameTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dove Hair fall rescue shampoo"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sp"
 
-                    />
+                        />
+
+
+
+                </LinearLayout>
 
                 <com.app.shopin.customview.RegularTextView
                     android:id="@+id/proddescTV"
@@ -123,6 +131,7 @@
 
                     />
                 <com.app.shopin.customview.RegularTextView
+                    android:id="@+id/quantityTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="15 Items"
@@ -154,6 +163,8 @@
 
 
                     <com.app.shopin.customview.RegularTextView
+                        android:id="@+id/selectissuestatusTV"
+
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8dp"
@@ -179,6 +190,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/issueTVLL"
+                android:background="@drawable/edittextbackgrnd"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"

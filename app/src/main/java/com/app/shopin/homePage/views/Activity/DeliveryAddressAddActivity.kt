@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
@@ -24,6 +25,7 @@ import com.app.shopin.databinding.ActivityDeliveryAddressAddBinding
 import com.app.shopin.homePage.viewmodels.DeliveryAddressAddViewModel
 import com.app.shopin.utils.LocationMethods
 import com.app.shopin.utils.OpenDialogBox
+import com.app.shopin.utils.Status
 import com.customer.gogetme.Util.MyTextWatcher
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,8 +41,8 @@ import kotlinx.android.synthetic.main.activity_delivery_address_add.toolbar
 import kotlinx.android.synthetic.main.toolbar.view.*
 import kotlin.collections.ArrayList
 
-class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickListener,
-    View.OnClickListener, OnMapReadyCallback {
+class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickListener, View.OnClickListener, OnMapReadyCallback
+{
     lateinit var binding: ActivityDeliveryAddressAddBinding
     private lateinit var deliveryAddressAddViewModel: DeliveryAddressAddViewModel
     lateinit var addresstypeArrayAdapter: ArrayAdapter<String>
@@ -241,7 +243,6 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     {
         progressbarLL.visibility = View.VISIBLE
         deliveryAddressAddViewModel.getObserveData().removeObservers(this)
-
         deliveryAddressAddViewModel.getObserveData().observe(this) {
 
             if (it?.status == true && it.status_code == 201) {
@@ -307,7 +308,6 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     fun setMap()
     {
         val latlng = LatLng(lat, lng)
-
         val marker = mMap.addMarker(
             MarkerOptions()
                 .position(latlng)
@@ -342,10 +342,9 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
                     }
                 }
 
-                runOnUiThread{
+                runOnUiThread {
                     addressET.setText(location)
                     aptfloorcompET.setText(floor)
-
                 }
 
             }
@@ -357,7 +356,6 @@ class DeliveryAddressAddActivity : AppCompatActivity(), AdapterView.OnItemClickL
     {
         object : Thread()
         {
-            @SuppressLint("NotifyDataSetChanged")
             override fun run() {
                 try
                 {

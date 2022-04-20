@@ -51,14 +51,14 @@
         <entry key="app/src/main/res/drawable/yellowback.xml" value="0.147" />
         <entry key="app/src/main/res/layout/activity_address_list.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/activity_cart_page.xml" value="0.18703703703703703" />
-        <entry key="app/src/main/res/layout/activity_delivery_address_add.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_delivery_address_add.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_delivery_address_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_delivery_address_update.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_email_register.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/activity_get_my_store_listed.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_issue_with_items.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_issue_with_items.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_mobile_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_order_history_detail_listing.xml" value="0.25" />
@@ -92,14 +92,17 @@
         <entry key="app/src/main/res/layout/item_delivery_address_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_filter.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_issue_details.xml" value="0.18703703703703703" />
-        <entry key="app/src/main/res/layout/item_issues_data.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_issue_list.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_issues.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/item_issues_data.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_issuewithitem_prod.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_logout.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/item_new_stores.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_order_history_detail_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_order_history_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_pickup_slots.xml" value="0.1782178217821782" />
         <entry key="app/src/main/res/layout/item_pickup_type.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_prod_history.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_prod_history.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_rating_review.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_search_category.xml" value="0.25" />

@@ -161,6 +161,7 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
                             }
                             else if (key.equals("1")) {
                                 val storeList: ArrayList<AllStoreDataValues>? = it.data.store
+                                Log.e("storeList",storeList.toString())
 
                                 if (storeList != null) {
                                     storeListAdapter = AllStoreDataAdapter(storeList,false)
@@ -171,6 +172,8 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
                             }
                             else if (key.equals("2")) {
                                 val storeprodList: ArrayList<AllStoreDataValues>? = it.data.store_product
+                                Log.e("storeprodList",storeprodList.toString())
+
                                 if (storeprodList != null) {
                                     storeListAdapter = AllStoreDataAdapter(storeprodList,false)
                                     searchstoreRecycler.adapter = storeListAdapter

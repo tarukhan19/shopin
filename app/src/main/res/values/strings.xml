@@ -228,4 +228,7 @@
     <string name="tip_del_amnt">Tip your delivery executive</string>
     <string name="thank_del_exce">Tip your delivery executive for bieng out there during these tough times and containing to deliver as always.</string>
     <string name="like_abt_del">What did you like about the delivery</string>
+    <string name="issuewithitem">Issue With Item</string>
+    <string name="issues">Issues</string>
+    <string name="selectissues">Select Issues</string>
 </resources>

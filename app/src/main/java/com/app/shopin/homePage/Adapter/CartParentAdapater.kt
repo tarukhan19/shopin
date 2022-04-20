@@ -265,6 +265,8 @@ class CartParentAdapater(
         twoPicker.wheelOptions.setOption1SelectedListener(OnItemSelectedListener {
         index ->
          selectedDate=   datelist.get(index).toString()
+            Toast.makeText(ctx, "" + selectedDate, Toast.LENGTH_SHORT).show()
+
         })
 
         twoPicker.wheelOptions.setOption2SelectedListener(OnItemSelectedListener {
