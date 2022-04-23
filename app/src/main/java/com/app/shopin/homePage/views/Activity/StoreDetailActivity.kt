@@ -110,6 +110,7 @@ class StoreDetailActivity : AppCompatActivity() , View.OnClickListener{
     override fun onResume() {
         super.onResume()
         loadStore()
+        Log.e("storeid",id)
     }
 
     override fun onBackPressed() {

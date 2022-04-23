@@ -1,32 +1,23 @@
 package com.app.shopin.utils
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.*
-import android.widget.Button
 import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import com.app.shopin.R
 import com.app.shopin.UserAuth.view.EditProfileActivity
-import com.app.shopin.UserAuth.view.EmailRegisterActivity
 import com.app.shopin.UserAuth.view.WelcomeToShop
 import com.app.shopin.databinding.ItemFilterBinding
 import com.app.shopin.databinding.ItemLogoutBinding
 import com.app.shopin.databinding.ItemSuccessDialogBinding
-import com.app.shopin.homePage.Adapter.StoreCategoryAdapter
-import com.app.shopin.homePage.views.Activity.CartPageActivity
 import com.app.shopin.homePage.views.Activity.DeliveryAddressAddActivity
 import com.app.shopin.homePage.views.Activity.DeliveryAddressUpdateActivity
 import com.app.shopin.homePage.views.Activity.GetMyStoreListedActivity
 import com.app.shopin.homePage.views.Fragment.SearchFragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class OpenDialogBox {
@@ -135,17 +126,17 @@ class OpenDialogBox {
             dialog.setCancelable(false)
             dialog.show()
 
-           val key= Preference.getInstance(ctx)?.getString(Constant.EXTERNAL_SEARCH_FILTER)!!
-            if (key.equals("1"))
+           val key= Preference.getInstance(ctx)?.getInt(Constant.EXTERNAL_SEARCH_FILTER)!!
+            if (key==1)
             {
                 itemDataBinding.storeRB.isChecked=true
             }
-            else if (key.equals("2"))
+            else if (key==2)
             {
                 itemDataBinding.productRB.isChecked=true
 
             }
-            else if (key.equals("3"))
+            else if (key==3)
             {
                 itemDataBinding.categoryRB.isChecked=true
 
@@ -166,15 +157,15 @@ class OpenDialogBox {
             itemDataBinding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId -> // checkedId is the RadioButton selected
                 when (checkedId) {
                     R.id.categoryRB -> {
-                        Preference.getInstance(ctx)?.setString(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_CATEGORY)
+                        Preference.getInstance(ctx)?.setInt(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_CATEGORY)
 
                     }
                     R.id.storeRB -> {
-                        Preference.getInstance(ctx)?.setString(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_STORE)
+                        Preference.getInstance(ctx)?.setInt(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_STORE)
 
                     }
                     R.id.productRB -> {
-                        Preference.getInstance(ctx)?.setString(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_PRODUCT)
+                        Preference.getInstance(ctx)?.setInt(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_PRODUCT)
 
                     }
                 }

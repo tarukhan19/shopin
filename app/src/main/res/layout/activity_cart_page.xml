@@ -13,9 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,7 +112,6 @@
                 android:clipToPadding="false"
                 android:paddingBottom="@dimen/_70dp"
                 android:visibility="visible" />
-
 
             <com.app.shopin.customview.RegularTextView
                 android:id="@+id/norecrdfoundTV"

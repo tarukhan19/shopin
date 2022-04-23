@@ -16,17 +16,21 @@ import com.app.shopin.Orders.viewmodels.IssueWithItemViewModel
 import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ActivityIssueWithItemsBinding
-import com.app.shopin.homePage.views.Activity.CartPageActivity
+import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.TimeDateConversion
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_issue_with_items.*
+import kotlinx.android.synthetic.main.activity_issue_with_items.productRV
+import kotlinx.android.synthetic.main.activity_issue_with_items.progressbarLL
 import kotlinx.android.synthetic.main.activity_issue_with_items.ratingLL
 import kotlinx.android.synthetic.main.activity_issue_with_items.ratingTV
+import kotlinx.android.synthetic.main.activity_issue_with_items.shopIV
 import kotlinx.android.synthetic.main.activity_issue_with_items.storenameTV
 import kotlinx.android.synthetic.main.activity_issue_with_items.toolbar
 import kotlinx.android.synthetic.main.activity_issue_with_items.totalreviewTV
+import kotlinx.android.synthetic.main.activity_order_history_detail_listing.*
 import kotlinx.android.synthetic.main.toolbar.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +45,7 @@ class IssueWithItemsActivity : AppCompatActivity(), View.OnClickListener {
     var order_no = ""
     lateinit var binding: ActivityIssueWithItemsBinding
      var  issueList=ArrayList<SelectedIssue>()
+    val selectedArrayList=ArrayList<SelectedIssue>()
 
     companion object
     {
@@ -102,6 +107,8 @@ class IssueWithItemsActivity : AppCompatActivity(), View.OnClickListener {
     {
         val orderDetail = data.order_detail
         storenameTV.text = orderDetail.store_name
+        Utils.setImage(shopIV, Constant.IMAGE_BASE_URL+orderDetail.store_image, R.drawable.store)
+
         addressTV.text = orderDetail.address
         storereturnpolicyTV.text = orderDetail.return_policy
         val storerating = orderDetail.store_rating
@@ -147,7 +154,7 @@ class IssueWithItemsActivity : AppCompatActivity(), View.OnClickListener {
         try {
             val issues_keys=data.order_detail.issues_keys
             val storeInventoryData = data.order_detail.order_item!!
-            val adapter = IssueWithItemListAdapter(this, storeInventoryData, issues_keys!!)
+            val adapter = IssueWithItemListAdapter(this, storeInventoryData, issues_keys!!,selectedArrayList)
             val layoutManager = LinearLayoutManager(this)
             productRV.setHasFixedSize(false)
             productRV.setNestedScrollingEnabled(false);
@@ -198,8 +205,6 @@ class IssueWithItemsActivity : AppCompatActivity(), View.OnClickListener {
         )
         Log.e("sendSelectedIssue",sendSelectedIssue.toString())
         val request = ServiceBuilder.getApiService(this)
-
-
         CoroutineScope(Dispatchers.IO).launch {
             val response = request.createIssueWithItem(sendSelectedIssue)
             withContext(Dispatchers.Main) {

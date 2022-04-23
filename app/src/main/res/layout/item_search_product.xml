@@ -32,7 +32,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/dove"
+                        android:layout_marginRight="@dimen/_8dp"
                         android:layout_gravity="center"
+                        android:scaleType="centerCrop"
 
                         />
                 </LinearLayout>
@@ -94,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/gray"
+                android:layout_marginTop="@dimen/_5dp"
                 />
 
         </LinearLayout>

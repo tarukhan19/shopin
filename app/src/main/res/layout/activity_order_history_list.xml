@@ -21,11 +21,6 @@ tools:context=".Orders.views.Activity.OrderHistoryListActivity">
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-
-
-
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview"
             android:layout_width="match_parent"

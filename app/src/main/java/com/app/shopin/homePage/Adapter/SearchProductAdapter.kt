@@ -11,15 +11,17 @@ import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.shopin.R
+import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ItemSearchProductBinding
 import com.app.shopin.homePage.models.StoreInventoryData
 import com.app.shopin.homePage.views.Activity.HomeActivity
 import com.app.shopin.homePage.views.Activity.ProductDetailActivity
+import com.app.shopin.utils.Constant
 
 class SearchProductAdapter(
     var ctx: Context,
     var storeInventoryDataList: ArrayList<StoreInventoryData>,
-    ) : RecyclerView.Adapter<SearchProductAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<SearchProductAdapter.MyViewHolder>() {
     lateinit var binding: ItemSearchProductBinding
     var activity: Activity? = null
 
@@ -50,6 +52,12 @@ class SearchProductAdapter(
             intent.putExtra("id",storeInventoryData.id)
             ctx.startActivity(intent)
         }
+
+        try {
+
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+storeInventoryData.inventory_image,R.drawable.freshys)
+        }
+        catch (e: java.lang.Exception){}
 
     }
 

@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:id="@+id/prodLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@color/white"
-        android:padding="@dimen/_8dp"
-        >
+        android:orientation="vertical"
+        android:padding="@dimen/_3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1"
-            >
+            android:weightSum="1">
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_70dp"
-                android:layout_weight="0.2"
+                android:layout_height="@dimen/_75dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_10dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:layout_weight="0.2"
                 android:background="@color/lite_grey"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <ImageView
                     android:id="@+id/productIV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dove"
                     android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/dove"
 
                     />
             </LinearLayout>
@@ -39,10 +38,10 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"
+                android:layout_marginLeft="@dimen/_3dp"
+                android:layout_marginRight="@dimen/_3dp"
+                android:layout_weight="0.5"
                 android:orientation="vertical"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
 
                 >
 
@@ -51,10 +50,10 @@
                     android:id="@+id/prodnameTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14sp"
-                    android:text="Dove Hair fall rescue shampoo"
                     android:src="@drawable/clock"
+                    android:text="Dove Hair fall rescue shampoo"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/_14sp"
 
                     />
 
@@ -63,9 +62,9 @@
                     android:id="@+id/prodquantityTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12sp"
-                    android:text="(180ml)"
                     android:layout_marginTop="@dimen/_10dp"
+                    android:text="(180ml)"
+                    android:textSize="@dimen/_12sp"
 
 
                     />
@@ -73,53 +72,52 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/_3dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_3dp"
                     android:gravity="center"
-                    android:weightSum="1"
-                    >
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
                     <com.app.shopin.customview.BoldTextView
                         android:id="@+id/prodamountTV"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_12sp"
-                        android:text="$50.00/pc"
                         android:layout_weight="0.5"
                         android:src="@drawable/clock"
+                        android:text="$50.00/pc"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/_12sp"
 
                         />
-                   <LinearLayout
-                       android:id="@+id/deleteLL"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal"
-                       android:layout_gravity="center"
-                       android:gravity="center"
-                       android:layout_weight="0.5"
-                       >
-                       <com.app.shopin.customview.RegularTextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textSize="@dimen/_10sp"
-                           android:text="Remove"
-                           android:gravity="center"
 
-                           android:textColor="@color/colorPrimary"
+                    <LinearLayout
+                        android:id="@+id/deleteLL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                           />
+                        <com.app.shopin.customview.RegularTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Remove"
+                            android:textColor="@color/colorPrimary"
 
-                       <ImageView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:src="@drawable/remove"
-                           android:layout_marginLeft="@dimen/_3dp"
-                           android:gravity="center"
-                           android:layout_gravity="center"
-                           />
-                   </LinearLayout>
+                            android:textSize="@dimen/_10sp"
+
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_3dp"
+                            android:gravity="center"
+                            android:src="@drawable/remove" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -129,7 +127,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
+                android:layout_weight="0.3"
                 android:orientation="vertical"
 
                 >
@@ -138,70 +136,42 @@
                 <com.app.shopin.customview.RegularTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12sp"
-                    android:text="QTY"
                     android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="0.7"
-                    android:src="@drawable/clock"
-                    android:layout_marginLeft="@dimen/_8dp"
                     android:layout_marginTop="@dimen/_5dp"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:src="@drawable/clock"
+                    android:text="QTY"
                     android:textColor="@color/black"
-                    android:layout_marginRight="@dimen/_8dp"
+                    android:textSize="@dimen/_12sp"
 
                     />
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30dp"
-                    android:background="@drawable/edittextbackgrnd"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:weightSum="1"
-                    android:layout_marginTop="@dimen/_5dp"
-                    >
+                    android:layout_height="@dimen/_50dp"
+                   >
 
-                    <com.app.shopin.customview.RegularTextView
+                    <AutoCompleteTextView
                         android:id="@+id/quantityTV"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/_12sp"
-                        android:layout_weight="0.8"
-                        android:text="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/black"
-
-                        />
-
-                    <View
-                        android:layout_width="0.5dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/gray"
-
-                        />
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ccp_down_arrow"
-                        android:layout_weight="0.2"
-
-                        android:layout_gravity="center"
-
+                        android:layout_weight="1"
+                        android:inputType="none"
+                        android:textSize="@dimen/_10sp"
                         />
 
-                </LinearLayout>
-
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0.5dp"-->
-<!--            android:background="@color/gray"-->
-<!--            android:layout_marginTop="@dimen/_5dp"-->
-<!--            />-->
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0.5dp"-->
+        <!--            android:background="@color/gray"-->
+        <!--            android:layout_marginTop="@dimen/_5dp"-->
+        <!--            />-->
 
     </LinearLayout>
 

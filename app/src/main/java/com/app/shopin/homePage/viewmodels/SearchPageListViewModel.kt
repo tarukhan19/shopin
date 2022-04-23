@@ -42,7 +42,7 @@ class SearchPageListViewModel : ViewModel() {
     }
 
 
-    fun getCategoryList(requireContext: Context, key: String) {
+    fun getCategoryList(requireContext: Context, key: Int) {
         val request = ServiceBuilder.getApiService(requireContext)
         request.getSearchPageData(key).enqueue(object : Callback<StoreCategoryListResponse> {
             @SuppressLint("NullSafeMutableLiveData")
@@ -64,7 +64,7 @@ class SearchPageListViewModel : ViewModel() {
         })
     }
 
-    fun getSearchList(requireContext: Context, key: String, searchstring: String) {
+    fun getSearchList(requireContext: Context, key: Int, searchstring: String) {
         val request = ServiceBuilder.getApiService(requireContext)
         request.getSearchListData(key, searchstring).enqueue(object : Callback<SearchListResponse> {
             @SuppressLint("NullSafeMutableLiveData")

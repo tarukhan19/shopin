@@ -66,12 +66,13 @@
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.19021739130434784" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2056159420289855" />
-        <entry key="app/src/main/res/layout/activity_store_detail.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_store_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_stripe_payment.xml" value="0.17175925925925925" />
         <entry key="app/src/main/res/layout/activity_welcome_to_shop.xml" value="0.165" />
         <entry key="app/src/main/res/layout/autocomplete_list_item.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/demo_store_fragment.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/demostoredata.xml" value="0.18703703703703703" />
+        <entry key="app/src/main/res/layout/dropdown_menu.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/edittextbackgrnd.xml" value="0.16077898550724637" />
         <entry key="app/src/main/res/layout/fragment_delivery.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18206521739130435" />
@@ -90,6 +91,7 @@
         <entry key="app/src/main/res/layout/item_category.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_curbside_pickup.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_delivery_address_list.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_dummy.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_filter.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_issue_details.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/layout/item_issue_list.xml" value="0.18703703703703703" />

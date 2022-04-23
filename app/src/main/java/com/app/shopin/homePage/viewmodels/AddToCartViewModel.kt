@@ -2,6 +2,7 @@ package com.app.shopin.homePage.viewmodels
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.shopin.Util.Utils
@@ -26,6 +27,7 @@ class AddToCartViewModel : ViewModel() {
     fun addToCartResponse(requireContext: Context,ordertype:String, price: String, quantity: String, is_update: String
                        , inventory: String, tax_amount: String,total_amount: String,
                           tax_percentage : String, store : String) {
+        Log.e("dataaaa>>>  ",is_update+" "+quantity+" "+total_amount+" "+price+" "+inventory+" "+store+" "+ordertype)
 
         val request = ServiceBuilder.getApiService(requireContext)
         request.addToCart(ordertype,price,quantity,is_update,inventory, tax_amount, total_amount, tax_percentage,store).enqueue(object :
@@ -39,6 +41,8 @@ class AddToCartViewModel : ViewModel() {
                     Utils.showToast("Item added successfully",requireContext)
                     addtocartviewmodel.postValue(response.body())
                 } else {
+                    Utils.showToast("error",requireContext)
+
                     val gson = Gson()
                     val type = object : TypeToken<ErrorResponse>() {}.type
                     var errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
@@ -56,6 +60,8 @@ class AddToCartViewModel : ViewModel() {
             @SuppressLint("NullSafeMutableLiveData")
             override fun onFailure(call: Call<AddToCartResponse>, t: Throwable) {
                 addtocartviewmodel.postValue(null)
+                Utils.showToast("onFailure",requireContext)
+
             }
 
         })

@@ -52,6 +52,7 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         addToCartViewModel = ViewModelProvider(this).get(AddToCartViewModel::class.java)
         removeCartViewModel = ViewModelProvider(this).get(RemoveCartViewModel::class.java)
 
+        Log.e("prodid",prodid)
         val featuredItemListData = ArrayList<FeaturedItemListData>()
         featuredItemListData.add(FeaturedItemListData("Dove shampoo hair fall rescue shampoo","10ml","$50/pc", R.drawable.dove))
         featuredItemListData.add(FeaturedItemListData("Pears body wash rescue shampoo","100ml","$500/pc", R.drawable.dove))
@@ -102,6 +103,12 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         stock_quantity= inventeryItem.stock_quantity!!
         price= inventeryItem.price!!.toDouble()
         storeid = inventeryItem.store!!
+//        try {
+//            val inventory_image=inventeryItem.inventory_image[0]
+//            Utils.setImage(binding.prodImageIV,Constant.IMAGE_BASE_URL+inventory_image.image,R.drawable.dove)
+//        }catch (e:Exception)
+//        {}
+
 
         if (cart_quantity==0)
         {
@@ -120,8 +127,8 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         productidTV.setText("Product ID -"+inventeryItem.id)
         priceTV.setText(inventeryItem.price.toString()+inventeryItem.size_unit+"/pc")
         sizeTV.setText(inventeryItem.size+inventeryItem.size_unit)
-        descriptionTV.setText(inventeryItem.description+getString(R.string.loremipsum))
-        returnpolicyTV.setText(inventeryItem.return_policy+getString(R.string.loremipsum))
+        descriptionTV.setText(inventeryItem.description)
+        returnpolicyTV.setText(inventeryItem.return_policy)
     }
 
     override fun onResume() {
@@ -227,7 +234,7 @@ class ProductDetailActivity : AppCompatActivity(),View.OnClickListener {
         addToCartViewModel.addtocartviewmodel.removeObservers(this)
         addToCartViewModel.getObserveData().observe(this) {
 
-            if (it?.status == true && it.status_code==201) {
+            if (it?.status == true) {
                 binding.progressbarLL.visibility=View.GONE
 
             }

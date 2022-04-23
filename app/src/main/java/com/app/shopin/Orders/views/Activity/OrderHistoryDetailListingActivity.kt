@@ -20,6 +20,7 @@ import com.app.shopin.databinding.ItemRatingReviewBinding
 import com.app.shopin.databinding.ItemTipAmountBinding
 import com.app.shopin.homePage.models.CartChildData
 import com.app.shopin.homePage.models.ErrorResponse
+import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.customer.gogetme.Retrofit.ServiceBuilder
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -150,7 +151,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
 
         }
         storenameTV.setText(data.store_name)
-        Utils.setImage(shopIV, data.store_image, R.drawable.store)
+        Utils.setImage(shopIV, Constant.IMAGE_BASE_URL+data.store_image, R.drawable.store)
         store_order_type = data.store_order_type
         order_status = data.order_status
         buttonTV1.text = store_order_type

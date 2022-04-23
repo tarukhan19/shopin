@@ -23,6 +23,7 @@ import com.app.shopin.utils.Constant
 import com.app.shopin.utils.Preference
 import kotlinx.android.synthetic.main.activity_cart_page.*
 import kotlinx.android.synthetic.main.toolbar.view.*
+import kotlin.math.log
 
 
 class CartPageActivity : AppCompatActivity(), View.OnClickListener {
@@ -49,8 +50,7 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("NotifyDataSetChanged")
     private fun initialize() {
         cartPageActivity = this
-        cartListViewModels =
-            ViewModelProvider(this).get(CartListViewModels::class.java)
+        cartListViewModels = ViewModelProvider(this).get(CartListViewModels::class.java)
         binding.lifecycleOwner = this
         toolbar.titleTV.text = "Cart"
         toolbar.back_LL.setOnClickListener(this)
@@ -81,12 +81,9 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
                     if (storelist.size == 0) {
                         recycleview.visibility = View.GONE
                         norecrdfoundTV.visibility = View.VISIBLE
-//                        bottomLL.visibility = View.GONE
                     } else {
                         recycleview.visibility = View.VISIBLE
                         norecrdfoundTV.visibility = View.GONE
-//                        bottomLL.visibility = View.VISIBLE
-
                     }
                     cartParentAdapater = CartParentAdapater(
                         storelist,
@@ -128,8 +125,10 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun runThread(from: String, total: String) {
         runOnUiThread {
+            Log.e("from",from)
             if (from.equals("cartdata")) {
                 fetchCartData()
             } else if (from.equals("addressselect")) {
@@ -143,17 +142,17 @@ class CartPageActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-        Handler(Looper.getMainLooper()).post(Runnable
-        {
-            if (from.equals("cartdata")) {
-                fetchCartData()
-            } else if (from.equals("addressselect")) {
-                addressTV.setText(
-                    Preference.getInstance(this@CartPageActivity)
-                        ?.getString(Constant.DELIVERY_ADDRESS)
-                )
-            }
-        })
+//        Handler(Looper.getMainLooper()).post(Runnable
+//        {
+//            if (from.equals("cartdata")) {
+//                fetchCartData()
+//            } else if (from.equals("addressselect")) {
+//                addressTV.setText(
+//                    Preference.getInstance(this@CartPageActivity)
+//                        ?.getString(Constant.DELIVERY_ADDRESS)
+//                )
+//            }
+//        })
 
 
     }

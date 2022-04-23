@@ -12,19 +12,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.shopin.Orders.models.IssueWithItemProdData
+import com.app.shopin.Orders.models.SelectedIssue
 import com.app.shopin.R
+import com.app.shopin.Util.Utils
 import com.app.shopin.customview.RegularTextView
 import com.app.shopin.databinding.ItemIssueListBinding
 import com.app.shopin.databinding.ItemIssuesDataBinding
 import com.app.shopin.homePage.models.IssuesData
+import com.app.shopin.utils.Constant
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_order_history_detail_listing.*
 
 
 class IssueWithItemListAdapter(
     var ctx: Context,
     var issueWithItemProdData: ArrayList<IssueWithItemProdData>,
-    var issues_keys: ArrayList<IssuesData>) : RecyclerView.Adapter<IssueWithItemListAdapter.MyViewHolder>() {
+    var issues_keys: ArrayList<IssuesData>,
+    var selectedArrayList: ArrayList<SelectedIssue>
+) : RecyclerView.Adapter<IssueWithItemListAdapter.MyViewHolder>() {
     lateinit var binding: ItemIssuesDataBinding
     lateinit var  dialog:Dialog
     var order_item=""
@@ -46,8 +50,6 @@ class IssueWithItemListAdapter(
             R.layout.item_issues_data, parent, false
         )
         issueWithItemAdapter =this
-
-
         return MyViewHolder(binding)
     }
 
@@ -57,6 +59,12 @@ class IssueWithItemListAdapter(
 
         holder.binding.prodnameTV.text=data.inventory_name
         holder.binding.prodamountTV.text="$"+data.price+"/pc"
+
+        try {
+
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+data.inventory_image,R.drawable.freshys)
+        }
+        catch (e: java.lang.Exception){}
 
         if (data.quantity.equals("1"))
         {
@@ -117,9 +125,6 @@ class IssueWithItemListAdapter(
         }
     }
 
-
-
-
     fun openIssueDialog(selectissuestatusTV: RegularTextView) {
          dialog = BottomSheetDialog(ctx)
         issuelistBinding = DataBindingUtil.inflate(
@@ -130,7 +135,7 @@ class IssueWithItemListAdapter(
         )
         dialog.setContentView(issuelistBinding.root)
         dialog.show()
-        val adapter = IssueAdapter(ctx,issues_keys,selectissuestatusTV,order_item)
+        val adapter = IssueAdapter(ctx,issues_keys,selectissuestatusTV,order_item,selectedArrayList)
         issuelistBinding.issueRV.layoutManager = LinearLayoutManager(ctx, RecyclerView.VERTICAL, false)
         issuelistBinding.issueRV.adapter = adapter
         issuelistBinding.backbtn.setOnClickListener { dialog.dismiss() }

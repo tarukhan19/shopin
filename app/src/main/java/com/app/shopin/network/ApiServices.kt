@@ -47,14 +47,11 @@ interface ApiServices {
     @GET("masters/category/get_store_category/")
     fun getCategoryData(): Call<StoreCategoryListResponse>
 
-
     @GET("store/list_store_category/")
-    fun getSearchPageData(@Query("key")key : String): Call<StoreCategoryListResponse>
+    fun getSearchPageData(@Query("key")key : Int): Call<StoreCategoryListResponse>
 
     @GET("store/search_store/")
-    fun getSearchListData(@Query("key")key : String,@Query("search_on")search_on : String): Call<SearchListResponse>
-
-
+    fun getSearchListData(@Query("key")key : Int,@Query("search_on")search_on : String): Call<SearchListResponse>
 
     @GET("store/get_new_store/")
      fun getAllStoreListData(): Call<AllStoreListResponse>
@@ -159,7 +156,6 @@ interface ApiServices {
 
     @GET("useror/der/order/order_list/")
     suspend fun getOrderList(): Response<OrderHistoryListResponse>
-
 
     @GET("useror/der/order/order_detail/")
     suspend fun getOrderDetails(@Query("order_id") id: String):OrderHistoryDetailsResponse

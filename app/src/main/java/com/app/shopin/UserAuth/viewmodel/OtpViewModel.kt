@@ -29,10 +29,7 @@ class OtpViewModel:ViewModel() {
                 if(response.isSuccessful){
                    otpData.postValue(response.body())
                 }else{
-//                    val gson = Gson()
-//                    val type = object : TypeToken<ErrorResponse>() {}.type
-//                    val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()!!.charStream(), type)
-//                    Utils.showToast(errorResponse!!.msg,context)
+
                     otpData.postValue(null)
                 }
             }

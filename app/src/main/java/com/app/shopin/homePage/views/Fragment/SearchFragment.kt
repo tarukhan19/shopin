@@ -41,7 +41,7 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
     lateinit var binding: FragmentSearchBinding
     lateinit var searchPageListViewModel: SearchPageListViewModel
     var x = 0
-    lateinit var key:String
+     var key:Int=0
     lateinit var searchdata:String
     private lateinit var storeListAdapter: AllStoreDataAdapter
     private lateinit var ctx: HomeActivity
@@ -98,8 +98,8 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
 
 
         toolbar.titleTV.text = getString(R.string.search)
-        Preference.getInstance(requireActivity())?.setString(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_CATEGORY)
-        key= Preference.getInstance(requireActivity())?.getString(Constant.EXTERNAL_SEARCH_FILTER)!!
+        Preference.getInstance(requireActivity())?.setInt(Constant.EXTERNAL_SEARCH_FILTER,Constant.FILTER_CATEGORY)
+        key= Preference.getInstance(requireActivity())?.getInt(Constant.EXTERNAL_SEARCH_FILTER)!!
         x = (resources.displayMetrics.density * 4).toInt()
 
         filterIV.setOnClickListener(this)
@@ -153,41 +153,41 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
             .observe(this) {
                 if (it != null)
                 {
-                            if (key.equals("3")) {
-                                val categorylist: ArrayList<StoreCategoryData>? = it.data.category
-                                if (categorylist != null) {
-                                    searchPageListViewModel.setCategoryAdapter(categorylist)
-                                }
-                            }
-                            else if (key.equals("1")) {
-                                val storeList: ArrayList<AllStoreDataValues>? = it.data.store
-                                Log.e("storeList",storeList.toString())
+                    if (key==3) {
+                        val categorylist: ArrayList<StoreCategoryData>? = it.data.category
+                        if (categorylist != null) {
+                            searchPageListViewModel.setCategoryAdapter(categorylist)
+                        }
+                    }
+                    else if (key==1) {
+                        val storeList: ArrayList<AllStoreDataValues>? = it.data.store
+                        Log.e("storeList",storeList.toString())
 
-                                if (storeList != null) {
-                                    storeListAdapter = AllStoreDataAdapter(storeList,false)
-                                    searchstoreRecycler.adapter = storeListAdapter
-                                    storeListAdapter.notifyDataSetChanged()
-
-                                }
-                            }
-                            else if (key.equals("2")) {
-                                val storeprodList: ArrayList<AllStoreDataValues>? = it.data.store_product
-                                Log.e("storeprodList",storeprodList.toString())
-
-                                if (storeprodList != null) {
-                                    storeListAdapter = AllStoreDataAdapter(storeprodList,false)
-                                    searchstoreRecycler.adapter = storeListAdapter
-                                    storeListAdapter.notifyDataSetChanged()
-                                }
-                            }
-                         else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Something wrong with api",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        if (storeList != null) {
+                            storeListAdapter = AllStoreDataAdapter(storeList,false)
+                            searchstoreRecycler.adapter = storeListAdapter
+                            storeListAdapter.notifyDataSetChanged()
 
                         }
+                    }
+                    else if (key==2) {
+                        val storeprodList: ArrayList<AllStoreDataValues>? = it.data.store_product
+                        Log.e("storeprodList",storeprodList.toString())
+
+                        if (storeprodList != null) {
+                            storeListAdapter = AllStoreDataAdapter(storeprodList,false)
+                            searchstoreRecycler.adapter = storeListAdapter
+                            storeListAdapter.notifyDataSetChanged()
+                        }
+                    }
+                    else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Something wrong with api",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
                 }
             }
 
@@ -204,13 +204,13 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
             .observe(this) {
                 if (it != null)
                 {
-                    if (key.equals("3")) {
+                    if (key==3) {
                         val categorylist: ArrayList<StoreCategoryData>? = it.data.category
                         if (categorylist != null) {
                             searchPageListViewModel.setCategoryAdapter(categorylist)
                         }
                     }
-                    else if (key.equals("1")) {
+                    else if (key==1) {
                         val storeList: ArrayList<AllStoreDataValues>? = it.data.stores
                         if (storeList != null) {
 
@@ -220,7 +220,7 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
 
                         }
                     }
-                    else if (key.equals("2")) {
+                    else if (key==2) {
                         val storeprodList: ArrayList<AllStoreDataValues>? = it.data.stores_product
 
                         if (storeprodList != null) {
@@ -286,25 +286,25 @@ class SearchFragment : Fragment(),View.OnClickListener,OpenDialogBox.SearchFilte
     }
 
     override fun getSearchFilter() {
-        key= Preference.getInstance(requireActivity())?.getString(Constant.EXTERNAL_SEARCH_FILTER)!!
+        key= Preference.getInstance(requireActivity())?.getInt(Constant.EXTERNAL_SEARCH_FILTER)!!
         hideShowView()
     }
 
     fun hideShowView()
     {
-        if (key.equals("1"))
+        if (key==1)
         {
             headerTV.setText(getString(R.string.all_store))
             searchstoreRecycler.visibility=View.VISIBLE
             searchcategRecycler.visibility=View.GONE
         }
-        else if(key.equals("2"))
+        else if(key==2)
         {
             headerTV.setText(getString(R.string.all_product))
             searchstoreRecycler.visibility=View.VISIBLE
             searchcategRecycler.visibility=View.GONE
         }
-        else if(key.equals("3"))
+        else if(key==3)
         {
             headerTV.setText(getString(R.string.all_categories))
             searchstoreRecycler.visibility=View.GONE

@@ -34,13 +34,18 @@
 
                 >
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/productIV"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8dp"
-                    android:background="@drawable/edittextbackgrnd"
-                    android:src="@drawable/dove" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/freshys"
+                    android:padding="@dimen/_3dp"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/lite_grey_rectentagle_backgroud"
+
+                    />
+
 
                 <com.app.shopin.customview.RegularTextView
                     android:id="@+id/prodcountTV"

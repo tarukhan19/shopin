@@ -26,6 +26,7 @@ import com.app.shopin.homePage.views.Activity.CartPageActivity
 import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
+import com.app.shopin.utils.TimeDateConversion
 import com.bigkoo.pickerview.MyOptionsPickerView
 import com.bigkoo.pickerview.listener.OnItemSelectedListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -84,7 +85,36 @@ class CartParentAdapater(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = allStoreDataValues!![position]
 
+        try {
+            Log.e("image",Constant.IMAGE_BASE_URL+data.store_image!!)
+            Utils.setImage(holder.binding.shoppic1IV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.freshys)
+            Utils.setImage(holder.binding.shoppicIV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.freshys)
 
+        }
+        catch (e: java.lang.Exception){}
+
+        try {
+            val storeTime = data.store_timmings
+            val openTime = TimeDateConversion.convertTime(storeTime.opening_time)
+            val closetime = TimeDateConversion.convertTime(storeTime.closing_time)
+            if (openTime.isEmpty() && closetime.isEmpty())
+            {
+                val time="NA"
+                binding.timeTV.text =time
+
+            }
+            else
+            {
+                val time=openTime + " - " + closetime
+                binding.timeTV.text =time
+
+            }
+
+        } catch (e: Exception) {
+            Log.e("exce", e.message.toString())
+        }
+
+        holder.binding.minamountTV.text="The min order amount is $"+data.min_order_amount
         order_type_val= data.cart_item?.get(0)?.order_type.toString()
 
         if (order_type_val.equals("Delivery"))
@@ -126,18 +156,22 @@ class CartParentAdapater(
 
         }
         holder.binding.shopnametv.text = data.name
+        holder.binding.shopname1tv.text = data.name
         holder.binding.addressTV.text = data.address
         overalltotal=0.0
         try {
             val storeInventoryData: ArrayList<CartChildData> = data.cart_item!!
             for (i in 0..storeInventoryData.size-1)
             {
-                overalltotal = storeInventoryData[i].price+overalltotal
+                overalltotal = storeInventoryData[i].total_amount+overalltotal
             }
             total=overalltotal+total
             CartPageActivity.getInstance()?.runThread("showtotal", total.toString())
-            holder.binding.totalpriceTV.text="Total \n$"+overalltotal.toString()
-            val adapter = CartChildAdapater(storeInventoryData,holder,progressbarLL)
+            holder.binding.totalpriceTV.text="$"+overalltotal.toString()
+            holder.binding.totalprice1TV.text = "$"+overalltotal.toString()
+            holder.binding.totalitem1TV.text= data.cart_item.size.toString()
+            val adapter = CartChildAdapater(storeInventoryData,holder,progressbarLL,holder.binding.totalprice1TV,
+            holder.binding.totalpriceTV)
             val layoutManager = LinearLayoutManager(ctx)
             holder.binding.productRV.setHasFixedSize(false)
             holder.binding.productRV.layoutManager = layoutManager
@@ -147,6 +181,16 @@ class CartParentAdapater(
             Log.e("exce", e.message.toString())
         }
 
+
+        holder.binding.narrowLL.setOnClickListener {
+            holder.binding.expandLL.visibility=View.VISIBLE
+            holder.binding.narrowLL.visibility=View.GONE
+        }
+        holder.binding.expandLL.setOnClickListener {
+            holder.binding.narrowLL.visibility=View.VISIBLE
+            holder.binding.expandLL.visibility=View.GONE
+
+        }
     }
 
     override fun getItemCount(): Int {

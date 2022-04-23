@@ -1,5 +1,6 @@
 package com.app.shopin.Orders.Adapter
 
+import android.R.attr.category
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
@@ -12,22 +13,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.shopin.Orders.models.SelectedIssue
 import com.app.shopin.Orders.views.Activity.IssueWithItemsActivity
 import com.app.shopin.R
-import com.app.shopin.UserAuth.view.EditProfileActivity
-import com.app.shopin.customview.RegularTextView
 import com.app.shopin.databinding.ItemIssuesBinding
-import com.app.shopin.databinding.ItemIssuesDataBinding
 import com.app.shopin.homePage.models.IssuesData
+
 
 class IssueAdapter(
     var ctx: Context,
     var issuesArrayList: ArrayList<IssuesData>?,
     var selectissuestatusTV: TextView,
-    var order_item: String
+    var order_item: String,
+   var selectedArrayList: ArrayList<SelectedIssue>
 ) : RecyclerView.Adapter<IssueAdapter.MyViewHolder>() {
     lateinit var binding: ItemIssuesBinding
-    val selectedArrayList=ArrayList<SelectedIssue>()
     var order_issue_comment=""
     var selectedIssue=""
+    var prevItemPos=0
 
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -75,13 +75,38 @@ class IssueAdapter(
         val selectedIssue= SelectedIssue(
             order_item, order_issue_comment , selectedIssue
         )
-        selectedArrayList.add(selectedIssue)
+
+
+        if (contains(selectedArrayList, order_item,selectedIssue)) {
+            Log.e("isexist","Data Exist(s)")
+        } else {
+            Log.e("isexist","Data not Exist(s)")
+            selectedArrayList.add(selectedIssue)
+
+        }
         IssueWithItemListAdapter.getInstance()?.runThread()
 
         IssueWithItemsActivity().getInstance()?.runThread(selectedArrayList,"api")
 
         Log.e("sendjsonobj",selectedArrayList.toString())
 
+    }
+
+    fun contains(list: ArrayList<SelectedIssue>, name: String?, selectedIssue: SelectedIssue): Boolean {
+        for (item in list) {
+            if (item.order_item.equals(name)) {
+                for (i in 0 until list.size) {
+                    if (list.get(i).order_item.equals(name)) {
+                        Log.e("position",i.toString())
+                        prevItemPos=i
+                        break
+                    }
+                }
+                list.set(prevItemPos,selectedIssue)
+                return true
+            }
+        }
+        return false
     }
 
 }

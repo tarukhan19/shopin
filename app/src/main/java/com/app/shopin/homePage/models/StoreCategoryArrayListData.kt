@@ -1,5 +1,6 @@
 package com.app.shopin.homePage.models
 
+
 data class StoreCategoryArrayListData(
     val category: ArrayList<StoreCategoryData>?,
 

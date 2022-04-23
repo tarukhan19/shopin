@@ -3,6 +3,7 @@ package com.app.shopin.Orders.models
 data class IssueWithItemProdData(
     var id: String?,
     var inventory_name: String?,
+    var inventory_image: String?,
     var order_type: String?,
     var price: Double,
     var size_unit: String?,

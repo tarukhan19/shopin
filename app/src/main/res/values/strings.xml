@@ -231,4 +231,5 @@
     <string name="issuewithitem">Issue With Item</string>
     <string name="issues">Issues</string>
     <string name="selectissues">Select Issues</string>
+    <string name="selected_item">select item</string>
 </resources>

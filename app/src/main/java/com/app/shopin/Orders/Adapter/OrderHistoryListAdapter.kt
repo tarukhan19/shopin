@@ -15,7 +15,9 @@ import com.app.shopin.R
 import com.app.shopin.databinding.ItemOrderHistoryListBinding
 import com.app.shopin.Orders.models.OrderHistoryListDataValues
 import com.app.shopin.Orders.views.Activity.OrderHistoryDetailListingActivity
+import com.app.shopin.Util.Utils
 import com.app.shopin.customview.RegularTextView
+import com.app.shopin.utils.Constant
 import java.lang.Exception
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -54,22 +56,29 @@ class OrderHistoryListAdapter(
 
             ctx.startActivity(in7)
         }
-
+        val orderList=data.order_item[0]
+        val orderlistsize=data.order_item.size
         try {
-            val orderList=data.order_item[0]
             holder.binding.prodnameTV.setText(orderList.inventory_name)
+
         }
         catch (e:Exception)
         {
             Log.e("orderListexc",e.localizedMessage)
         }
 
-        val count = data.item_count?.minus(1)
-        Log.e("count",count.toString())
-        holder.binding.prodcountTV.setText(count.toString()+ " more items")
+        try {
+            Log.e("image",Constant.IMAGE_BASE_URL+orderList.inventory_image)
+
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+orderList.inventory_image,R.drawable.freshys)
+        }
+        catch (e:Exception){}
+
+        Log.e("count",orderlistsize.toString())
+        holder.binding.prodcountTV.setText(orderlistsize.toString()+ " more items")
         holder.binding.orderstatusTV.setText(data.order_status)
 
-        if (count==0)
+        if (orderlistsize==1)
         {
             holder.binding.prodcountTV.visibility=View.GONE
         }
