@@ -14,6 +14,7 @@ import com.app.shopin.R
 import com.app.shopin.databinding.ItemStoreCategoryBinding
 import com.app.shopin.homePage.models.StoreCategoryData
 import com.app.shopin.homePage.models.StoreInventoryData
+import com.app.shopin.homePage.models.StoreItemsData
 
 class StoreDetailAdapter(
     var ctx: Context,
@@ -42,7 +43,7 @@ class StoreDetailAdapter(
 
         holder.binding.categorynameTV.text = storeInventoryData.value
 
-        val allStoreDataList: ArrayList<StoreInventoryData>? = storeInventoryData.inventory_items
+        val allStoreDataList: ArrayList<StoreItemsData>? = storeInventoryData.inventory_items
 
         binding.prodRV.apply {
             binding.prodRV.setHasFixedSize(true)

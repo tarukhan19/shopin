@@ -63,7 +63,16 @@ class AllStoreDataAdapter(
         val destlng=data.longitude?.toDouble()
         holder.binding.nameTV.text=data.name
         Utils.setImage(holder.binding.storeIV, Constant.IMAGE_BASE_URL+data.store_image, R.drawable.store)
+        try {
+            val store_delivery_pickup=data.store_delivery_pickup
+            holder.binding.minfreedelamountTV.text="free delivery over $"+store_delivery_pickup.min_free_delivery_amount.toString()
+            holder.binding.deliverytimeTV.text="est Time "+ store_delivery_pickup.delivery_estimate_time
+            holder.binding.pickuptimeTV.text="In "+ store_delivery_pickup.pickup_estimate_time
 
+        }catch (e:Exception)
+        {
+
+        }
 
         val storerating = data.rating_details
         val gson = Gson()
@@ -93,6 +102,8 @@ class AllStoreDataAdapter(
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+
+
 
 
         val key= Preference.getInstance(ctx)?.getInt(Constant.EXTERNAL_SEARCH_FILTER)!!

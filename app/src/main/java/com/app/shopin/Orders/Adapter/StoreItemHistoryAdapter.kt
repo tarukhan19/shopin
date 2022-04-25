@@ -52,7 +52,7 @@ class StoreItemHistoryAdapter(
         try {
             Log.e("image", Constant.IMAGE_BASE_URL+data.inventory_image)
 
-            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+data.inventory_image,R.drawable.freshys)
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+data.inventory_image,R.drawable.product)
         }
         catch (e:Exception){}
         holder.binding.checkissuestatusLL.setOnClickListener {

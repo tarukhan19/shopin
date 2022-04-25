@@ -41,7 +41,6 @@ class SearchProductAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val storeInventoryData = storeInventoryDataList[position]
 
-
         holder.binding.productnameTV.text = storeInventoryData.name+" fall rescue ("+ storeInventoryData.size+ storeInventoryData.size_unit+")"
         holder.binding.productdescTV.text =  storeInventoryData.name+" fall rescue ("+ storeInventoryData.size+ storeInventoryData.size_unit+")"
         holder.binding.productspTV.text = "$"+storeInventoryData.price+"/pc"
@@ -55,7 +54,7 @@ class SearchProductAdapter(
 
         try {
 
-            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+storeInventoryData.inventory_image,R.drawable.freshys)
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+storeInventoryData.inventory_image,R.drawable.product)
         }
         catch (e: java.lang.Exception){}
 

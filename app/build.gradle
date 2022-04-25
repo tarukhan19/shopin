@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.4.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.stripe:stripe-android:16.0.0'
-    implementation 'com.ramesh.mypicker:pickerview:1.1'
+    implementation project(':pickerview')
 }
 
 repositories {

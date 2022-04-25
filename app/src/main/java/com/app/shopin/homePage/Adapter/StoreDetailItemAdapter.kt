@@ -16,6 +16,7 @@ import com.app.shopin.R
 import com.app.shopin.Util.Utils
 import com.app.shopin.databinding.ItemProductBinding
 import com.app.shopin.homePage.models.StoreInventoryData
+import com.app.shopin.homePage.models.StoreItemsData
 import com.app.shopin.homePage.viewmodels.AddToCartViewModel
 import com.app.shopin.homePage.viewmodels.RemoveCartViewModel
 import com.app.shopin.utils.Constant
@@ -25,7 +26,7 @@ import java.lang.Exception
 
 class StoreDetailItemAdapter(
     var ctx: Context,
-    var storeCategoryData: ArrayList<StoreInventoryData>,
+    var storeCategoryData: ArrayList<StoreItemsData>,
     var progressbarLL: LinearLayout
 ) : RecyclerView.Adapter<StoreDetailItemAdapter.MyViewHolder>() {
     lateinit var binding: ItemProductBinding
@@ -54,15 +55,23 @@ class StoreDetailItemAdapter(
         holder.binding.prodnameTV.setText(storeInventoryData.name)
         holder.binding.prodpriceTV.setText("$" + storeInventoryData.price)
         cart_quantity = storeInventoryData.cart_quatity!!
-//        if (storeInventoryData.inventory_image.size!=0)
-//        {
-//            val image =storeInventoryData.inventory_image[0]
-//            try {
-//
-//                Utils.setImage(holder.binding.prodIV, Constant.IMAGE_BASE_URL+image,R.drawable.freshys)
-//            }
-//            catch (e:Exception){}
-        //       }
+        try {
+            if (storeInventoryData.inventory_image.size != 0) {
+                val image = storeInventoryData.inventory_image[0].image
+                try {
+                    Utils.setImage(
+                        holder.binding.prodIV,
+                        Constant.IMAGE_BASE_URL + image,
+                        R.drawable.product
+                    )
+                    Log.e("prodimage",Constant.IMAGE_BASE_URL + image)
+                } catch (e: Exception) {
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("error>> exce>> ", e.message.toString())
+        }
+
         if (cart_quantity == 0) {
             holder.binding.plusIV.visibility = View.VISIBLE
             holder.binding.expandLL.visibility = View.GONE
@@ -99,13 +108,12 @@ class StoreDetailItemAdapter(
 
             }
 
-            if (cart_quantity < stock_quantity)
-            {
+            if (cart_quantity < stock_quantity) {
                 progressbarLL.visibility = View.VISIBLE
                 cart_quantity = cart_quantity + 1
                 holder.binding.prodquantityTV.setText(cart_quantity.toString())
                 val totalamount = storeInventoryData.price!!.toDouble() * cart_quantity
-                Log.e("totalamount",totalamount.toString())
+                Log.e("totalamount", totalamount.toString())
                 storeInventoryData.cart_quatity = cart_quantity
                 try {
                     addToCart(
@@ -118,7 +126,7 @@ class StoreDetailItemAdapter(
                 } catch (e: Exception) {
 
                 }
-            }                else {
+            } else {
                 Utils.showToast("Out of stock", ctx)
 
             }
@@ -176,7 +184,7 @@ class StoreDetailItemAdapter(
 
 
     private fun addToCart(
-        storeInventoryData: StoreInventoryData,
+        storeInventoryData: StoreItemsData,
         is_update: String,
         quantity: String,
         totalamount: String
@@ -187,7 +195,7 @@ class StoreDetailItemAdapter(
         addToCartViewModel.addtocartviewmodel.removeObservers(ctx as FragmentActivity)
         addToCartViewModel.getObserveData().observe(ctx as FragmentActivity) {
 
-            if (it?.status == true ) {
+            if (it?.status == true) {
                 progressbarLL.visibility = View.GONE
 
             } else {

@@ -58,14 +58,13 @@ lateinit var binding : FragmentDeliveryBinding
     fun loadStore()
     {
         storeDetailViewModel.getStoreDetailObserver().observe(this) {
+//            Utils.showToast(it.status.toString(),requireActivity())
             if (it?.status == true && it.status_code == 200) {
-                val storeprodList: ArrayList<StoreCategoryData>? = it.data.category
-                if (storeprodList != null) {
-                    progressbarLL.visibility = View.GONE
-                    storeDetailAdapter = StoreDetailAdapter(requireActivity(),storeprodList,progressbarLL)
-                    storeRV.adapter = storeDetailAdapter
-                    storeDetailAdapter.notifyDataSetChanged()
-                }
+                val storeprodList: ArrayList<StoreCategoryData> = it.data.category
+                progressbarLL.visibility = View.GONE
+                storeDetailAdapter = StoreDetailAdapter(requireActivity(),storeprodList,progressbarLL)
+                storeRV.adapter = storeDetailAdapter
+                storeDetailAdapter.notifyDataSetChanged()
             } else {
                 progressbarLL.visibility = View.GONE
                 Utils.showToast("Something Went wrong", requireActivity())

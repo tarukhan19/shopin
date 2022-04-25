@@ -19,7 +19,7 @@ tools:context=".Orders.views.Activity.OrderHistoryListActivity">
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
+                layout="@layout/toolbar_order_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview"

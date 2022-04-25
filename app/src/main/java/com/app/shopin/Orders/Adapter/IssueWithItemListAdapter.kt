@@ -62,7 +62,7 @@ class IssueWithItemListAdapter(
 
         try {
 
-            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+data.inventory_image,R.drawable.freshys)
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+data.inventory_image,R.drawable.product)
         }
         catch (e: java.lang.Exception){}
 

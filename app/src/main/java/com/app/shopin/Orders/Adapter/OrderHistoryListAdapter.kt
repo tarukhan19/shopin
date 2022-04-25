@@ -70,7 +70,7 @@ class OrderHistoryListAdapter(
         try {
             Log.e("image",Constant.IMAGE_BASE_URL+orderList.inventory_image)
 
-            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+orderList.inventory_image,R.drawable.freshys)
+            Utils.setImage(holder.binding.productIV, Constant.IMAGE_BASE_URL+orderList.inventory_image,R.drawable.product)
         }
         catch (e:Exception){}
 
@@ -114,7 +114,7 @@ class OrderHistoryListAdapter(
             var date =createdDate
             val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 //            val output = SimpleDateFormat("dd/MM/yyyy hh:mm a")
-            val output = SimpleDateFormat("EEE, d MMM, yyyy")
+            val output = SimpleDateFormat("EEE, d MMM, yyyy, hh:mm a")
 
             var d: Date? = null
             input.setTimeZone(TimeZone.getTimeZone("UTC"));

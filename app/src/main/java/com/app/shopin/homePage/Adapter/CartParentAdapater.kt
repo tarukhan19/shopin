@@ -27,8 +27,9 @@ import com.app.shopin.utils.Constant
 import com.app.shopin.utils.OpenDialogBox
 import com.app.shopin.utils.Preference
 import com.app.shopin.utils.TimeDateConversion
-import com.bigkoo.pickerview.MyOptionsPickerView
-import com.bigkoo.pickerview.listener.OnItemSelectedListener
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
+import com.bigkoo.pickerview.view.OptionsPickerView
+
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -51,8 +52,8 @@ class CartParentAdapater(
     var SelectedTimeSlot:String=""
     var storelist=ArrayList<CartParentData>()
      var selectpos:Int=0
-
-    lateinit var twoPicker: MyOptionsPickerView<Any>
+    lateinit var pvOptions: OptionsPickerView<Any>
+   // lateinit var twoPicker: MyOptionsPickerView<Any>
     private lateinit var placeOrderViewModel: PlaceOrderViewModel
     private lateinit var timeSlotListViewModel: TimeSlotListViewModel
 
@@ -74,7 +75,7 @@ class CartParentAdapater(
 
         ctx = parent.context
         cartParentAdapater = this
-        twoPicker= MyOptionsPickerView<Any>(ctx)
+       // twoPicker= MyOptionsPickerView<Any>(ctx)
         placeOrderViewModel  = ViewModelProvider(ctx as CartPageActivity).get(PlaceOrderViewModel::class.java)
         timeSlotListViewModel  = ViewModelProvider(ctx as CartPageActivity).get(TimeSlotListViewModel::class.java)
 
@@ -87,8 +88,8 @@ class CartParentAdapater(
 
         try {
             Log.e("image",Constant.IMAGE_BASE_URL+data.store_image!!)
-            Utils.setImage(holder.binding.shoppic1IV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.freshys)
-            Utils.setImage(holder.binding.shoppicIV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.freshys)
+            Utils.setImage(holder.binding.shoppic1IV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.store)
+            Utils.setImage(holder.binding.shoppicIV, Constant.IMAGE_BASE_URL+data.store_image!!,R.drawable.store)
 
         }
         catch (e: java.lang.Exception){}
@@ -290,33 +291,32 @@ class CartParentAdapater(
             val date= Utils.getCalculatedDate("dd-MM-yyyy",i)
             datelist.add(date!!)
         }
-        twoPicker.setPicker(datelist, timeslotlist, true)
-        twoPicker.setTitle("Time Slot")
-        twoPicker.hideCancelButton()
-        twoPicker.setSubmitButtonText("Done")
 
-        twoPicker.btnSubmit.setOnClickListener {
-            twoPicker.dismiss()
-
-            progressbarLL.visibility=View.VISIBLE
-
-            createJsonFormat()
+        pvOptions = OptionsPickerBuilder(
+            ctx
+        ) { options1, options2, options3, v ->
+            val str = """
+        ${datelist.get(options1)}
+        ${timeslotlist.get(options2)}
+        """.trimIndent()
         }
-        twoPicker.setCyclic(false, false, false)
-        twoPicker.setSelectOptions(0, 0)
+            .setOptionsSelectChangeListener { options1, options2, options3 ->
+                selectedDate = datelist[options1].toString()
+                SelectedTimeSlot= timeslotlist[options2].toString()
+//                val str = selectedDate+" "+SelectedTimeSlot
+            }
+            .setItemVisibleCount(5)
+            .setSelectOptions(0, 0, 0)
+            .setTitleText("Time Slot")
+            .setContentTextSize(14)
+            .addOnSubmitClickListener {
+                Utils.showToast("submit",ctx)
+            progressbarLL.visibility=View.VISIBLE
+            createJsonFormat()
+            }
+            .build<Any>()
+        pvOptions.setNPicker(datelist, timeslotlist, null)
 
-
-        twoPicker.wheelOptions.setOption1SelectedListener(OnItemSelectedListener {
-        index ->
-         selectedDate=   datelist.get(index).toString()
-            Toast.makeText(ctx, "" + selectedDate, Toast.LENGTH_SHORT).show()
-
-        })
-
-        twoPicker.wheelOptions.setOption2SelectedListener(OnItemSelectedListener {
-        index ->
-        SelectedTimeSlot=   timeslotlist.get(index).toString()
-        })
 
 
     }
@@ -363,7 +363,7 @@ class CartParentAdapater(
 
             curbsideIV.setImageResource(R.drawable.select)
             instoreIV.setImageResource(R.drawable.deselect)
-            twoPicker.show()
+            pvOptions.show()
             dialog.dismiss()
 
         }
@@ -373,7 +373,7 @@ class CartParentAdapater(
 
             instoreIV.setImageResource(R.drawable.select)
             curbsideIV.setImageResource(R.drawable.deselect)
-            twoPicker.show()
+            pvOptions.show()
             dialog.dismiss()
         }
         dialog.setCancelable(false)

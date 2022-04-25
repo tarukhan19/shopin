@@ -155,7 +155,7 @@ interface ApiServices {
     fun getTimeslotList(@Query("id") id: String): Call<TimeSlotListResponse>
 
     @GET("useror/der/order/order_list/")
-    suspend fun getOrderList(): Response<OrderHistoryListResponse>
+    suspend fun getOrderList(@Query("months") selectDuration: String,@Query("status") selectOrderStatus: String): Response<OrderHistoryListResponse>
 
     @GET("useror/der/order/order_detail/")
     suspend fun getOrderDetails(@Query("order_id") id: String):OrderHistoryDetailsResponse

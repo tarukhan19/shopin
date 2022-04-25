@@ -127,7 +127,6 @@
                             android:id="@+id/reviewcountTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="124 Ratings"
                             android:textColor="@color/darkgray"
                             android:textSize="@dimen/_10sp"
                             android:layout_marginLeft="@dimen/_3dp"
@@ -158,14 +157,15 @@
                         android:background="@drawable/lite_grey_rectentagle_backgroud"
                         >
                         <com.app.shopin.customview.RegularTextView
+                            android:id="@+id/minfreedelamountTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="free delivery over $12"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_8sp"
                             android:layout_marginLeft="@dimen/_3dp"
                             />
                         <com.app.shopin.customview.RegularTextView
+                            android:id="@+id/deliverytimeTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Est. Tomorrow 9 AM"
@@ -194,9 +194,9 @@
                             android:layout_marginLeft="@dimen/_3dp"
                             />
                         <com.app.shopin.customview.RegularTextView
+                            android:id="@+id/pickuptimeTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="In 45 minute"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/_8sp"
                             android:layout_marginLeft="@dimen/_3dp"

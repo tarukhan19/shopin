@@ -24,13 +24,17 @@ class OrderHistoryListViewModel : ViewModel() {
         return orderHistoryListDataValues
     }
 
-    fun getAllOrderHistoryList(requireContext: Context) {
+    fun getAllOrderHistoryList(
+        requireContext: Context,
+        selectDuration: String,
+        selectOrderStatus: String
+    ) {
 
         val request = ServiceBuilder.getApiService(requireContext)
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = request.getOrderList()
+            val response = request.getOrderList(selectDuration,selectOrderStatus)
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful) {

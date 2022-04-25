@@ -103,7 +103,7 @@
                     android:layout_below="@id/orderidLL"
                     android:layout_marginTop="@dimen/_3dp"
                     android:text="On Thu, 25 june 2020"
-                    android:textSize="@dimen/_12sp" />
+                    android:textSize="@dimen/_8sp" />
 
 
                 <LinearLayout
@@ -181,7 +181,7 @@
                     android:layout_marginTop="@dimen/_5dp"
                     android:text="On Thu, 25 july 2020"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_10sp" />
+                    android:textSize="@dimen/_8sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

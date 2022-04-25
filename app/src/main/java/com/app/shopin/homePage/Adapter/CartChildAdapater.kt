@@ -65,7 +65,7 @@ class CartChildAdapater(
             Utils.setImage(
                 holder.binding.productIV,
                 Constant.IMAGE_BASE_URL + data.inventory_image,
-                R.drawable.freshys
+                R.drawable.product
             )
         } catch (e: java.lang.Exception) {
         }

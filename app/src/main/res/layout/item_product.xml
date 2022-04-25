@@ -41,10 +41,10 @@
                         android:id="@+id/prodIV"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_110dp"
-                        android:src="@drawable/new_store"
+                        android:src="@drawable/product"
                         android:layout_weight="0.6"
                         android:layout_marginLeft="@dimen/_8dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitCenter"
                         />
 
                     <LinearLayout

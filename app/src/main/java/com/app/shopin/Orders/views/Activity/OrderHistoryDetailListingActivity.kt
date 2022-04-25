@@ -143,7 +143,7 @@ class OrderHistoryDetailListingActivity : AppCompatActivity(), View.OnClickListe
         val tipgson = Gson()
         ordertipJson = tipgson.toJson(tipdata)
         order_no=data.order_no.toString()
-       orderidTV.setText(order_no)
+        orderidTV.setText(order_no)
 
         CoroutineScope(Dispatchers.Main).launch {
             val date = Utils.dateFormat(data.created_date)
